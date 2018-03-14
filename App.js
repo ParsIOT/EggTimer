@@ -1,6 +1,6 @@
 import Timer from './src/timer.js'
 import React, { Component } from 'react';
-import {View, Image, ImageBackground, Button, Text} from 'react-native'
+import {View, Image, ImageBackground, Button, Text, TouchableNativeFeedback, PixelRatio} from 'react-native'
 
 
 class Io extends Component<{}>{
@@ -8,6 +8,7 @@ class Io extends Component<{}>{
     super(props)
     this.state={inputTime:0}
     this.setState({time:this.children})
+    
   }
   render(){
     return <Text> {this.props.time} </Text>
@@ -48,14 +49,18 @@ export default class App extends Component<{}>{
   
   render(){
     return(
-      <View style={{flex:1, flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+      <View style={{flex:1, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'#c4dfe6'}}>
         <Timer timerTime={this.state.time}/>
        <Text>{this.state.time}</Text>
-        <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent: 'center'}}>
+          <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent: 'center'}}>
           <Button title={"عسلی"} onPress={()=>{this.setState({time:this.state.honeyTime,  cooked:false, normal:false, honey:true})}}/>
           <Button title={"معمولی"} onPress={()=>{this.setState({time:this.state.normalTime, cooked:false, normal:true, honey:false})}}/>
           <Button title={"غیر معمولی"} onPress={()=>{this.setState({time:5, cooked:false, normal:true, honey:false})}}/>
           <Button title={"کاملا پخته"} onPress={()=>{this.setState({time:this.state.cookedTime, cooked:true, normal:false, honey:false})}}/>
+          <TouchableNativeFeedback>
+          <View style={{borderRadius:25, height:50, width:50, backgroundColor:'red'}}/>
+          </TouchableNativeFeedback>
+
         </View>
         </View>
       // </View>

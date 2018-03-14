@@ -5,7 +5,7 @@ const styles = StyleSheet.create ({
         color:'red'
     },
     TimerFont:{
-        color:'red',
+        color:'#66a5ad',
         fontSize: 25,
         padding:50
     }

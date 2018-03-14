@@ -6,7 +6,11 @@ import {
   View,
   Button,
   Alert,
-  TextInput
+  TextInput,
+  TouchableWithoutFeedback,
+  TouchableNativeFeedback,
+  TouchableHighlight,
+  TouchableOpacity
 } from 'react-native';
 import styles from '../appStyle/styleSheet.js'
 
@@ -77,12 +81,14 @@ export default class Timer extends Component<Props> {
 
   render() {
     return (
-      <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
-      <View style={{backgroundColor:'rgb(250,250,60)', flex:1}}>
+      <View style={{alignItems:'center', justifyContent:'center'}}>
         <Text style={styles.TimerFont}>{("0"+Math.trunc(this.state.shownTime/60)).slice(-2)} : {("0"+this.state.shownTime%60).slice(-2)}</Text>
-        <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-        <Button styles={styles.Button} title={'اتمام'} onPress = {()=>{this.stopTimer()}} />
-        <Button styles={styles.Button} title={this.state.paused ? 'شروع' : 'توقف'} onPress={()=>{
+        {/* <Button styles={styles.Button} title={'اتمام'} onPress = {()=>{this.stopTimer()}} /> */}
+        
+      <View style={{ alignContent:'center', justifyContent:'center'}}>
+
+        <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+        <TouchableOpacity onPress={()=>{
           if (this.state.paused){
             this.setState({paused:false}) 
             if (this.state.shownTime < 1) {this.startTimer(this.props.timerTime); this.setState({shownTime:this.props.timerTime})} //restart
@@ -93,9 +99,46 @@ export default class Timer extends Component<Props> {
             this.setState({paused:true})
             this.pauseTimer()
           }
-          }}/>
+          }}>
+        <View style={{borderRadius:75,borderColor:'white', borderWidth:2 , backgroundColor:'#66a5ad', width:150, height:150, alignItems:'center', justifyContent:'center'}}>
+          <Text style={{color:'white'}}> {this.state.paused ? 'شروع' : 'توقف'} </Text>
+        </View>
+        </TouchableOpacity>
+
+        
+        </View>
+
+        <View style={{flexDirection:'row'}}>
+
+          <View style={{width:100, height:150, alignItems:'center', justifyContent:'center'}}>
+          </View>
+
+        <TouchableOpacity onPress = {()=>{this.stopTimer()}}>
+          <View style={{borderColor:'white', borderWidth:2, backgroundColor:'#66a5ad', width:50, height:50, alignItems:'center', justifyContent:'center', borderRadius:50}}>
+            <Text style={{color:'white'}}> اتمام </Text>
+          </View>
+        </TouchableOpacity>
+        
+          <View style={{width:150, height:150, alignItems:'center', justifyContent:'center'}}>
+          </View>
+          <View style={{width:150, height:150, alignItems:'center', justifyContent:'center'}}>
+            <Text style={{color:'white'}}></Text>
           </View>
         </View>
+        
+      </View>
+        {/* <Button styles={styles.Button} title={this.state.paused ? 'شروع' : 'توقف'} onPress={()=>{
+          if (this.state.paused){
+            this.setState({paused:false}) 
+            if (this.state.shownTime < 1) {this.startTimer(this.props.timerTime); this.setState({shownTime:this.props.timerTime})} //restart
+            else if (this.state.stoped){this.startTimer(this.props.timerTime); this.setState({shownTime:this.props.timerTime, stoped:false})}
+            else {this.startTimer(this.state.shownTime)} //pause
+          }
+          else if (!this.state.paused){
+            this.setState({paused:true})
+            this.pauseTimer()
+          }
+          }}/> */}
       </View>
     );
   }
