@@ -10,9 +10,12 @@ import {
   TouchableWithoutFeedback,
   TouchableNativeFeedback,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  TabBarIOS
 } from 'react-native';
-import styles from '../appStyle/styleSheet.js'
+import {connect} from 'react-redux'
+import styles from '../../appStyle/styleSheet.js'
+import * as actions from '../actions'
 
 
 
@@ -25,8 +28,8 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class Timer extends Component<Props> {
+
+class Timer extends Component<{}> {
   constructor(props){
     super(props)
     this.state={
@@ -79,10 +82,32 @@ export default class Timer extends Component<Props> {
     this.setState({paused:true,stoped:true, backgroundColor:'white'})   
   }
 
+  showStop(){
+    if (! this.state.stoped){
+    return(
+      <TouchableOpacity onPress = {()=>{this.stopTimer()}}>
+      <View style={{borderColor:'white', borderWidth:2, backgroundColor:'#66a5ad', width:50, height:50, alignItems:'center', justifyContent:'center', borderRadius:50}}>
+        <Text style={{color:'white'}}> اتمام </Text>
+      </View>
+    </TouchableOpacity>)
+    }
+    
+
+    else return 
+  }
+
   render() {
+    var timeee = this.state.stoped ? ("0"+Math.trunc(this.props.timerTime%60)).slice(-2) : ("0"+Math.trunc(this.state.shownTime%60)).slice(-2) 
     return (
+      
       <View style={{alignItems:'center', justifyContent:'center'}}>
-        <Text style={styles.TimerFont}>{("0"+Math.trunc(this.state.shownTime/60)).slice(-2)} : {("0"+this.state.shownTime%60).slice(-2)}</Text>
+      <Text>{this.props.time}</Text>
+        <Text style={styles.TimerFont}>
+        
+        {this.state.stoped ? ("0"+Math.trunc(this.props.timerTime/60)).slice(-2) : ("0"+Math.trunc(this.state.shownTime/60)).slice(-2) } : {this.state.stoped ? ("0"+Math.trunc(this.props.timerTime%60)).slice(-2) : ("0"+this.state.shownTime%60).slice(-2) }
+        
+        
+        </Text>
         {/* <Button styles={styles.Button} title={'اتمام'} onPress = {()=>{this.stopTimer()}} /> */}
         
       <View style={{ alignContent:'center', justifyContent:'center'}}>
@@ -110,18 +135,16 @@ export default class Timer extends Component<Props> {
 
         <View style={{flexDirection:'row'}}>
 
-          <View style={{width:100, height:150, alignItems:'center', justifyContent:'center'}}>
+          <View style={{width:100, height:50, alignItems:'center', justifyContent:'center'}}>
           </View>
-
-        <TouchableOpacity onPress = {()=>{this.stopTimer()}}>
-          <View style={{borderColor:'white', borderWidth:2, backgroundColor:'#66a5ad', width:50, height:50, alignItems:'center', justifyContent:'center', borderRadius:50}}>
-            <Text style={{color:'white'}}> اتمام </Text>
-          </View>
-        </TouchableOpacity>
         
-          <View style={{width:150, height:150, alignItems:'center', justifyContent:'center'}}>
+
+          {this.showStop()}
+        
+        
+          <View style={{width:150, height:50, alignItems:'center', justifyContent:'center'}}>
           </View>
-          <View style={{width:150, height:150, alignItems:'center', justifyContent:'center'}}>
+          <View style={{width:150, height:50, alignItems:'center', justifyContent:'center'}}>
             <Text style={{color:'white'}}></Text>
           </View>
         </View>
@@ -151,4 +174,11 @@ export default class Timer extends Component<Props> {
 //rgb(100, 0, 150)
 //rgb(50, 0, 200)
 //rgb(0,0,250)
+
+
+const mapStateToProps= state =>{
+  return { time:state.time }
+}
+
+export default connect(mapStateToProps, actions)(Timer)
 

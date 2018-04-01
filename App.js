@@ -1,13 +1,17 @@
-import Timer from './src/timer.js'
+import Timer from './src/components/timer.js'
 import React, { Component } from 'react';
-import {View, Image, ImageBackground, Button, Text, TouchableNativeFeedback, PixelRatio} from 'react-native'
+import {View, ImageBackground, Button, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions} from 'react-native'
+import RadioGroup from 'react-native-custom-radio-group';
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+import reducers from './src/reducers/timerReducer'
+import Choices from './src/components/choices.js'
 
 
 class Io extends Component<{}>{
   constructor(props){
     super(props)
-    this.state={inputTime:0}
-    this.setState({time:this.children})
+    this.state={inputTime:200}
     
   }
   render(){
@@ -15,6 +19,7 @@ class Io extends Component<{}>{
   }
 }
 
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
 export default class App extends Component<{}>{
@@ -28,7 +33,13 @@ export default class App extends Component<{}>{
       normalTime : 4,
       honey:false,
       honeyTime:3,
-      time:0}
+      time:200,
+      
+    }
+  }
+
+  renderElements(){
+    
   }
 
   getTime(){
@@ -42,28 +53,62 @@ export default class App extends Component<{}>{
     if(this.state.normal) return <Timer timerTime={this.state.normal}/>
   }
 
-  resetall= new Promise((resolve, reject)=>{
-    this.setState({cooked:false, normal:false, honey:false})
-    resolve('reset')
-  })
   
   render(){
+    var eggSize = [{
+      label: 'کوچک',
+      value: 15
+    }, {
+      label: 'متوسط',
+      value: 10
+    }];
+
+    var eggStatus = [{
+      label: 'پخته',
+      value: 15
+    }, {
+      label:"سنگ پز",
+      value: 10
+    }, {
+      label: 'عسلی',
+      value: 6
+    }];
+
+    var waterStatus = [{
+      label: 'سرد',
+      value: 25
+    }, {
+      label: 'ولرم',
+      value: 70
+    }, {
+      label: 'جوش',
+      value: 100
+    }];
+
+    var waterStatus2 = [{
+      label: 'سرد',
+      value: 25
+    }]
     return(
-      <View style={{flex:1, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'#c4dfe6'}}>
+      <Provider store={store}>
+      
+      <View style={{flex:1, flexDirection:'column', alignItems:'center', justifyContent:'flex-start', backgroundColor:'white'}}>
+                 
+       
         <Timer timerTime={this.state.time}/>
-       <Text>{this.state.time}</Text>
-          <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent: 'center'}}>
+        <Text>{this.state.time}</Text>
+        <Choices/>
+        <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent: 'center'}}>
           <Button title={"عسلی"} onPress={()=>{this.setState({time:this.state.honeyTime,  cooked:false, normal:false, honey:true})}}/>
           <Button title={"معمولی"} onPress={()=>{this.setState({time:this.state.normalTime, cooked:false, normal:true, honey:false})}}/>
           <Button title={"غیر معمولی"} onPress={()=>{this.setState({time:5, cooked:false, normal:true, honey:false})}}/>
-          <Button title={"کاملا پخته"} onPress={()=>{this.setState({time:this.state.cookedTime, cooked:true, normal:false, honey:false})}}/>
-          <TouchableNativeFeedback>
-          <View style={{borderRadius:25, height:50, width:50, backgroundColor:'red'}}/>
-          </TouchableNativeFeedback>
+          <Button title={"کاملا پخته"} onPress={()=>{this.setState({time:7, cooked:true, normal:false, honey:false})}}/>
+        </View>
 
-        </View>
-        </View>
-      // </View>
+        
+
+     </View>
+     </Provider>
     )
  
   }
