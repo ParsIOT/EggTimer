@@ -20,7 +20,7 @@ const styles = StyleSheet.create ({
     selectedItemText:{
         fontSize:17,
         fontWeight:'bold', 
-        fontFamily:'main',
+        fontFamily:'Vazir',
         color:'black'
       },
 
@@ -32,7 +32,7 @@ const styles = StyleSheet.create ({
 
     normalItemText:{
         fontSize:17,
-        fontFamily:'main',
+        fontFamily:'Vazir',
         color:'black'
     },
 
@@ -45,7 +45,7 @@ const styles = StyleSheet.create ({
 
     disableItemText:{
         fontSize:17,
-        fontFamily:'main',
+        fontFamily:'Vazir',
         color:'rgb(190,190,190)'
     },
 

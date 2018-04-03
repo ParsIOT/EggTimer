@@ -30,3 +30,40 @@ export const disable = ( item )=>{
         item :  item
     }
 }
+
+export const decCounter = () => {
+    return {
+        type : 'DECREMENT_COUNTER'
+    }
+}
+
+export const presetCounter = ( cnt ) => {
+    return{
+        type : 'PRESET_COUNTER',
+        counter : cnt
+    }
+}
+
+export const calculateTime = () =>{
+    return{
+        type : 'CALCULATE_TIME'
+    }
+}
+
+export const started = () =>{
+    return{
+        type: 'STARTED'
+    }
+}
+
+export const paused = () =>{
+    return{
+        type: 'PAUSED'
+    }
+}
+
+export const stoped = () =>{
+    return{
+        type: 'STOPED'
+    }
+}

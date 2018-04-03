@@ -50,8 +50,7 @@ class Timer extends Component<{}> {
 
   startTimer(time){
     //   this.notif("Your egg is Ready To eat")
-    this.props.presetCounter(180)
-    console.log(this.props.timerTime)
+      console.log(this.props.timerTime)
     // var time=this.state.time
     // this.setState({shownTime : this.state.time})
     this.setState({backgroundColor:'white'})
@@ -60,7 +59,6 @@ class Timer extends Component<{}> {
     var counter=time;
     var a=setInterval(()=>{
       counter--
-      this.props.decCounter()
       // console.log(this.state.shownTime)
       if (counter <=0) {clearInterval(a);this.setState({ backgroundColor : 'rgb(255,255,60)' , paused:true, shownTime:0}); Alert.alert("Your Egg is ready to eat")}
       else this.setState((ps)=>{return({ shownTime:ps.shownTime -1 })})
@@ -178,10 +176,7 @@ class Timer extends Component<{}> {
 
 
 const mapStateToProps= state =>{
-  return { 
-    time:state.time ,
-    counter : state.counter
-  }
+  return { time:state.time }
 }
 
 export default connect(mapStateToProps, actions)(Timer)

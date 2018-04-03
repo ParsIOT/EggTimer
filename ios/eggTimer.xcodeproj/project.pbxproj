@@ -37,6 +37,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		F4B53737D36E424F98BD9ED4 /* main.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCD3B2607E6E41F3B1194A06 /* main.ttf */; };
+		8B3908492B8C4B7A86941D26 /* Vazir.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D427D82969C49938B6253AD /* Vazir.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +288,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		BCD3B2607E6E41F3B1194A06 /* main.ttf */ = {isa = PBXFileReference; name = "main.ttf"; path = "../assets/fonts/main.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9D427D82969C49938B6253AD /* Vazir.ttf */ = {isa = PBXFileReference; name = "Vazir.ttf"; path = "../assets/fonts/Vazir.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +546,7 @@
 			isa = "PBXGroup";
 			children = (
 				BCD3B2607E6E41F3B1194A06 /* main.ttf */,
+				9D427D82969C49938B6253AD /* Vazir.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -940,6 +943,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				F4B53737D36E424F98BD9ED4 /* main.ttf in Resources */,
+				8B3908492B8C4B7A86941D26 /* Vazir.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

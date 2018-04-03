@@ -31,63 +31,63 @@ class Choices extends Component<{}>{
         return(
           <View style={{flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
           <View style={styles.rowContainer}>
-            <TouchableWithoutFeedback onPress={()=>{this.props.selectEggStatus('sangi', 20)}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback onPress={()=>{this.props.selectEggStatus('sangi', 20);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={ myItemStyles[this.props.sangi] }>
               <Text style={ myItemTextStyles[this.props.sangi] }> سنگی </Text>
               </View>
             </TouchableWithoutFeedback>
-            <TouchableOpacity onPress={()=>{this.props.selectEggStatus('pokhte', 50)}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback onPress={()=>{this.props.selectEggStatus('pokhte', 50);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.pokhte]}>
-              <Text style={myItemTextStyles[this.props.sangi]}> پخته </Text>
+              <Text style={myItemTextStyles[this.props.pokhte]}> پخته </Text>
               </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>{this.props.selectEggStatus('asaly', 60)}} onLongPress={()=>{}}>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={()=>{this.props.selectEggStatus('asaly', 60);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.asaly]}>
-              <Text style={myItemTextStyles[this.props.sangi]}> عسلی </Text>
+              <Text style={myItemTextStyles[this.props.asaly]}> عسلی </Text>
               </View>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </View>
 
           <View style={styles.rowContainer}>
-          <TouchableNativeFeedback onPress={()=>{this.props.selectSize('bozorg', 3 )}} onLongPress={()=>{}}>
+          <TouchableWithoutFeedback onPress={()=>{this.props.selectSize('bozorg', 3 );this.props.calculateTime()}} onLongPress={()=>{}}>
             <View style={myItemStyles[this.props.bozorg]}>
-            <Text style={styles.selectedItemText}> بزرگ </Text>
+            <Text style={myItemTextStyles[this.props.bozorg]}> بزرگ </Text>
             </View>
-          </TouchableNativeFeedback>
-          <TouchableNativeFeedback onPress={()=>{this.props.selectSize('motevasset', 2 )}} onLongPress={()=>{}}>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={()=>{this.props.selectSize('motevasset', 2 );this.props.calculateTime()}} onLongPress={()=>{}}>
             <View style={myItemStyles[this.props.motevasset]}>
-            <Text style={styles.selectedItemText}> متوسط </Text>
+            <Text style={myItemTextStyles[this.props.motevasset]}> متوسط </Text>
             </View>
-          </TouchableNativeFeedback>
-          <TouchableNativeFeedback onPress={()=>{this.props.selectSize('kouchak', 1 )}} onLongPress={()=>{}}>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={()=>{this.props.selectSize('kouchak', 1 );this.props.calculateTime()}} onLongPress={()=>{}}>
             <View style={myItemStyles[this.props.kouchak]}>
-            <Text style={styles.selectedItemText}> کوچک </Text>
+            <Text style={myItemTextStyles[this.props.kouchak]}> کوچک </Text>
             </View>
-          </TouchableNativeFeedback>
+          </TouchableWithoutFeedback>
 
           </View>
 
           <View style={styles.rowContainer}>
-            <TouchableNativeFeedback onPress={()=>{this.props.selectWaterStatus('joush', 50)}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback onPress={()=>{this.props.selectWaterStatus('joush', 50);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.joush]}>
-              <Text style={styles.selectedItemText}> جوش </Text>
+              <Text style={myItemTextStyles[this.props.joush]}> جوش </Text>
               </View>
-            </TouchableNativeFeedback>
-            <TouchableNativeFeedback onPress={()=>{this.props.selectWaterStatus('dagh', 40)}} onLongPress={()=>{}}>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={()=>{this.props.selectWaterStatus('dagh', 40);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.dagh]}>
-              <Text style={styles.selectedItemText}> داغ </Text>
+              <Text style={myItemTextStyles[this.props.dagh]}> داغ </Text>
               </View>
-            </TouchableNativeFeedback>
-            <TouchableNativeFeedback onPress={()=>{this.props.selectWaterStatus('velarm', 30)}} onLongPress={()=>{}}>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={()=>{this.props.selectWaterStatus('velarm', 30);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.velarm]}>
-              <Text style={styles.selectedItemText}> ولرم </Text>
+              <Text style={myItemTextStyles[this.props.velarm]}> ولرم </Text>
               </View>
-            </TouchableNativeFeedback>
-            <TouchableNativeFeedback onPress={()=>{this.props.selectWaterStatus('sard', 20)}} onLongPress={()=>{}}>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={()=>{this.props.selectWaterStatus('sard', 20);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.sard]}>
-              <Text style={styles.selectedItemText}> سرد </Text>
+              <Text style={myItemTextStyles[this.props.sard]}> سرد </Text>
               </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
           </View>
 
           </View>
@@ -107,7 +107,10 @@ const mapStateToProps= state =>{
     joush : state.joush,
     dagh : state.dagh,
     velarm : state.velarm,
-    sard : state.sard
+    sard : state.sard,
+    started : state.started,
+    stoped : state.stoped,
+    paused : state.paused,
     
   }
 }

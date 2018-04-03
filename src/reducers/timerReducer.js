@@ -1,5 +1,9 @@
 const initialState={
     time:160,
+    started : false,
+    paused : true,
+    stoped: true,
+    counter:50,
     factorEggStatus:50,
     factorSize:2,
     factorWaterStatus:20,
@@ -52,6 +56,43 @@ export default (state=initialState, action)=>{
                 ...state,
                [action.item] : 0
             }
+
+        case 'DECREMENT_COUNTER':
+            return{
+                ...state,
+                counter : state.counter-1
+            }
+
+        case 'PRESET_COUNTER':
+            return{
+                ...state,
+                counter : action.counter
+            }
+
+        case 'CALCULATE_TIME':
+            return{
+                ...state,
+                time: (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100
+            }
+
+        case 'STARTED':
+            return{
+                ...state,
+                started : true,
+            }
+        
+        case 'PAUSED':
+            return{
+                ...state,
+                paused : true,
+            }
+
+        case 'STOPED':
+            return{
+                ...state,
+                stoped : true,
+            }
+
            
         default:
             return state
