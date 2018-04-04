@@ -67,3 +67,27 @@ export const stoped = () =>{
         type: 'STOPED'
     }
 }
+
+export const calculateNewTime = () =>{
+    return{
+        type:'CALCULATE_NEW_TIME',
+    }
+}
+
+export const changedDuringTiming = ()=>{
+    return{
+        type:'CHANGE_DURING_TIMING',
+    }
+}
+
+export const disableWhenStarted = () =>{
+    return{
+        type:'DISABLE_WHEN_STARTED',
+    }
+}
+
+export const enableWhenStoped = () =>{
+    return{
+        type: 'ENABLE_WHEN_STOPED',
+    }
+}

@@ -1,21 +1,22 @@
 const initialState={
     time:160,
+    newTime:0,
     started : false,
     paused : true,
     stoped: true,
     counter:50,
     factorEggStatus:50,
-    factorSize:2,
+    factorSize:3,
     factorWaterStatus:20,
     sangi:1,
     pokhte:1,
-    asaly:2,
+    asaly:3,
     bozorg:1,
-    motevasset:2,
+    motevasset:3,
     kouchak:1,
     joush:1,
     dagh:1,
-    velarm:2,
+    velarm:3,
     sard:1,
 }
 
@@ -27,7 +28,7 @@ export default (state=initialState, action)=>{
                 sangi:1,
                 pokhte:1,
                 asaly:1,
-                [action.status] : 2,
+                [action.status] : 3,
                 factorEggStatus : action.factor
             }
         case 'SELECT_SIZE':
@@ -36,7 +37,7 @@ export default (state=initialState, action)=>{
                 bozorg:1,
                 motevasset:1,
                 kouchak:1,
-                [action.size] : 2,
+                [action.size] : 3,
                 factorSize : action.factor
             }
 
@@ -47,7 +48,7 @@ export default (state=initialState, action)=>{
                 dagh:1,
                 velarm:1,
                 sard:1,
-                [action.status] : 2,
+                [action.status] : 3,
                 factorWaterStatus : action.factor
             }
 
@@ -72,7 +73,9 @@ export default (state=initialState, action)=>{
         case 'CALCULATE_TIME':
             return{
                 ...state,
-                time: (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100
+                counter: (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100,
+                time : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100,
+                newTime : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100,
             }
 
         case 'STARTED':
@@ -93,6 +96,36 @@ export default (state=initialState, action)=>{
                 stoped : true,
             }
 
+        case 'CALCULATE_NEW_TIME':
+            return{
+                ...state,
+                newTime: (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100,
+                counter : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100
+            }
+
+        case 'DISABLE_WHEN_STARTED':
+            return{
+                ...state,
+                bozorg : state.bozorg - 1,
+                motevasset : state.motevasset - 1,
+                kouchak : state.kouchak - 1 ,
+                joush : state.joush - 1 ,
+                dagh : state.dagh -1 ,
+                velarm : state.velarm -1,
+                sard : state.sard -1
+            }
+
+        case 'ENABLE_WHEN_STOPED':
+            return{
+                ...state,
+                bozorg : state.bozorg + 1,
+                motevasset : state.motevasset + 1,
+                kouchak : state.kouchak + 1 ,
+                joush : state.joush + 1 ,
+                dagh : state.dagh + 1 ,
+                velarm : state.velarm +1,
+                sard : state.sard + 1
+            }
            
         default:
             return state

@@ -33,7 +33,7 @@ export default class App extends Component<{}>{
       normalTime : 4,
       honey:false,
       honeyTime:3,
-      time:200,
+      time:10,
       
     }
   }
@@ -98,12 +98,7 @@ export default class App extends Component<{}>{
         <Timer timerTime={this.state.time}/>
         <Text>{this.state.time}</Text>
         <Choices/>
-        <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent: 'center'}}>
-          <Button title={"عسلی"} onPress={()=>{this.setState({time:this.state.honeyTime,  cooked:false, normal:false, honey:true})}}/>
-          <Button title={"معمولی"} onPress={()=>{this.setState({time:this.state.normalTime, cooked:false, normal:true, honey:false})}}/>
-          <Button title={"غیر معمولی"} onPress={()=>{this.setState({time:5, cooked:false, normal:true, honey:false})}}/>
-          <Button title={"کاملا پخته"} onPress={()=>{this.setState({time:7, cooked:true, normal:false, honey:false})}}/>
-        </View>
+        
 
         
 

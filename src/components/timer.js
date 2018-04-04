@@ -42,6 +42,12 @@ class Timer extends Component<{}> {
     }
   }
 
+  // componentWillReceiveProps(myprops){
+  //   if (props.newTime - this.props.time != 0 && this.props.changedDuringTiming){
+  //     this.startTimer()
+  //   }
+  // }
+
 
   gettime(){
     this.setState({time:this.props.timerTime})
@@ -49,20 +55,22 @@ class Timer extends Component<{}> {
 
 
   startTimer(time){
+    this.props.started();
+    this.props.disableWhenStarted()
     //   this.notif("Your egg is Ready To eat")
-    this.props.presetCounter(180)
-    console.log(this.props.timerTime)
+    // this.props.presetCounter(180)
+    // console.log(this.props.timerTime)
     // var time=this.state.time
     // this.setState({shownTime : this.state.time})
     this.setState({backgroundColor:'white'})
     for(timer in this.state.timers) clearTimeout(this.state.timers[timer])
     this.state.timers=[]
-    var counter=time;
+    var counter=time; //this.props.counter
     var a=setInterval(()=>{
       counter--
       this.props.decCounter()
       // console.log(this.state.shownTime)
-      if (counter <=0) {clearInterval(a);this.setState({ backgroundColor : 'rgb(255,255,60)' , paused:true, shownTime:0}); Alert.alert("Your Egg is ready to eat")}
+      if (counter <=0) {clearInterval(a);this.setState({ backgroundColor : 'rgb(255,255,60)' , paused:true, shownTime:0}); Alert.alert("Your Egg is ready to eat"),this.stopTimer()}
       else this.setState((ps)=>{return({ shownTime:ps.shownTime -1 })})
     
       
@@ -71,6 +79,9 @@ class Timer extends Component<{}> {
     //this.setState({backgroundColor:"green"})
 
   }
+
+  
+  
 
   pauseTimer(){
     for(timer in this.state.timers) clearInterval( this.state.timers[timer] )
@@ -81,6 +92,7 @@ class Timer extends Component<{}> {
     for(timer in this.state.timers) clearInterval( this.state.timers[timer] )
     this.setState({shownTime:this.props.timerTime}) 
     this.setState({paused:true,stoped:true, backgroundColor:'white'})   
+    this.props.enableWhenStoped()
   }
 
   showStop(){
@@ -98,11 +110,12 @@ class Timer extends Component<{}> {
   }
 
   render() {
+    // if ( this.props.newTime - this.props.time != 0 ) {this.startTimer(0)}
     var timeee = this.state.stoped ? ("0"+Math.trunc(this.props.timerTime%60)).slice(-2) : ("0"+Math.trunc(this.state.shownTime%60)).slice(-2) 
     return (
       
       <View style={{alignItems:'center', justifyContent:'center'}}>
-      <Text>{this.props.time}</Text>
+      <Text>{this.props.counter}</Text>
         <Text style={styles.TimerFont}>
         
         {this.state.stoped ? ("0"+Math.trunc(this.props.timerTime/60)).slice(-2) : ("0"+Math.trunc(this.state.shownTime/60)).slice(-2) } : {this.state.stoped ? ("0"+Math.trunc(this.props.timerTime%60)).slice(-2) : ("0"+this.state.shownTime%60).slice(-2) }
@@ -180,7 +193,10 @@ class Timer extends Component<{}> {
 const mapStateToProps= state =>{
   return { 
     time:state.time ,
-    counter : state.counter
+    counter : state.counter,
+    newTime : state.newTime,
+    changeDuringTiming : state.changedDuringTiming,
+    started : state.started
   }
 }
 
