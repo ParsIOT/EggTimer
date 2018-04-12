@@ -16,32 +16,71 @@ import styles from '../../appStyle/styleSheet.js'
 import {connect} from 'react-redux'
 import * as actions from '../actions'
 
+// var Sound = require('react-native-sound')
+// Sound.setCategory('Playback');
 
 
+// const whoosh = new Sound('toggle_switch.mp3', Sound.MAIN_BUNDLE, (error) => {
+//   if (error) {
+//     console.log('failed to load the sound', error);
+//     return;
+//   }
+//   // loaded successfully
+//   console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
 
+// });
+// whoosh.setVolume(2)
 
 
 
 class Choices extends Component<{}>{
+
+  
+
+  constructor(props){
+    super(props)
+
+
+    
+    // whoosh.play((success) => {
+    //   if (success) {
+    //     console.log('successfully finished playing');
+    //   } else {
+    //     console.log('playback failed due to audio decoding errors');
+    //     // reset the player to its uninitialized state (android only)
+    //     // this is the only option to recover after an error occured and use the player again
+    //     whoosh.reset();
+    //   }
+    // })
+    
+    
+  }
+
+    componentDidMount(){
+      
+    }
+
     render(){
+      
 
           var myItemStyles=[styles.disableItem, styles.normalItem, styles.disSelectedItem ,styles.selectedItem]
           var myItemTextStyles=[styles.disableItemText, styles.normalItemText, styles.disSelectedItemText ,styles.selectedItemText]
           var myDisable = [ true, false, true, false ]
         return(
           <View style={{flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+          
           <View style={styles.rowContainer}>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.sangi]} onPress={()=>{this.props.selectEggStatus('sangi', 20);this.props.calculateTime()}} onLongPress={()=>{this.props.selectEggStatus('sangi', 20);this.props.calculateNewTime();}}>
+            <TouchableWithoutFeedback disabled={myDisable[this.props.sangi]} onPress={()=>{this.props.selectEggStatus('sangi', 3);this.props.calculateTime()}} onLongPress={()=>{this.props.selectEggStatus('sangi', 20);this.props.calculateNewTime()}}>
               <View style={ myItemStyles[this.props.sangi] }>
               <Text style={ myItemTextStyles[this.props.sangi] }> سنگی </Text>
               </View>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.pokhte]} onPress={()=>{this.props.selectEggStatus('pokhte', 50);this.props.calculateTime()}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback disabled={myDisable[this.props.pokhte]} onPress={()=>{this.props.selectEggStatus('pokhte', 2);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.pokhte]}>
               <Text style={myItemTextStyles[this.props.pokhte]}> پخته </Text>
               </View>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.asaly]} onPress={()=>{this.props.selectEggStatus('asaly', 60);this.props.calculateTime()}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback disabled={myDisable[this.props.asaly]} onPress={()=>{this.props.selectEggStatus('asaly', 1);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.asaly]}>
               <Text style={myItemTextStyles[this.props.asaly]}> عسلی </Text>
               </View>
@@ -49,12 +88,12 @@ class Choices extends Component<{}>{
           </View>
 
           <View style={styles.rowContainer}>
-          <TouchableWithoutFeedback disabled={myDisable[this.props.bozorg]} onPress={()=>{this.props.selectSize('bozorg', 3 );this.props.calculateTime()}} onLongPress={()=>{}}>
+          <TouchableWithoutFeedback disabled={myDisable[this.props.bozorg]} onPress={()=>{this.props.selectSize('bozorg', 2 );this.props.calculateTime()}} onLongPress={()=>{}}>
             <View style={myItemStyles[this.props.bozorg]}>
             <Text style={myItemTextStyles[this.props.bozorg]}> بزرگ </Text>
             </View>
           </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback disabled={myDisable[this.props.motevasset]} onPress={()=>{this.props.selectSize('motevasset', 2 );this.props.calculateTime()}} onLongPress={()=>{}}>
+          <TouchableWithoutFeedback disabled={myDisable[this.props.motevasset]} onPress={()=>{this.props.selectSize('motevasset', 1 );this.props.calculateTime()}} onLongPress={()=>{}}>
             <View style={myItemStyles[this.props.motevasset]}>
             <Text style={myItemTextStyles[this.props.motevasset]}> متوسط </Text>
             </View>
@@ -68,22 +107,22 @@ class Choices extends Component<{}>{
           </View>
 
           <View style={styles.rowContainer}>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.joush]} onPress={()=>{this.props.selectWaterStatus('joush', 50);this.props.calculateTime()}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback disabled={myDisable[this.props.joush]} onPress={()=>{this.props.selectWaterStatus('joush', 1);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.joush]}>
               <Text style={myItemTextStyles[this.props.joush]}> جوش </Text>
               </View>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.dagh]} onPress={()=>{this.props.selectWaterStatus('dagh', 40);this.props.calculateTime()}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback disabled={myDisable[this.props.dagh]} onPress={()=>{this.props.selectWaterStatus('dagh', 2);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.dagh]}>
               <Text style={myItemTextStyles[this.props.dagh]}> داغ </Text>
               </View>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.velarm]} onPress={()=>{this.props.selectWaterStatus('velarm', 30);this.props.calculateTime()}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback disabled={myDisable[this.props.velarm]} onPress={()=>{this.props.selectWaterStatus('velarm', 3);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.velarm]}>
               <Text style={myItemTextStyles[this.props.velarm]}> ولرم </Text>
               </View>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.sard]} onPress={()=>{this.props.selectWaterStatus('sard', 20);this.props.calculateTime()}} onLongPress={()=>{}}>
+            <TouchableWithoutFeedback disabled={myDisable[this.props.sard]} onPress={()=>{this.props.selectWaterStatus('sard', 3);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.sard]}>
               <Text style={myItemTextStyles[this.props.sard]}> سرد </Text>
               </View>

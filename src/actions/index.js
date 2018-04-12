@@ -91,3 +91,27 @@ export const enableWhenStoped = () =>{
         type: 'ENABLE_WHEN_STOPED',
     }
 }
+
+export const calculateProgressNumber = ()=>{
+    return{
+        type:'CALCULATE_PROGRESS_NUMBER'
+    }
+}
+
+export const calculateLastProgressNumber = ()=>{
+    return{
+        type:'CALCULATE_LAST_PROGRESS_NUMBER'
+    }
+}
+
+export const inBackground = () =>{
+    return{
+        type:'IN_BACKGROUND'
+    }
+}
+
+export const inForeground = ()=>{
+    return{
+        type:'IN_FOREGROUND'
+    }
+}

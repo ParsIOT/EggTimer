@@ -1,22 +1,24 @@
 const initialState={
-    time:160,
+    time:60,
     newTime:0,
-    started : false,
+    startedValue : false,
+    wasInBackground:false,
     paused : true,
     stoped: true,
-    counter:50,
-    factorEggStatus:50,
-    factorSize:3,
-    factorWaterStatus:20,
+    counter:60,
+    progressNumber:0,
+    factorEggStatus:1,
+    factorSize:1,
+    factorWaterStatus:1,
     sangi:1,
     pokhte:1,
     asaly:3,
     bozorg:1,
     motevasset:3,
     kouchak:1,
-    joush:1,
+    joush:3,
     dagh:1,
-    velarm:3,
+    velarm:1,
     sard:1,
 }
 
@@ -61,7 +63,7 @@ export default (state=initialState, action)=>{
         case 'DECREMENT_COUNTER':
             return{
                 ...state,
-                counter : state.counter-1
+                counter : state.counter-1,
             }
 
         case 'PRESET_COUNTER':
@@ -73,27 +75,31 @@ export default (state=initialState, action)=>{
         case 'CALCULATE_TIME':
             return{
                 ...state,
-                counter: (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100,
-                time : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100,
-                newTime : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)/100,
+                counter: (state.factorEggStatus * state.factorSize * state.factorWaterStatus)*60,
+                time : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)*60,
+                newTime : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)*60,
+                progressNumber : 0,
             }
 
         case 'STARTED':
             return{
                 ...state,
-                started : true,
+                startedValue : true,
             }
         
         case 'PAUSED':
             return{
                 ...state,
                 paused : true,
+                startedValue:false
             }
 
         case 'STOPED':
             return{
                 ...state,
                 stoped : true,
+                startedValue : false,
+                progressNumber : 0,
             }
 
         case 'CALCULATE_NEW_TIME':
@@ -112,7 +118,10 @@ export default (state=initialState, action)=>{
                 joush : state.joush - 1 ,
                 dagh : state.dagh -1 ,
                 velarm : state.velarm -1,
-                sard : state.sard -1
+                sard : state.sard -1,
+                sangi: state.sangi -1,
+                pokhte : state.pokhte -1,
+                asaly : state.asaly -1,
             }
 
         case 'ENABLE_WHEN_STOPED':
@@ -124,8 +133,36 @@ export default (state=initialState, action)=>{
                 joush : state.joush + 1 ,
                 dagh : state.dagh + 1 ,
                 velarm : state.velarm +1,
-                sard : state.sard + 1
+                sard : state.sard + 1,
+                sangi: state.sangi +1,
+                pokhte : state.pokhte +1,
+                asaly : state.asaly +1,
             }
+
+        case 'CALCULATE_PROGRESS_NUMBER':
+            return{
+                ...state,
+                progressNumber : (state.progressNumber + 1/state.time)
+            }
+
+        case 'CALCULATE_LAST_PROGRESS_NUMBER':
+            return{
+                ...state,
+                progressNumber : Math.round((state.progressNumber +  (20/state.time) )* 10) / 10
+            }
+        case 'IN_BACKGROUND':
+            return{
+                ...state,
+                wasInBackground:true
+            }
+        case 'IN_FOREGROUND':
+            return{
+                ...state,
+                wasInBackground:false
+            }
+        
+        
+        
            
         default:
             return state

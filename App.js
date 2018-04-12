@@ -1,11 +1,12 @@
 import Timer from './src/components/timer.js'
 import React, { Component } from 'react';
-import {View, ImageBackground, Button, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions} from 'react-native'
+import {View, ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions} from 'react-native'
 import RadioGroup from 'react-native-custom-radio-group';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducers from './src/reducers/timerReducer'
 import Choices from './src/components/choices.js'
+import ProgressBar from './src/components/progressBar'
 
 
 class Io extends Component<{}>{
@@ -33,9 +34,12 @@ export default class App extends Component<{}>{
       normalTime : 4,
       honey:false,
       honeyTime:3,
-      time:10,
+      time:300,
       
     }
+
+
+
   }
 
   renderElements(){
@@ -55,53 +59,16 @@ export default class App extends Component<{}>{
 
   
   render(){
-    var eggSize = [{
-      label: 'کوچک',
-      value: 15
-    }, {
-      label: 'متوسط',
-      value: 10
-    }];
-
-    var eggStatus = [{
-      label: 'پخته',
-      value: 15
-    }, {
-      label:"سنگ پز",
-      value: 10
-    }, {
-      label: 'عسلی',
-      value: 6
-    }];
-
-    var waterStatus = [{
-      label: 'سرد',
-      value: 25
-    }, {
-      label: 'ولرم',
-      value: 70
-    }, {
-      label: 'جوش',
-      value: 100
-    }];
-
-    var waterStatus2 = [{
-      label: 'سرد',
-      value: 25
-    }]
     return(
-      <Provider store={store}>
-      
-      <View style={{flex:1, flexDirection:'column', alignItems:'center', justifyContent:'flex-start', backgroundColor:'white'}}>
-                 
-       
+      <Provider store={store} >
+      <View style={{backgroundColor:'red',flex:1, flexDirection:'column', alignItems:'center', justifyContent:'flex-start', backgroundColor:'rgb(230,230,230)'}}>
         <Timer timerTime={this.state.time}/>
-        <Text>{this.state.time}</Text>
+        <Text>{this.state.counter}</Text>
+        
+        
+
         <Choices/>
-        
-
-        
-
+        <ProgressBar/>
      </View>
      </Provider>
     )

@@ -55,6 +55,8 @@
 	<array>
 		<string>main.ttf</string>
 		<string>Vazir.ttf</string>
+		<string>Vazir-Bold.ttf</string>
+		<string>Vazir-Bold-FD.ttf</string>
 	</array>
 </dict>
 </plist>
