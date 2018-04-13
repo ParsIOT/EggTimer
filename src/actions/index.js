@@ -115,3 +115,11 @@ export const inForeground = ()=>{
         type:'IN_FOREGROUND'
     }
 }
+
+export const setCounter = (lastcounter, diff) =>{
+    return{
+        type:'SET_COUNTER',
+        lastcounter : lastcounter,
+        diff : diff
+    }
+}

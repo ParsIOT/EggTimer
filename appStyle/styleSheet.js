@@ -17,7 +17,7 @@ const styles = StyleSheet.create ({
         borderRadius:18,
         // borderWidth:3,
         // borderColor:'white',
-        backgroundColor:'rgb(249, 190, 50)'
+        backgroundColor:'#ffcc80'
         
       },
     selectedItemText:{
@@ -61,8 +61,8 @@ const styles = StyleSheet.create ({
     disSelectedItem:{
         margin:5,
         padding:10,
-        paddingBottom:5,
-        paddingTop:5,
+        paddingBottom:4,
+        paddingTop:2,
         borderRadius:18,
         // borderWidth:2,
         // borderColor:'rgb(249, 208, 16)',
@@ -157,7 +157,8 @@ const styles = StyleSheet.create ({
         height:14
     },
     progressBarTime:{
-        fontSize:13, 
+        fontSize:20, 
+        textAlign:'center', textAlignVertical:'center',
         // fontWeight:'bold', 
         fontFamily:'Vazir-Bold-FD'
     }

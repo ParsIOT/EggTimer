@@ -160,6 +160,12 @@ export default (state=initialState, action)=>{
                 ...state,
                 wasInBackground:false
             }
+        case 'SET_COUNTER':
+            return{
+                ...state,
+                counter : Math.round(action.lastcounter-action.diff/1000),
+                progressNumber : state.progressNumber + ( (action.diff/1000) * (1/state.time))
+            }
         
         
         

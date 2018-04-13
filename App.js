@@ -68,7 +68,7 @@ export default class App extends Component<{}>{
         
 
         <Choices/>
-        <ProgressBar/>
+        {/* <ProgressBar/> */}
      </View>
      </Provider>
     )
