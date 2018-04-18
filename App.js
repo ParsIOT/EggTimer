@@ -66,7 +66,7 @@ export default class App extends Component<{}>{
   render(){
     return(
       <Provider store={store} >
-      <View style={{paddingTop:0, flex:1, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}>
+      <View style={{paddingTop:0, flex:1, flexDirection:'column', alignItems:'center', justifyContent:'flex-start', backgroundColor:'rgb(230,230,230)'}}>
       <PopupDialog
           ref={(popupDialog) => { this.popupDialog = popupDialog; }}
           >

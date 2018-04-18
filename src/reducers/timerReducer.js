@@ -173,6 +173,36 @@ export default (state=initialState, action)=>{
                 ...state,
                 finishingTime:action.time
             }
+
+        case 'HELP_SELECTED':
+            return{
+                ...state,
+                bozorg : state.bozorg + 4,
+                motevasset : state.motevasset + 4,
+                kouchak : state.kouchak + 4 ,
+                joush : state.joush + 4 ,
+                dagh : state.dagh + 4 ,
+                velarm : state.velarm + 4,
+                sard : state.sard + 4,
+                sangi: state.sangi + 4,
+                pokhte : state.pokhte + 4,
+                asaly : state.asaly + 4,
+            }
+        
+        case 'HELP_DESELECTED':
+            return{
+                ...state,
+                bozorg : state.bozorg - 4,
+                motevasset : state.motevasset - 4,
+                kouchak : state.kouchak - 4 ,
+                joush : state.joush - 4 ,
+                dagh : state.dagh - 4 ,
+                velarm : state.velarm - 4,
+                sard : state.sard - 4,
+                sangi: state.sangi - 4,
+                pokhte : state.pokhte - 4,
+                asaly : state.asaly - 4,
+            }
         
         
         

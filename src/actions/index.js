@@ -130,3 +130,15 @@ export const saveFinishingTime = (time)=>{
         time : time
     }
 }
+
+export const helpSelected = ()=>{
+    return{
+        type:'HELP_SELECTED'
+    }
+}
+
+export const helpDeselected = ()=>{
+    return{
+        type:'HELP_DESELECTED'
+    }
+}

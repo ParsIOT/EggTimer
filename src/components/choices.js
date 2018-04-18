@@ -67,8 +67,8 @@ class Choices extends Component<{}>{
     render(){
       
 
-          var myItemStyles=[styles.disableItem, styles.normalItem, styles.disSelectedItem ,styles.selectedItem]
-          var myItemTextStyles=[styles.disableItemText, styles.normalItemText, styles.disSelectedItemText ,styles.selectedItemText]
+          var myItemStyles=[styles.disableItem, styles.normalItem, styles.disSelectedItem ,styles.selectedItem, styles.selectedItemHelp, styles.selectedItemHelp, styles.selectedItemHelp, styles.selectedItemHelp ]
+          var myItemTextStyles=[styles.disableItemText, styles.normalItemText, styles.disSelectedItemText ,styles.selectedItemText, styles.selectedItemTextHelp, styles.selectedItemTextHelp, styles.selectedItemTextHelp, styles.selectedItemTextHelp]
           var myDisable = [ true, false, true, false ]
         return(
 

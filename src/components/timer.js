@@ -463,7 +463,9 @@ class Timer extends Component<{}> {
           
       <View>
         <View style={{justifyContent:'center', alignItems:'flex-end'}}>
-        <Icon name={'help-outline'} />
+        <TouchableWithoutFeedback onPress={()=>this.props.helpSelected()}>
+        <Icon name={'help'} size={40} style={{margin:15}} color={'#aaaaaa'}/>
+        </TouchableWithoutFeedback>
         </View>
       <View style={{alignItems:'center', justifyContent:'center'}}>  
       

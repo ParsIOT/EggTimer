@@ -162,7 +162,37 @@ const styles = StyleSheet.create ({
         // fontWeight:'bold', 
         marginBottom:15,
         fontFamily:'Vazir-Bold-FD'
-    }
+    },
+    selectedItemHelp:{
+        margin:5,
+        padding:10,
+        marginBottom:5+6,
+        marginTop:5+8,
+        borderRadius:18,
+        paddingBottom:4,
+        paddingTop:2,
+        
+        // paddingTop:0,
+        // paddingBottom:0,        
+        // borderWidth:3,
+        // borderColor:'white',
+        backgroundColor:'#6495ED'
+        
+      },
+
+    //   margin:5,
+    //   padding:10,
+    //   borderRadius:20,
+
+    
+
+
+    selectedItemTextHelp:{
+        fontSize:15,
+        // fontWeight:'bold', 
+        fontFamily:'Vazir-Bold',
+        color:'white'
+      },
     
 
 })
