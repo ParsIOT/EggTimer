@@ -157,9 +157,10 @@ const styles = StyleSheet.create ({
         height:14
     },
     progressBarTime:{
-        fontSize:20, 
+        fontSize:25, 
         textAlign:'center', textAlignVertical:'center',
         // fontWeight:'bold', 
+        marginBottom:15,
         fontFamily:'Vazir-Bold-FD'
     }
     

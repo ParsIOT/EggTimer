@@ -20,6 +20,7 @@ const initialState={
     dagh:1,
     velarm:1,
     sard:1,
+    finishingTime:0
 }
 
 export default (state=initialState, action)=>{
@@ -165,6 +166,12 @@ export default (state=initialState, action)=>{
                 ...state,
                 counter : Math.round(action.lastcounter-action.diff/1000),
                 progressNumber : state.progressNumber + ( (action.diff/1000) * (1/state.time))
+            }
+
+        case 'SAVE_FINISHING_TIME':
+            return{
+                ...state,
+                finishingTime:action.time
             }
         
         

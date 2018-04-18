@@ -15,6 +15,10 @@ import {
 import styles from '../../appStyle/styleSheet.js'
 import {connect} from 'react-redux'
 import * as actions from '../actions'
+import PopupDialog from 'react-native-popup-dialog';
+import Icon from 'react-native-vector-icons/MaterialIcons'
+
+
 
 // var Sound = require('react-native-sound')
 // Sound.setCategory('Playback');
@@ -67,9 +71,15 @@ class Choices extends Component<{}>{
           var myItemTextStyles=[styles.disableItemText, styles.normalItemText, styles.disSelectedItemText ,styles.selectedItemText]
           var myDisable = [ true, false, true, false ]
         return(
+
+          
+
           <View style={{flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+          {/* <Text style={{textAlign:'center', fontFamily:'Vazir-Bold-FD', fontSize:11}}>میزان پخنگی تخم مرغ</Text> */}
+          
           
           <View style={styles.rowContainer}>
+          
             <TouchableWithoutFeedback disabled={myDisable[this.props.sangi]} onPress={()=>{this.props.selectEggStatus('sangi', 3);this.props.calculateTime()}} onLongPress={()=>{this.props.selectEggStatus('sangi', 20);this.props.calculateNewTime()}}>
               <View style={ myItemStyles[this.props.sangi] }>
               <Text style={ myItemTextStyles[this.props.sangi] }> سنگی </Text>
@@ -85,9 +95,12 @@ class Choices extends Component<{}>{
               <Text style={myItemTextStyles[this.props.asaly]}> عسلی </Text>
               </View>
             </TouchableWithoutFeedback>
+            
           </View>
 
+          {/* <Text style={{textAlign:'center', fontFamily:'Vazir-Bold-FD', fontSize:11}}>سایز تخم مرغ</Text> */}
           <View style={styles.rowContainer}>
+          
           <TouchableWithoutFeedback disabled={myDisable[this.props.bozorg]} onPress={()=>{this.props.selectSize('bozorg', 2 );this.props.calculateTime()}} onLongPress={()=>{}}>
             <View style={myItemStyles[this.props.bozorg]}>
             <Text style={myItemTextStyles[this.props.bozorg]}> بزرگ </Text>
@@ -103,10 +116,12 @@ class Choices extends Component<{}>{
             <Text style={myItemTextStyles[this.props.kouchak]}> کوچک </Text>
             </View>
           </TouchableWithoutFeedback>
-
+          
           </View>
-
+          
+          {/* <Text style={{textAlign:'center', fontFamily:'Vazir-Bold-FD', fontSize:11}}>دمای اولیه آب</Text> */}
           <View style={styles.rowContainer}>
+         
             <TouchableWithoutFeedback disabled={myDisable[this.props.joush]} onPress={()=>{this.props.selectWaterStatus('joush', 1);this.props.calculateTime()}} onLongPress={()=>{}}>
               <View style={myItemStyles[this.props.joush]}>
               <Text style={myItemTextStyles[this.props.joush]}> جوش </Text>
@@ -127,8 +142,9 @@ class Choices extends Component<{}>{
               <Text style={myItemTextStyles[this.props.sard]}> سرد </Text>
               </View>
             </TouchableWithoutFeedback>
+            
           </View>
-
+          
           </View>
 
         )

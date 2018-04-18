@@ -123,3 +123,10 @@ export const setCounter = (lastcounter, diff) =>{
         diff : diff
     }
 }
+
+export const saveFinishingTime = (time)=>{
+    return{
+        type:'SAVE_FINISHING_TIME',
+        time : time
+    }
+}

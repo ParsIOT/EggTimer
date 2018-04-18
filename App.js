@@ -1,12 +1,13 @@
 import Timer from './src/components/timer.js'
 import React, { Component } from 'react';
-import {View, ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions} from 'react-native'
+import {View, StatusBar, ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions, Alert} from 'react-native'
 import RadioGroup from 'react-native-custom-radio-group';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducers from './src/reducers/timerReducer'
 import Choices from './src/components/choices.js'
 import ProgressBar from './src/components/progressBar'
+import PopupDialog from 'react-native-popup-dialog';
 
 
 class Io extends Component<{}>{
@@ -57,17 +58,30 @@ export default class App extends Component<{}>{
     if(this.state.normal) return <Timer timerTime={this.state.normal}/>
   }
 
+
+  showDialog(){
+    this.popupDialog.show()
+  }
   
   render(){
     return(
       <Provider store={store} >
-      <View style={{backgroundColor:'red',flex:1, flexDirection:'column', alignItems:'center', justifyContent:'flex-start', backgroundColor:'rgb(230,230,230)'}}>
-        <Timer timerTime={this.state.time}/>
-        <Text>{this.state.counter}</Text>
-        
-        
-
-        <Choices/>
+      <View style={{paddingTop:0, flex:1, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}>
+      <PopupDialog
+          ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+          >
+          <View>
+          <Text>Hello</Text>
+          </View>
+          </PopupDialog>
+                
+      
+      <StatusBar
+      backgroundColor="rgb(230,230,230)"
+      barStyle="dark-content"
+      />  
+        <Timer timerTime={this.state.time}/>        
+        <Choices dialog={()=>this.popupDialog.show()}/>
         {/* <ProgressBar/> */}
      </View>
      </Provider>
