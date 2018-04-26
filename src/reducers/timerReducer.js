@@ -7,9 +7,9 @@ const initialState={
     stoped: true,
     counter:60,
     progressNumber:0,
-    factorEggStatus:1,
+    factorEggStatus:0,
     factorSize:1,
-    factorWaterStatus:1,
+    factorWaterStatus:3,
     sangi:1,
     pokhte:1,
     asaly:3,
@@ -20,7 +20,12 @@ const initialState={
     dagh:1,
     velarm:1,
     sard:1,
-    finishingTime:0
+    finishingTime:0,
+    longPressed:false,    
+    detailId:0,
+    timesdic:{'212': 384.0, '213': 348.0, '210': 834.0, '211': 642.0, '010': 768.0, '011': 534.0, '012': 1122.0, '013': 210.0, '111': 594.0, '110': 804.0, '113': 276.0, '112': 576.0, '201': 588.0, '200': 762.0, '203': 318.0, '202': 348.0, '120': 870.0, '121': 642.0, '001': 486.0, '000': 702.0, '021': 576.0, '020': 828.0, '023': 228.0, '022': 1218.0, '102': 528.0, '103': 252.0, '100': 738.0, '101': 546.0, '223': 372.0, '222': 414.0, '221': 696.0, '220': 906.0, '003': 192.0, '002': 1026.0, '122': 624.0, '123': 300.0}
+    
+    
 }
 
 export default (state=initialState, action)=>{
@@ -76,9 +81,13 @@ export default (state=initialState, action)=>{
         case 'CALCULATE_TIME':
             return{
                 ...state,
-                counter: (state.factorEggStatus * state.factorSize * state.factorWaterStatus)*60,
-                time : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)*60,
-                newTime : (state.factorEggStatus * state.factorSize * state.factorWaterStatus)*60,
+                // Math.pow(state.factorSize,(2/3)) * 3.7 * Math.pow(1.038, (1/3))
+                // 0.0054 * Math.pow(Math.PI, 2) * Math.pow( (4*Math.PI/3),(2/3))
+                // Math.log(0.76 *  (15 - state.factorWaterStatus) / (state.factorEggStatus - state.factorWaterStatus))
+                // counter: (state.factorEggStatus * state.factorSize * state.factorWaterStatus)*60,
+                counter : state.timesdic[state.factorEggStatus.toString()+state.factorSize .toString()+state.factorWaterStatus.toString() ],
+                time :state.timesdic[state.factorEggStatus.toString()+state.factorSize .toString()+state.factorWaterStatus.toString() ],
+                newTime :state.timesdic[state.factorEggStatus.toString()+state.factorSize .toString()+state.factorWaterStatus.toString() ],
                 progressNumber : 0,
             }
 
@@ -174,36 +183,23 @@ export default (state=initialState, action)=>{
                 finishingTime:action.time
             }
 
-        case 'HELP_SELECTED':
+        
+        case 'PRESSED_LONG':
             return{
                 ...state,
-                bozorg : state.bozorg + 4,
-                motevasset : state.motevasset + 4,
-                kouchak : state.kouchak + 4 ,
-                joush : state.joush + 4 ,
-                dagh : state.dagh + 4 ,
-                velarm : state.velarm + 4,
-                sard : state.sard + 4,
-                sangi: state.sangi + 4,
-                pokhte : state.pokhte + 4,
-                asaly : state.asaly + 4,
+                longPressed:true,
             }
         
-        case 'HELP_DESELECTED':
+        case 'PRESSED_UP':
             return{
                 ...state,
-                bozorg : state.bozorg - 4,
-                motevasset : state.motevasset - 4,
-                kouchak : state.kouchak - 4 ,
-                joush : state.joush - 4 ,
-                dagh : state.dagh - 4 ,
-                velarm : state.velarm - 4,
-                sard : state.sard - 4,
-                sangi: state.sangi - 4,
-                pokhte : state.pokhte - 4,
-                asaly : state.asaly - 4,
+                longPressed:false,
             }
-        
+        case 'SET_DETAIL_ID':
+            return{
+                ...state,
+                detailId: action.id
+            }
         
         
            

@@ -1,6 +1,6 @@
 import Timer from './src/components/timer.js'
 import React, { Component } from 'react';
-import {View, StatusBar, ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions, Alert} from 'react-native'
+import {View, StatusBar, TouchableWithoutFeedback,ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions, Alert} from 'react-native'
 import RadioGroup from 'react-native-custom-radio-group';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
@@ -8,6 +8,7 @@ import reducers from './src/reducers/timerReducer'
 import Choices from './src/components/choices.js'
 import ProgressBar from './src/components/progressBar'
 import PopupDialog from 'react-native-popup-dialog';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 
 class Io extends Component<{}>{
@@ -66,21 +67,33 @@ export default class App extends Component<{}>{
   render(){
     return(
       <Provider store={store} >
+      
       <View style={{paddingTop:0, flex:1, flexDirection:'column', alignItems:'center', justifyContent:'flex-start', backgroundColor:'rgb(230,230,230)'}}>
+      <StatusBar
+      backgroundColor="rgb(230,230,230)"
+      barStyle="dark-content"
+      /> 
+      
+      
       <PopupDialog
           ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+          width= {0.7*Dimensions.get('window').width}
+          height={0.5*Dimensions.get('window').width}
+          size={50}
           >
-          <View>
-          <Text>Hello</Text>
+          <View style={{flex:1, justifyContent:'space-between', alignItems:'center', padding:20}}>
+          <Text style={{fontFamily:'Vazir', textAlign:'center', textAlignVertical:'center'}}> برای توضیحات هر آیتم ,  روی آیتم مورد نظر نگه دارید</Text>
+          <TouchableNativeFeedback onPress={()=>{this.popupDialog.dismiss()}}>
+              <View style={{backgroundColor:'#ffb100',margin:0, borderRadius:5, padding:5}}>
+              <Text style={{fontFamily:'Vazir-Bold-FD', fontSize:18, color:'white'}}> باشه </Text>
+              </View>
+            </TouchableNativeFeedback>
           </View>
           </PopupDialog>
                 
       
-      <StatusBar
-      backgroundColor="rgb(230,230,230)"
-      barStyle="dark-content"
-      />  
-        <Timer timerTime={this.state.time}/>        
+      
+        <Timer timerTime={this.state.time}  dialog={()=>this.popupDialog.show()} />        
         <Choices dialog={()=>this.popupDialog.show()}/>
         {/* <ProgressBar/> */}
      </View>

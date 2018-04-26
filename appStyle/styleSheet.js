@@ -17,8 +17,9 @@ const styles = StyleSheet.create ({
         borderRadius:18,
         // borderWidth:3,
         // borderColor:'white',
-        backgroundColor:'#ffcc80'
+        backgroundColor:'#ffb100'
         
+        //#ffcc80
       },
     selectedItemText:{
         fontSize:15,
@@ -176,8 +177,23 @@ const styles = StyleSheet.create ({
         // paddingBottom:0,        
         // borderWidth:3,
         // borderColor:'white',
-        backgroundColor:'#6495ED'
+        backgroundColor:'#87CEFA'
         
+      },
+      selectedItemHelpSelected:{
+        margin:5,
+        padding:10,
+        marginBottom:5+6,
+        marginTop:5+8,
+        borderRadius:18,
+        paddingBottom:4,
+        paddingTop:2,
+        
+        // paddingTop:0,
+        // paddingBottom:0,        
+        // borderWidth:3,
+        // borderColor:'white',
+        backgroundColor:'#00BFFF'
       },
 
     //   margin:5,

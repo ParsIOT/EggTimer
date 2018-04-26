@@ -98,7 +98,8 @@ const storage = new Storage({
     size:20,
     storageBackend: AsyncStorage,
     defaultExpires: null,
-    enableCache: true,
+    enableCache: true
+    
     
 })
 
@@ -117,14 +118,42 @@ class Timer extends Component<{}> {
       notification:null,
       appState: AppState.currentState,
       d:0,
-      TIMES:0
+      TIMES:0,
+      detailes:[
+      ' حالت نهایی تخم مرغ :\n\n کاملا پخته'
+      ,
+      ' حالت نهایی تخم مرغ :\n\n پخته'
+      ,
+      ' حالت نهایی تخم مرغ :\n\n عسلی'
+      ,
+      '  سایز تخم مرغ :\n\n بین 100 تا 250 گرم'
+      ,
+      '  سایز تخم مرغ :\n\n بین 250 تا 350 گرم'
+      ,
+      '  سایز تخم مرغ :\n\n بین 350 تا 450 گرم'
+      ,
+      '  دمای اولیه آب :\n\n بین 60 تا 100 درجه سانتیگراد'
+      ,
+      '  دمای اولیه آب :\n\n بین 40 تا 60 درجه سانتیگراد'
+      ,
+      '  دمای اولیه آب :\n\n بین 20 تا 40 درجه سانتیگراد'
+      ,
+      '  دمای اولیه آب :\n\n بین 4 تا 20 درجه سانتیگراد'
+      ,
+      ],
+      detailId:0,
+      fadeAnim : new Animated.Value(1),
+      fadeinMain : new Animated.Value(0),
+      fadeAsaly : new Animated.Value(0),
+      fadePie : new Animated.Value(1),
+      springValue : new Animated.Value(1)
+      
       
       
     }
     
 
     var started = new Date
-    this.springValue= new Animated.Value(0.3)
     // RNCalendarEvents.authorizationStatus().then((promise)=>{console.log( "1" + promise )})
     // RNCalendarEvents.authorizeEventStore().then((promise)=>{console.log( "2" + promise )})
     // RNCalendarEvents.findCalendars().then((promise)=>{console.log( "list = > " + promise )})
@@ -133,7 +162,7 @@ class Timer extends Component<{}> {
 }
 
   componentDidMount(){
-    this.spring()
+    
     AppState.addEventListener('change', this._handleAppStateChange);
     
   }
@@ -151,6 +180,190 @@ class Timer extends Component<{}> {
     await AsyncStorage.setItem('BACKGROUN_TIME', Date.now())
     
     
+  }
+
+  fo()
+    {
+            
+      // val.setValue(1)
+      Animated.timing(                  // Animate over time
+        this.state.fadePie,            // The animated value to drive
+        {
+          toValue: 0,                   // Animate to opacity: 1 (opaque)
+          duration: 1000,              // Make it take a while
+        }
+      ).start(()=> {this.fadeIn(this.state.fadeAnim)} );
+    }
+  
+
+  showDetail(){
+    if(this.props.longPressed){
+      if (this.props.detailId == 2){
+        this.fadeIn(this.state.fadeAsaly)
+
+        return(
+          
+           <View style={{padding:0,paddingBottom:0,marginBottom:40}}>
+           
+           <Text style={styles.progressBarTime}>{Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}''</Text>        
+           <TouchableOpacity activeOpacity={0.85}  style={{paddingRight:12,paddingLeft:12,paddingBottom:30}} onPress={()=>{
+           if (!this.props.startedValue)
+           {this.startTimer(this.props.counter)}
+            else if (this.props.startedValue)
+            {this.stopTimer()}
+          }}>
+   
+   
+           
+          
+
+           <Animated.View style={{opacity:this.state.fadePie}}>
+           <Progress.Pie size={(0.24*Dimensions.get('window').height)} progress={this.props.progressNumber} color={"#ffcc80"} borderColor={"#fff"} unfilledColor={"#ffb100"}>
+           {this.startOrStopIcon()}
+           <Text></Text>
+           </Progress.Pie>
+           </Animated.View>
+           <Animated.Image
+             resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{opacity:this.state.fadeAsaly,position:'absolute',width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/>
+          
+           
+   
+   
+   
+        </TouchableOpacity>
+    
+        </View>)
+
+
+
+        
+      // return(
+      // <View style={{alignItems:'center', marginBottom:45, justifyContent:'flex-end', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
+      //   {/* <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text> */}
+      //   <Animated.View
+      //   style={{
+      //     opacity: this.state.fadeAnim,         // Bind opacity to animated value
+      //   }}>
+      //   <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/>
+      //   </Animated.View>
+      //   {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+      // </View> )
+      }
+
+      else if (this.props.detailId == 5){
+        this.spring(0.94)
+        this.fo()
+        // this.fadeIn(this.state.fadeAnim)
+        return(
+          <View style={{alignItems:'center', marginBottom:45, justifyContent:'center', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
+             <Animated.View
+            style={{
+              opacity: this.state.fadeAnim,         // Bind opacity to animated value
+        }}>
+            <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text>
+            {/* <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/> */}
+            {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+            </Animated.View>
+
+          </View> )
+      }
+      else if (this.props.detailId == 4){
+        this.spring(0.96)
+        
+        this.fadeIn(this.state.fadeAnim)
+        return(
+          <View style={{alignItems:'center', marginBottom:45, justifyContent:'center', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
+             <Animated.View
+            style={{
+              opacity: this.state.fadeAnim,         // Bind opacity to animated value
+        }}>
+            <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text>
+            {/* <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/> */}
+            {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+            </Animated.View>
+
+          </View> )
+      }
+      else if (this.props.detailId == 3){
+        this.spring(0.98)
+        
+        this.fadeIn(this.state.fadeAnim)
+        return(
+          <View style={{alignItems:'center', marginBottom:45, justifyContent:'center', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
+             <Animated.View
+            style={{
+              opacity: this.state.fadeAnim,         // Bind opacity to animated value
+        }}>
+            <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text>
+            {/* <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/> */}
+            {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+            </Animated.View>
+
+          </View> )
+      }
+      else{
+        this.fadeIn(this.state.fadeAnim)
+        return(
+          <View style={{alignItems:'center', marginBottom:45, justifyContent:'center', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
+             <Animated.View
+            style={{
+              opacity: this.state.fadeAnim,         // Bind opacity to animated value
+        }}>
+            <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text>
+            {/* <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/> */}
+            {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+            </Animated.View>
+
+          </View> )
+      }
+    }
+    else{
+      
+      if (!this.props.startedValue)
+      {
+        // this.fadeIn(this.state.fadePie)
+        this.fadeOut(this.state.fadeAsaly)
+        // this.fadeIn(this.state.fadePie)
+        this.spring2()
+      }
+      return(
+       
+        <View style={{padding:0,paddingBottom:0,marginBottom:40}}>
+        
+        <Text style={styles.progressBarTime}>{Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}''</Text>        
+        <TouchableOpacity activeOpacity={0.85}  style={{paddingRight:12,paddingLeft:12,paddingBottom:30}} onPress={()=>{
+        if (!this.props.startedValue)
+        {this.startTimer(this.props.counter)}
+         else if (this.props.startedValue)
+         {this.stopTimer()}
+       }}>
+
+       
+        
+       
+
+        <Animated.View style={{opacity:this.state.fadePie}}>
+        <Progress.Pie size={(0.24*Dimensions.get('window').height)} progress={this.props.progressNumber} color={"#ffcc80"} borderColor={"#fff"} unfilledColor={"#ffb100"}>
+        {this.startOrStopIcon()}
+        <Text></Text>
+        </Progress.Pie>
+        </Animated.View>
+
+      
+        <Animated.Image
+          resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{opacity:this.state.fadeAsaly,position:'absolute',width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/>
+       
+        
+       
+
+
+
+     </TouchableOpacity>
+ 
+     </View>
+
+     )
+    }
   }
 
   notif(remainTime){
@@ -199,6 +412,30 @@ class Timer extends Component<{}> {
     var time = new Date(Date.now() + this.props.counter*1000)
     this.props.saveFinishingTime(time)
   }
+
+  fadeIn(val){
+    val.setValue(0)
+    Animated.timing(                  // Animate over time
+      val,            // The animated value to drive
+      {
+        toValue: 1,                   // Animate to opacity: 1 (opaque)
+        duration: 400,              // Make it take a while
+      }
+    ).start();
+  }
+
+  fadeOut(val){
+    // val.setValue(1)
+    Animated.timing(                  // Animate over time
+      val,            // The animated value to drive
+      {
+        toValue: 0,                   // Animate to opacity: 1 (opaque)
+        duration: 400,              // Make it take a while
+      }
+    ).start();
+  }
+  
+
 
 
   saveData() {
@@ -313,10 +550,28 @@ class Timer extends Component<{}> {
   }
   
 
-  spring () {
-    this.springValue.setValue(0.985)
+  spring (val) {
+    this.state.springValue.setValue(1)
     Animated.spring(
-      this.springValue,
+      this.state.springValue,
+      {
+        toValue: val,
+        // friction: 4,
+        velocity:0,
+        // tension:5,
+        speed:10,
+        bounciness:3
+      }
+    ).start()
+  }
+
+
+
+  spring2(){
+
+    // this.state.springValue.setValue(0.8)
+    Animated.spring(
+      this.state.springValue,
       {
         toValue: 1,
         // friction: 4,
@@ -325,26 +580,7 @@ class Timer extends Component<{}> {
         speed:10,
         bounciness:3
       }
-    ).start(() => {
-      if(this.props.startedValue)
-      this.spring2()
-    })
-  }
-
-
-
-  spring2(){
-
-    this.springValue.setValue(1)
-    Animated.spring(
-      this.springValue,
-      {
-        toValue: 0.985,
-        friction: 4,
-        velocity:0,
-        tension:3
-      }
-    ).start(() => this.spring())
+    ).start()
 
   }
   // componentWillReceiveProps(myprops){
@@ -378,7 +614,6 @@ class Timer extends Component<{}> {
 
     this.saveData()
     // this.props.inForeground()
-    this.spring2()
     this.props.started();
     console.log(this.props.wasInBackground)
     if (!this.props.wasInBackground)
@@ -426,7 +661,7 @@ class Timer extends Component<{}> {
 
   }
 
-  stopTimer(){
+  stopTimer(jahesh=1){
     
           if (this.state.notification)
       NotificationsAndroid.cancelLocalNotification(this.state.notification);
@@ -462,50 +697,19 @@ class Timer extends Component<{}> {
 
           
       <View>
-        <View style={{justifyContent:'center', alignItems:'flex-end'}}>
-        <TouchableWithoutFeedback onPress={()=>this.props.helpSelected()}>
-        <Icon name={'help'} size={40} style={{margin:15}} color={'#aaaaaa'}/>
+       <View style={{justifyContent:'flex-end', alignItems:'center', flexDirection:'row'}}>
+        <TouchableWithoutFeedback onPress={()=>{this.props.dialog()}}>
+        <Icon name={'help'} size={40} style={{margin:15, marginLeft:5}} color={'#aaaaaa'}/>
         </TouchableWithoutFeedback>
-        </View>
-      <View style={{alignItems:'center', justifyContent:'center'}}>  
-      
-
-        {/* <Button title={'save'} onPress={()=>this.refs.modal1.open()}/> */}
+      </View>
         
-
-
-
-
-      {/* <Button title={'save'} onPress={()=>this.saveData()}/>
-      <Button title={'get'} onPress={()=>this.getData()}/> */}
-      {/* <Text>{this.state.TIMES}</Text> */}
-      <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{paddingTop:30, paddingBottom:60,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.5*Dimensions.get('window').height)}}>
-          {/* <Text style={{fontSize:35, fontFamily:'main', marginTop:20,fontWeight:'100'}}> 7' 47" </Text> */}
-
-         <TouchableOpacity activeOpacity={0.85} onPress={()=>{
-           if (!this.props.startedValue)
-           {this.startTimer(this.props.counter)}
-            else if (this.props.startedValue)
-            {this.stopTimer()}
-          }
-           }>
-
-
-
-           <Progress.Pie size={(0.24*Dimensions.get('window').height)} progress={this.props.progressNumber} style={{marginTop:0}} color={"#ffb100"} borderColor={"#fff"} unfilledColor={"#ffcc80"}>
-           {this.startOrStopIcon()}
-           <Text style={styles.progressBarTime}>{Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}''</Text>
-           </Progress.Pie>
-
-
-          </TouchableOpacity>
-          {/* {this.startOrStopIcon()} */}
-          {/* <Text style={{position:'absolute', textAlign:'center', textAlignVertical:'center'}}>Must be in </Text> */}
-
+        <View style={{alignItems:'center', justifyContent:'center'}}>  
+        <Animated.View style={{transform: [{scale: this.state.springValue}] }}>
+        <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{paddingTop:0, paddingBottom:0,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.5*Dimensions.get('window').height)}}>
           
-
-          {/* <Text style={{textAlign:'center', textAlignVertical:'center',bottom:80+65,fontFamily:'Vazir-Bold-FD', position:'absolute'}}>شروع</Text> */}
-       </ImageBackground>
+          {this.showDetail()} 
+        </ImageBackground>
+        </Animated.View>
        
 
         
@@ -577,7 +781,9 @@ const mapStateToProps= state =>{
     startedValue : state.startedValue,
     wasInBackground : state.wasInBackground,
     progressNumber: state.progressNumber,
-    finishingTime : state.finishingTime
+    finishingTime : state.finishingTime,
+    longPressed : state.longPressed,
+    detailId : state.detailId
     
   }
 }

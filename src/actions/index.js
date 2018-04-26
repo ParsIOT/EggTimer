@@ -131,14 +131,22 @@ export const saveFinishingTime = (time)=>{
     }
 }
 
-export const helpSelected = ()=>{
+
+export const pressedLong = () =>{
     return{
-        type:'HELP_SELECTED'
+        type:'PRESSED_LONG'
     }
 }
 
-export const helpDeselected = ()=>{
+export const pressedUp = () =>{
     return{
-        type:'HELP_DESELECTED'
+        type:'PRESSED_UP'
+    }
+}
+
+export const setDetailId = (id) =>{
+    return {
+        type:'SET_DETAIL_ID',
+        id : id
     }
 }
