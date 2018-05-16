@@ -42,7 +42,6 @@
 		A6D9C90DCD22478EA35124DC /* Vazir-Bold-FD.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78015E58D9D449409FDE5ECF /* Vazir-Bold-FD.ttf */; };
 		CFB0EF299F234749B94B230E /* libRNSensors.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B65E30DDA224DEFA9F2DD59 /* libRNSensors.a */; };
 		7C3610AE2FF747CD84EE21B4 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFADA43050764FBB87AB9E65 /* libRNSound.a */; };
-		0D8ABD2FC645441695C81B7F /* libRNAlarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D942B67C1B494794DA5D00 /* libRNAlarm.a */; };
 		548DC4BEEE6C44A083DD1147 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF5344F0FA074BA2A3CC0308 /* Entypo.ttf */; };
 		3457AD4525DB42FAB676283A /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45D853C95D47400C8684BEFD /* EvilIcons.ttf */; };
 		E2B537453A3546D68F6AECAD /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C81C86C3653D47C1B70B8723 /* Feather.ttf */; };
@@ -55,6 +54,10 @@
 		0FEC99497592420D8FA9ADA9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF795747C5284618AFFA2AF1 /* SimpleLineIcons.ttf */; };
 		A7ACAE4A94E44ABCB80341A6 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 353A8FCE85AA492693322D1F /* Zocial.ttf */; };
 		4E7874C66A2C44FF983CE45E /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6407F2A651124FEDB81B8A81 /* libRNVectorIcons.a */; };
+		21DE0CF026334EA0A57E6002 /* libRNAlarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36568E9ABD034352A0BB1E22 /* libRNAlarm.a */; };
+		96ED989CB9BC4A4398BFF2A1 /* libRNBackgroundTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3359518BB6F43028B2453E6 /* libRNBackgroundTimer.a */; };
+		B961AD9B5BF84413B8E0479F /* libRNCalendarEvents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04287589CDE54016A89F4CBD /* libRNCalendarEvents.a */; };
+		59F9B02FD6AD4580B863F8CA /* libRNNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC3B9A8930D445394C4CE8C /* libRNNotifications.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,8 +317,6 @@
 		BFADA43050764FBB87AB9E65 /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		CEF4D9D7A61443A99B757F44 /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		F9B36506B7A046A998EC58E9 /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		9D1EDBFA58574306B950B480 /* RNAlarm.xcodeproj */ = {isa = PBXFileReference; name = "RNAlarm.xcodeproj"; path = "../node_modules/react-native-alarm/ios/RNAlarm.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		50D942B67C1B494794DA5D00 /* libRNAlarm.a */ = {isa = PBXFileReference; name = "libRNAlarm.a"; path = "libRNAlarm.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		DF5344F0FA074BA2A3CC0308 /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		45D853C95D47400C8684BEFD /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		C81C86C3653D47C1B70B8723 /* Feather.ttf */ = {isa = PBXFileReference; name = "Feather.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
@@ -329,6 +330,14 @@
 		353A8FCE85AA492693322D1F /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FD80BE737ADF414DBFCF69D4 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6407F2A651124FEDB81B8A81 /* libRNVectorIcons.a */ = {isa = PBXFileReference; name = "libRNVectorIcons.a"; path = "libRNVectorIcons.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		B12B7CB605634CB29F036739 /* RNAlarm.xcodeproj */ = {isa = PBXFileReference; name = "RNAlarm.xcodeproj"; path = "../node_modules/react-native-alarm/ios/RNAlarm.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		36568E9ABD034352A0BB1E22 /* libRNAlarm.a */ = {isa = PBXFileReference; name = "libRNAlarm.a"; path = "libRNAlarm.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		B7A5E5CDC8D84BDAA103DD7A /* RNBackgroundTimer.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundTimer.xcodeproj"; path = "../node_modules/react-native-background-timer/ios/RNBackgroundTimer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E3359518BB6F43028B2453E6 /* libRNBackgroundTimer.a */ = {isa = PBXFileReference; name = "libRNBackgroundTimer.a"; path = "libRNBackgroundTimer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		1609549F52214C23838EB3A7 /* RNCalendarEvents.xcodeproj */ = {isa = PBXFileReference; name = "RNCalendarEvents.xcodeproj"; path = "../node_modules/react-native-calendar-events/RNCalendarEvents.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		04287589CDE54016A89F4CBD /* libRNCalendarEvents.a */ = {isa = PBXFileReference; name = "libRNCalendarEvents.a"; path = "libRNCalendarEvents.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		39E2B4F1963F43B8BF6893F8 /* RNNotifications.xcodeproj */ = {isa = PBXFileReference; name = "RNNotifications.xcodeproj"; path = "../node_modules/react-native-notifications/RNNotifications/RNNotifications.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FFC3B9A8930D445394C4CE8C /* libRNNotifications.a */ = {isa = PBXFileReference; name = "libRNNotifications.a"; path = "libRNNotifications.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,8 +368,11 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				CFB0EF299F234749B94B230E /* libRNSensors.a in Frameworks */,
 				7C3610AE2FF747CD84EE21B4 /* libRNSound.a in Frameworks */,
-				0D8ABD2FC645441695C81B7F /* libRNAlarm.a in Frameworks */,
 				4E7874C66A2C44FF983CE45E /* libRNVectorIcons.a in Frameworks */,
+				21DE0CF026334EA0A57E6002 /* libRNAlarm.a in Frameworks */,
+				96ED989CB9BC4A4398BFF2A1 /* libRNBackgroundTimer.a in Frameworks */,
+				B961AD9B5BF84413B8E0479F /* libRNCalendarEvents.a in Frameworks */,
+				59F9B02FD6AD4580B863F8CA /* libRNNotifications.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,8 +554,11 @@
 				EAD92841439A44F3BC4F67DF /* RNSound.xcodeproj */,
 				CEF4D9D7A61443A99B757F44 /* RNSound.xcodeproj */,
 				F9B36506B7A046A998EC58E9 /* RNSound.xcodeproj */,
-				9D1EDBFA58574306B950B480 /* RNAlarm.xcodeproj */,
 				FD80BE737ADF414DBFCF69D4 /* RNVectorIcons.xcodeproj */,
+				B12B7CB605634CB29F036739 /* RNAlarm.xcodeproj */,
+				B7A5E5CDC8D84BDAA103DD7A /* RNBackgroundTimer.xcodeproj */,
+				1609549F52214C23838EB3A7 /* RNCalendarEvents.xcodeproj */,
+				39E2B4F1963F43B8BF6893F8 /* RNNotifications.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1155,6 +1170,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1162,8 +1179,11 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
+					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
 				);
 			};
 			name = Debug;
@@ -1186,6 +1206,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1193,8 +1215,11 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
+					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
 				);
 			};
 			name = Release;
@@ -1220,8 +1245,11 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
+					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
 				);
 			};
 			name = Debug;
@@ -1246,8 +1274,11 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
+					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
 				);
 			};
 			name = Release;
@@ -1279,6 +1310,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1286,8 +1319,11 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
+					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
 				);
 			};
 			name = Debug;
@@ -1319,6 +1355,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1326,8 +1364,11 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
+					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
 				);
 			};
 			name = Release;
@@ -1354,6 +1395,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1378,6 +1421,8 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

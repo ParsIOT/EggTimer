@@ -1,4 +1,13 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet, PixelRatio} from 'react-native'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                import myStyle from './style.js'
+
+var fontt =myStyle.FONT_SIZE_SMALL
+var fontt2 =myStyle.FONT_SIZE_TITLE
+var myMargin = myStyle.itemMargin
+
+
+
+
 
 const styles = StyleSheet.create ({
     Button:{
@@ -10,11 +19,11 @@ const styles = StyleSheet.create ({
         padding:20
     },
     selectedItem:{
-        margin:5,
-        padding:10,
-        paddingBottom:4,
-        paddingTop:2,
-        borderRadius:18,
+        margin:myMargin,
+        padding:8,
+        // paddingBottom:4,
+        // paddingTop:2,
+        borderRadius:20,
         // borderWidth:3,
         // borderColor:'white',
         backgroundColor:'#ffb100'
@@ -22,55 +31,55 @@ const styles = StyleSheet.create ({
         //#ffcc80
       },
     selectedItemText:{
-        fontSize:15,
+        fontSize:fontt,
         // fontWeight:'bold', 
         fontFamily:'Vazir-Bold',
         color:'white'
       },
 
     normalItem:{
-        margin:5,
-        padding:10,
+        margin:myMargin,
+        padding:8,
         borderRadius:20,
     },
 
     normalItemText:{
-        fontSize:15,
+        fontSize:fontt,
         fontFamily:'Vazir',
         color:'black'
     },
 
     disableItem:{
-        margin:5,
-        padding:10,
+        margin:myMargin,
+        padding:8,
         borderRadius:20,
         
     },
 
     disableItemText:{
-        fontSize:15,
+        fontSize:fontt,
         fontFamily:'Vazir',
         color:'rgb(190,190,190)'
     },
 
     rowContainer:{
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'center',
         alignItems:'center'
     },
 
     disSelectedItem:{
-        margin:5,
-        padding:10,
-        paddingBottom:4,
-        paddingTop:2,
-        borderRadius:18,
+        margin:myMargin,
+        padding:8,
+        // paddingBottom:4,
+        // paddingTop:2,
+        borderRadius:20,
         // borderWidth:2,
         // borderColor:'rgb(249, 208, 16)',
         backgroundColor:'rgb(260, 240, 200)'
     },
     disSelectedItemText:{
-        fontSize:15,
+        fontSize:fontt,
         fontFamily:'Vazir',
         color:'rgb(190,190,190)'
     },
@@ -158,7 +167,7 @@ const styles = StyleSheet.create ({
         height:14
     },
     progressBarTime:{
-        fontSize:25, 
+        fontSize:fontt2, 
         textAlign:'center', textAlignVertical:'center',
         // fontWeight:'bold', 
         marginBottom:15,
@@ -209,7 +218,20 @@ const styles = StyleSheet.create ({
         fontFamily:'Vazir-Bold',
         color:'white'
       },
-    
+
+      bashe:{
+        fontFamily:'Vazir-Bold-FD', fontSize:fontt2, color:'white'
+      },
+      helpText:{
+      fontFamily:'Vazir', textAlign:'center', textAlignVertical:'center', margin:10, fontSize:fontt
+      },
+      helpTextBold:{
+      fontFamily:'Vazir-Bold-FD', textAlign:'center', textAlignVertical:'center', margin:10, fontSize:fontt+2
+      },
+      detailInEgg:{
+        fontSize:fontt, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'
+      }
+
 
 })
 

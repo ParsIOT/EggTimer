@@ -3,14 +3,18 @@ package com.eggtimer;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.wix.reactnativenotifications.RNNotificationsPackage;
+import com.calendarevents.CalendarEventsPackage;
+import com.ocetnik.timer.BackgroundTimerPackage;
+import com.liang.RNAlarmPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.liang.RNAlarmPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.calendarevents.CalendarEventsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,11 +34,15 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
+            new ReactNativePushNotificationPackage(),
+            new RNNotificationsPackage(),
+            new CalendarEventsPackage(),
+            new BackgroundTimerPackage(),
+            new RNAlarmPackage(),
             new ReactNativePushNotificationPackage(),
             new VectorIconsPackage(),
-            new RNAlarmPackage(),
-          new RNNotificationsPackage(MainApplication.this),
-          new CalendarEventsPackage()
+          new RNNotificationsPackage(MainApplication.this)
       );
     }
 

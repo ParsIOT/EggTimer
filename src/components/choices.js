@@ -77,7 +77,7 @@ class Choices extends Component<{}>{
 
           
 
-          <View style={{flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+          <View style={{flexDirection:'column', justifyContent:'center', alignItems:'center', marginBottom:40}}>
           {/* <Text style={{textAlign:'center', fontFamily:'Vazir-Bold-FD', fontSize:11}}>میزان پخنگی تخم مرغ</Text> */}
           
 
@@ -88,7 +88,7 @@ class Choices extends Component<{}>{
           
             <TouchableWithoutFeedback disabled={myDisable[this.props.sangi]} onPress={()=>{this.props.selectEggStatus('sangi', 2);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(0);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
               <View style={ myItemStyles[this.props.sangi] }>
-              <Text style={ myItemTextStyles[this.props.sangi] }>  پخته سفت </Text>
+              <Text style={ myItemTextStyles[this.props.sangi] }> پخته </Text>
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback disabled={myDisable[this.props.pokhte]} onPress={()=>{this.props.selectEggStatus('pokhte', 1);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(1);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>

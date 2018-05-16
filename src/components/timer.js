@@ -11,99 +11,50 @@ import {
   TouchableNativeFeedback,
   TouchableHighlight,
   TouchableOpacity,
-  TabBarIOS,
   ImageBackground,
   Dimensions,
   Animated,
-  Easing,
   Image,
   AppState,
   AsyncStorage,
-  StatusBar
-  
 } from 'react-native';
 import {connect} from 'react-redux'
 import styles from '../../appStyle/styleSheet.js'
 import * as actions from '../actions'
-import { NotificationsAndroid } from 'react-native-notifications'
-import RNCalendarEvents from 'react-native-calendar-events';
-import RNAlarm from 'react-native-alarm';
 import * as Progress from 'react-native-progress'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-// import {storage} from './storage'
 import Storage from 'react-native-storage'
-import Modal from 'react-native-modalbox';
-// import {} from 'react-native-popup-dialog'
-
-
-
-
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
+import myStyle from '../../appStyle/style.js'
 var PushNotification = require('react-native-push-notification');
+
+
+const storage = new Storage({
+  size:20,
+  storageBackend: AsyncStorage,
+  defaultExpires: null,
+  enableCache: true
+})
+
 PushNotification.configure({
-      // (optional) Called when Token is generated (iOS and Android)
       onRegister: function(token) {
           console.log( 'TOKEN:', token );
       },
-  
-      // (required) Called when a remote or local notification is opened or received
-      onNotification: function(notification) {
-          console.log( 'NOTIFICATION:', notification );
-  
-          // process the notification
-  
-          
+        onNotification: function(notification) {
+          console.log( 'NOTIFICATION:', notification );  
       },
-  
-      // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications)
-      senderID: "YOUR GCM SENDER ID",
-  
-      
-  
-      // Should the initial notification be popped automatically
-      // default: true
       popInitialNotification: true,
-  
-      /**
-        * (optional) default: true
-        * - Specified if permissions (ios) and token (android and ios) will requested or not,
-        * - if not, you must call PushNotificationsHandler.requestPermissions() later
-        */
       requestPermissions: true,
   });
 
 
-
-
-async function getiOSNotificationPermission() {     // for alarm
-  const { status } = await Permissions.getAsync(
-    Permissions.NOTIFICATIONS
-  );
-  if (status !== 'granted') {
-    await Permissions.askAsync(Permissions.NOTIFICATIONS);
-  }
-}
-
-
-
-
-const storage = new Storage({
-    size:20,
-    storageBackend: AsyncStorage,
-    defaultExpires: null,
-    enableCache: true
-    
-    
-})
-
-
+// async function getiOSNotificationPermission() {     // for alarm
+//   const { status } = await Permissions.getAsync(
+//     Permissions.NOTIFICATIONS
+//   );
+//   if (status !== 'granted') {
+//     await Permissions.askAsync(Permissions.NOTIFICATIONS);
+//   }
+// }
 
 class Timer extends Component<{}> {
   constructor(props){
@@ -115,7 +66,6 @@ class Timer extends Component<{}> {
       timers:[],
       paused:true,
       stoped:true,
-      notification:null,
       appState: AppState.currentState,
       d:0,
       TIMES:0,
@@ -126,19 +76,19 @@ class Timer extends Component<{}> {
       ,
       ' حالت نهایی تخم مرغ :\n\n عسلی'
       ,
-      '  سایز تخم مرغ :\n\n بین 100 تا 250 گرم'
+      '  سایز تخم مرغ :\n\n بین 55 تا 60 گرم'
       ,
-      '  سایز تخم مرغ :\n\n بین 250 تا 350 گرم'
+      '  سایز تخم مرغ :\n\n بین 50 تا 55 گرم'
       ,
-      '  سایز تخم مرغ :\n\n بین 350 تا 450 گرم'
+      '  سایز تخم مرغ :\n\n بین 30 تا 50 گرم'
       ,
       '  دمای اولیه آب :\n\n بین 60 تا 100 درجه سانتیگراد'
       ,
-      '  دمای اولیه آب :\n\n بین 40 تا 60 درجه سانتیگراد'
+      '  دمای اولیه آب :\n\n بین 27 تا 60 درجه سانتیگراد'
       ,
-      '  دمای اولیه آب :\n\n بین 20 تا 40 درجه سانتیگراد'
+      '  دمای اولیه آب :\n\n  حدود 27 درجه سانتیگراد'
       ,
-      '  دمای اولیه آب :\n\n بین 4 تا 20 درجه سانتیگراد'
+      '  دمای اولیه آب :\n\n  حدود ۴ درجه سانتیگراد'
       ,
       ],
       detailId:0,
@@ -147,24 +97,11 @@ class Timer extends Component<{}> {
       fadeAsaly : new Animated.Value(0),
       fadePie : new Animated.Value(1),
       springValue : new Animated.Value(1)
-      
-      
-      
     }
-    
-
-    var started = new Date
-    // RNCalendarEvents.authorizationStatus().then((promise)=>{console.log( "1" + promise )})
-    // RNCalendarEvents.authorizeEventStore().then((promise)=>{console.log( "2" + promise )})
-    // RNCalendarEvents.findCalendars().then((promise)=>{console.log( "list = > " + promise )})
-    // RNAlarm.initAlarm(null)
-    // RNAlarm.setAlarm("Meeting",'hi','','',()=>{},()=>{})
 }
 
   componentDidMount(){
-    
     AppState.addEventListener('change', this._handleAppStateChange);
-    
   }
 
   componentWillUnmount() {
@@ -173,195 +110,125 @@ class Timer extends Component<{}> {
     // this.saveData()
   }
 
-  async savqeData(){
-    
-    await AsyncStorage.setItem('MAIN_TIME:key', this.props.time)
-    await AsyncStorage.setItem('SECONDS_REMAINING', this.props.counter)
-    await AsyncStorage.setItem('BACKGROUN_TIME', Date.now())
-    
-    
-  }
-
-  fo()
-    {
-            
+  fo(){
       // val.setValue(1)
-      Animated.timing(                  // Animate over time
-        this.state.fadePie,            // The animated value to drive
+      Animated.timing(                  
+        this.state.fadePie, 
         {
-          toValue: 0,                   // Animate to opacity: 1 (opaque)
-          duration: 1000,              // Make it take a while
+          toValue: 0,
+          duration: 1000,
         }
       ).start(()=> {this.fadeIn(this.state.fadeAnim)} );
     }
   
 
   showDetail(){
+
     if(this.props.longPressed){
-      if (this.props.detailId == 2){
-        this.fadeIn(this.state.fadeAsaly)
-
-        return(
-          
-           <View style={{padding:0,paddingBottom:0,marginBottom:40}}>
-           
-           <Text style={styles.progressBarTime}>{Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}''</Text>        
-           <TouchableOpacity activeOpacity={0.85}  style={{paddingRight:12,paddingLeft:12,paddingBottom:30}} onPress={()=>{
-           if (!this.props.startedValue)
-           {this.startTimer(this.props.counter)}
-            else if (this.props.startedValue)
-            {this.stopTimer()}
-          }}>
-   
-   
-           
-          
-
-           <Animated.View style={{opacity:this.state.fadePie}}>
-           <Progress.Pie size={(0.24*Dimensions.get('window').height)} progress={this.props.progressNumber} color={"#ffcc80"} borderColor={"#fff"} unfilledColor={"#ffb100"}>
-           {this.startOrStopIcon()}
-           <Text></Text>
-           </Progress.Pie>
-           </Animated.View>
-           <Animated.Image
-             resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{opacity:this.state.fadeAsaly,position:'absolute',width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/>
-          
-           
-   
-   
-   
-        </TouchableOpacity>
-    
-        </View>)
-
-
-
-        
-      // return(
-      // <View style={{alignItems:'center', marginBottom:45, justifyContent:'flex-end', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
-      //   {/* <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text> */}
-      //   <Animated.View
-      //   style={{
-      //     opacity: this.state.fadeAnim,         // Bind opacity to animated value
-      //   }}>
-      //   <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/>
-      //   </Animated.View>
-      //   {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
-      // </View> )
-      }
-
-      else if (this.props.detailId == 5){
+      if (this.props.detailId == 5){
         this.spring(0.94)
-        this.fo()
-        // this.fadeIn(this.state.fadeAnim)
+        this.fadeIn(this.state.fadeAnim)
         return(
-          <View style={{alignItems:'center', marginBottom:45, justifyContent:'center', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
-             <Animated.View
-            style={{
-              opacity: this.state.fadeAnim,         // Bind opacity to animated value
-        }}>
-            <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text>
-            {/* <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/> */}
-            {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+          <View style={{alignItems:'center', marginBottom: myStyle.DETAIL_TEXT_MARGIN_BOTTOM, justifyContent:'center', flex:1}}>
+            <Animated.View style={{ opacity: this.state.fadeAnim }}>
+                <Text style={styles.detailInEgg}>{this.state.detailes[this.props.detailId]}</Text>
             </Animated.View>
-
-          </View> )
+          </View> 
+            )
       }
       else if (this.props.detailId == 4){
         this.spring(0.96)
-        
         this.fadeIn(this.state.fadeAnim)
         return(
-          <View style={{alignItems:'center', marginBottom:45, justifyContent:'center', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
-             <Animated.View
-            style={{
-              opacity: this.state.fadeAnim,         // Bind opacity to animated value
-        }}>
-            <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text>
-            {/* <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/> */}
-            {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+          <View style={{alignItems:'center', marginBottom: myStyle.DETAIL_TEXT_MARGIN_BOTTOM, justifyContent:'center', flex:1}}>
+            <Animated.View style={{ opacity: this.state.fadeAnim }}>
+              <Text style={styles.detailInEgg}>{this.state.detailes[this.props.detailId]}</Text>
             </Animated.View>
-
-          </View> )
+        </View> 
+        )
       }
       else if (this.props.detailId == 3){
         this.spring(0.98)
-        
         this.fadeIn(this.state.fadeAnim)
         return(
-          <View style={{alignItems:'center', marginBottom:45, justifyContent:'center', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
-             <Animated.View
-            style={{
-              opacity: this.state.fadeAnim,         // Bind opacity to animated value
-        }}>
-            <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text>
-            {/* <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/> */}
-            {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+          <View style={{alignItems:'center', marginBottom: myStyle.DETAIL_TEXT_MARGIN_BOTTOM, justifyContent:'center', flex:1}}>
+            <Animated.View style={{ opacity: this.state.fadeAnim }}>
+              <Text style={styles.detailInEgg}>{this.state.detailes[this.props.detailId]}</Text>
             </Animated.View>
+          </View> 
+          )
+      }
 
-          </View> )
+      else if (this.props.detailId == 2){
+        this.fadeIn(this.state.fadeAsaly)
+        return(
+          <View style={{marginBottom : myStyle.progressBar_PaddingB }}>
+            <Text style={styles.progressBarTime}> {Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}'' </Text>        
+            <TouchableOpacity activeOpacity={0.85}  style={{padding:12, paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+              if (!this.props.startedValue)
+                {this.startTimer(this.props.counter)}
+              else if (this.props.startedValue)
+                {this.stopTimer()}
+              }}>
+              <Animated.View style={{opacity:this.state.fadePie}}>
+                <Progress.Pie size={myStyle.PIE_WIDTH} progress={this.props.progressNumber} color={myStyle.FILLED_PIE_COLOR} borderColor={myStyle.BORDER_PIE_COLOR} unfilledColor={myStyle.UNFILLED_PIE_COLOR}>
+                  {this.startOrStopIcon()}
+                  <Text></Text>
+                </Progress.Pie>
+              </Animated.View>
+              <Animated.Image
+                resizeMode={'contain'}  
+                source={require('../../statics/honey2.png')} 
+                style={{ opacity:this.state.fadeAsaly, alignSelf:'center', position:'absolute', width : myStyle.ASALY_WIDTH, height : myStyle.ASALY_WIDTH}}/>
+            </TouchableOpacity>
+          </View>
+        )
       }
       else{
         this.fadeIn(this.state.fadeAnim)
         return(
-          <View style={{alignItems:'center', marginBottom:45, justifyContent:'center', width:0.25*Dimensions.get('window').height, height:0.25*Dimensions.get('window').height, flex:1}}>
-             <Animated.View
-            style={{
-              opacity: this.state.fadeAnim,         // Bind opacity to animated value
-        }}>
-            <Text style={{fontSize:15, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'}}>{this.state.detailes[this.props.detailId]}</Text>
-            {/* <Image resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/> */}
-            {/* <View style={{height:0.24*Dimensions.get('window').height, width:0.24*Dimensions.get('window').height, backgroundColor:'#ffcc80', borderRadius:0.12*Dimensions.get('window').height}}/> */}
+          <View style={{alignItems:'center', marginBottom: myStyle.DETAIL_TEXT_MARGIN_BOTTOM, justifyContent:'center', flex:1}}>
+            <Animated.View style={{opacity: this.state.fadeAnim}}>
+              <Text style={styles.detailInEgg}>{this.state.detailes[this.props.detailId]}</Text>
             </Animated.View>
-
-          </View> )
+          </View> 
+          )
       }
     }
     else{
       
-      if (!this.props.startedValue)
-      {
-        // this.fadeIn(this.state.fadePie)
+      if (!this.props.startedValue){
         this.fadeOut(this.state.fadeAsaly)
-        // this.fadeIn(this.state.fadePie)
         this.spring2()
       }
       return(
-       
-        <View style={{padding:0,paddingBottom:0,marginBottom:40}}>
-        
-        <Text style={styles.progressBarTime}>{Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}''</Text>        
-        <TouchableOpacity activeOpacity={0.85}  style={{paddingRight:12,paddingLeft:12,paddingBottom:30}} onPress={()=>{
-        if (!this.props.startedValue)
-        {this.startTimer(this.props.counter)}
-         else if (this.props.startedValue)
-         {this.stopTimer()}
-       }}>
-
-       
-        
-       
-
-        <Animated.View style={{opacity:this.state.fadePie}}>
-        <Progress.Pie size={(0.24*Dimensions.get('window').height)} progress={this.props.progressNumber} color={"#ffcc80"} borderColor={"#fff"} unfilledColor={"#ffb100"}>
-        {this.startOrStopIcon()}
-        <Text></Text>
-        </Progress.Pie>
-        </Animated.View>
-
-      
-        <Animated.Image
-          resizeMode={'contain'}  source={require('../../statics/honey2.png')} style={{opacity:this.state.fadeAsaly,position:'absolute',width:0.28*Dimensions.get('window').height, height:0.28*Dimensions.get('window').height}}/>
-       
-        
-       
-
-
-
-     </TouchableOpacity>
- 
+        <View style={{marginBottom : myStyle.progressBar_PaddingB}}>
+          <Text style={styles.progressBarTime}>{Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}''</Text>        
+          <TouchableOpacity activeOpacity={0.85}  style={{padding:12 ,paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+          if (!this.props.startedValue)
+          {this.startTimer(this.props.counter)}
+          else if (this.props.startedValue)
+          {this.stopTimer()}
+        }}>
+            <Animated.View style={{opacity:this.state.fadePie}}>
+              <Progress.Pie 
+              size={myStyle.PIE_WIDTH} 
+              progress={this.props.progressNumber} 
+              color={myStyle.FILLED_PIE_COLOR} 
+              borderColor={myStyle.BORDER_PIE_COLOR} 
+              unfilledColor={myStyle.UNFILLED_PIE_COLOR}
+              >
+                {this.startOrStopIcon()}
+                <Text></Text>
+              </Progress.Pie>
+            </Animated.View>
+            <Animated.Image
+              resizeMode={'contain'}  
+              source={require('../../statics/honey2.png')} 
+              style={{opacity:this.state.fadeAsaly, alignSelf:'center',position:'absolute',width:myStyle.ASALY_WIDTH, height:myStyle.ASALY_WIDTH}}
+              />
+          </TouchableOpacity>
      </View>
-
      )
     }
   }
@@ -372,6 +239,10 @@ class Timer extends Component<{}> {
       date: new Date(Date.now() + (remainTime * 1000)), // in 60 secs
       ongoing: false, // (optional) set whether this is an "ongoing" notification
       autoCancel: true, // (optional) default: true
+      playSound: true, // (optional) default: true
+      vibration: 600, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+      
+      soundName: 'chicken', // (optional) Sound to play when the notification is shown. Value of 'default' pl
       
       
     });
@@ -380,33 +251,26 @@ class Timer extends Component<{}> {
   notif1(remainTime){
     // var a= new Date(Date.now()+ remainTime*1000 )
     var a = this.props.finishingTime
+    var b = false
+    if (this.props.counter < 60){
+      b = true
+    }
     PushNotification.localNotification({
-      /* Android Only Properties */
-      // (optional) Valid unique 32 bit integer specified as string. default: Autogenerated Unique ID
-      // ticker: "My Notification Ticker", // (optional)
-      // autoCancel: true, // (optional) default: true
-      largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
-      smallIcon: "ic_notification", // (optional) default: "ic_notification" with fallback for "ic_launcher"
-      bigText: "My big text that will be shown when notification is expanded", // (optional) default: "message" prop
-      // subText: "This is a subText", // (optional) default: none
-      color: "white", // (optional) default: system default
-      vibrate: true, // (optional) default: true
-      vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
-      // tag: 'some_tag', // (optional) add tag to message
-      // group: "group", // (optional) add group to message
-      // ongoing: false, // (optional) set whether this is an "ongoing" notification
-  
-      /* iOS and Android properties */
-      title: "Egg Timer", // (optional)
-      message: "  تخم مرغ شما در "+ a.getHours() + ":" +a.getMinutes() + ":"+a.getSeconds() + " آماده میشود ", // (required)
-      // playSound: false, // (optional) default: true
-      // soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
-      // number: '10', // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
-      // repeatType: 'day', // (Android only) Repeating interval. Could be one of `week`, `day`, `hour`, `minute, `time`. If specified as time, it should be accompanied by one more parameter 'repeatTime` which should the number of milliseconds between each interval
-      // actions: '["باشه"]',  // (Android only) See the doc for notification actions to know more
-  });
+      largeIcon: "ic_launcher",
+      smallIcon: "ic_notification", 
+      color: "white", 
+      autoCancel: false,  
+      vibrate: true, 
+      vibration: 300,
+      title: "Egg Timer",
+      // message: "  تخم مرغ شما در "+ a.getHours() + ":" +a.getMinutes() + ":"+a.getSeconds() + " آماده میشود ", // (required)
+      message : !b ? " تخم مرغ شما حدود " + Math.trunc(this.props.counter/60) + " دقیقه دیگر آماده میشود " : "کمتر از یک دقیقه دیگر تخم مرغ شما آماده میشود",
+      number: '0',
+      playSound: true, 
+      soundName: 'default', 
+      
+    });
   }
-
 
   setFinishingTime(){
     var time = new Date(Date.now() + this.props.counter*1000)
@@ -415,41 +279,34 @@ class Timer extends Component<{}> {
 
   fadeIn(val){
     val.setValue(0)
-    Animated.timing(                  // Animate over time
-      val,            // The animated value to drive
+    Animated.timing(                  
+      val,            
       {
-        toValue: 1,                   // Animate to opacity: 1 (opaque)
-        duration: 400,              // Make it take a while
+        toValue: 1,           
+        duration: 400,             
       }
     ).start();
   }
 
   fadeOut(val){
     // val.setValue(1)
-    Animated.timing(                  // Animate over time
-      val,            // The animated value to drive
+    Animated.timing(                  
+      val,          
       {
-        toValue: 0,                   // Animate to opacity: 1 (opaque)
-        duration: 400,              // Make it take a while
+        toValue: 0,                  
+        duration: 400,  
       }
     ).start();
   }
   
-
-
-
   saveData() {
-   
     storage.save({
-      key: 'TIMES',   // Note: Do not use underscore("_") in key!
+      key: 'TIMES', 
       data: { 
         time: this.props.time,
         current_time: Date.now(),
         seconds_remaining: this.props.counter
       },
-      
-      // if not specified, the defaultExpires will be applied instead.
-      // if set to null, then it will never expire.
       expires: 1000 * 3600
     }).then((rett)=>{console.log(rett)});    
   }
@@ -457,41 +314,25 @@ class Timer extends Component<{}> {
   getData(){
     console.log('getting data ...')
       storage.load({key:'TIMES',
-      // autoSync(default true) means if data not found or expired,
-      // then invoke the corresponding sync method
       autoSync: true,
-      
-      // syncInBackground(default true) means if data expired,
-      // return the outdated data first while invoke the sync method.
-      // It can be set to false to always return data provided by sync method when expired.(Of course it's slower)
       syncInBackground: true,
-      
-      // you can pass extra params to sync method
-      // see sync example below for example
       syncParams: {
         extraFetchOptions: {
-          // blahblah
         },
         someFlag: true}}).then((ret)=>{this.onResume(ret);console.log(ret)}).catch(err => {
-        // any exception including data not found 
-        // goes to catch()
         console.warn(err.message);
         switch (err.name) {
             case 'NotFoundError':
-                // TODO;
+              this.onResume({ time: this.props.time, current_time: 0, seconds_remaining: 0}) 
                 break;
               case 'ExpiredError':
-                  // TODO
-                  break;
+                this.onResume({ time: this.props.time, current_time: 0, seconds_remaining: 0}) 
+              break;
         }
-      })
-    
+      }
+    )
   }
     
-    
-  
-  
-
   _handleAppStateChange = (nextAppState) => {
     console.log(nextAppState)
     this.setState({appState: nextAppState});
@@ -499,37 +340,19 @@ class Timer extends Component<{}> {
       this.onPause()
       this.saveData()
       if (this.props.startedValue){
-      this.notif1(this.props.counter)
-      this.notif(this.props.counter)
-      }
-      // if (this.props.startedValue){
-      //   this.saveData()
-      // }
-      // this.saveData()
+        this.notif1(this.props.counter)
+        this.notif(this.props.counter)
+        }
     }
     else if (nextAppState == "active"){
-      // this.onResume()
       PushNotification.cancelAllLocalNotifications()
       this.getData()
-      
     }
   }
 
-
   onPause(){
-    
     this.props.inBackground()
     this.pauseTimer()
-    // this.setState({notification:NotificationsAndroid.localNotification({
-    //   title: "Egg timer",
-    //   body: " we will alarm you when your egg is ready! ",
-    //   extra: "data",
-    //   category: "interactiveNotification"
-
-    // })})
-    // this.props.paused()
-    // console.log('pause  '+'background? = '+ this.props.wasInBackground +' startedValue = '+this.props.startedValue)
-    
   }
 
   onResume(times= { time: this.props.time, current_time: 0, seconds_remaining: 0}) 
@@ -543,7 +366,6 @@ class Timer extends Component<{}> {
         this.startTimer(this.props.counter)
       }      
       this.props.inForeground()
-      
     }
     this.props.inForeground()
     // console.log('resume  '+'background? = '+ this.props.wasInBackground +' startedValue = '+this.props.startedValue)
@@ -569,7 +391,7 @@ class Timer extends Component<{}> {
 
   spring2(){
 
-    // this.state.springValue.setValue(0.8)
+    // this.state.springValue.setValue(0)
     Animated.spring(
       this.state.springValue,
       {
@@ -598,16 +420,6 @@ class Timer extends Component<{}> {
 
 
   startTimer(time){
-    RNAlarm.setAlarm('1523644752586',
-    'Meeting with customer',
-    '', 
-    '',
- () => {
-   // Success callback function
- },
- () => {
-   // Fail callback function
- });
 
     if(!this.props.startedValue)
     this.setFinishingTime()
@@ -662,9 +474,7 @@ class Timer extends Component<{}> {
   }
 
   stopTimer(jahesh=1){
-    
-          if (this.state.notification)
-      NotificationsAndroid.cancelLocalNotification(this.state.notification);
+    PushNotification.cancelAllLocalNotifications()
     for(timer in this.state.timers) clearInterval( this.state.timers[timer] )
     this.setState({shownTime:this.props.timerTime}) 
     this.setState({paused:true,stoped:true, backgroundColor:'white'})   
@@ -697,19 +507,15 @@ class Timer extends Component<{}> {
 
           
       <View>
-       <View style={{justifyContent:'flex-end', alignItems:'center', flexDirection:'row'}}>
-        <TouchableWithoutFeedback onPress={()=>{this.props.dialog()}}>
-        <Icon name={'help'} size={40} style={{margin:15, marginLeft:5}} color={'#aaaaaa'}/>
-        </TouchableWithoutFeedback>
-      </View>
+       
         
         <View style={{alignItems:'center', justifyContent:'center'}}>  
         <Animated.View style={{transform: [{scale: this.state.springValue}] }}>
         <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{paddingTop:0, paddingBottom:0,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.5*Dimensions.get('window').height)}}>
-          
           {this.showDetail()} 
         </ImageBackground>
         </Animated.View>
+        {/* <Image resizeMode={'contain'} source = {require('../../statics/egg_main.png')} style={{position:'absolute',paddingTop:0, paddingBottom:0, width:  Dimensions.get('window').width, height:(0.5*Dimensions.get('window').height)}}/> */}
        
 
         
