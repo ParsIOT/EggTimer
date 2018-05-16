@@ -5,7 +5,6 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.wix.reactnativenotifications.RNNotificationsPackage;
 import com.calendarevents.CalendarEventsPackage;
 import com.ocetnik.timer.BackgroundTimerPackage;
 import com.liang.RNAlarmPackage;
@@ -19,7 +18,6 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import com.wix.reactnativenotifications.RNNotificationsPackage;
 
 
 public class MainApplication extends Application implements ReactApplication {
@@ -36,13 +34,9 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new VectorIconsPackage(),
             new ReactNativePushNotificationPackage(),
-            new RNNotificationsPackage(),
             new CalendarEventsPackage(),
             new BackgroundTimerPackage(),
-            new RNAlarmPackage(),
-            new ReactNativePushNotificationPackage(),
-            new VectorIconsPackage(),
-          new RNNotificationsPackage(MainApplication.this)
+            new RNAlarmPackage()
       );
     }
 
