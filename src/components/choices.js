@@ -18,6 +18,7 @@ import * as actions from '../actions'
 import PopupDialog from 'react-native-popup-dialog';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import PopoverTooltip from 'react-native-popover-tooltip'
+import AddTest from '../../addTest'
 
 
 
@@ -107,7 +108,7 @@ class Choices extends Component<{}>{
           {/* <Text style={{textAlign:'center', fontFamily:'Vazir-Bold-FD', fontSize:11}}>سایز تخم مرغ</Text> */}
           <View style={styles.rowContainer}>
           
-          <TouchableWithoutFeedback disabled={myDisable[this.props.bozorg]} onPress={()=>{this.props.selectSize('bozorg', 2 );this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(3);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
+          <TouchableWithoutFeedback disabled={myDisable[this.props.bozorg]} onPress={()=>{this.props.selectSize('bozorg', 2 );this.props.calculateTime();}} onLongPress={()=>{this.props.setDetailId(3);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
             <View style={myItemStyles[this.props.bozorg]}>
             <Text style={myItemTextStyles[this.props.bozorg]}> بزرگ </Text>
             </View>

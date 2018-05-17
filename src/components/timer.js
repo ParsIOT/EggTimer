@@ -60,6 +60,7 @@ class Timer extends Component<{}> {
   constructor(props){
     super(props)
     this.state={
+      url:'../../statics/honey2.png',
       time:this.props.timerTime,
       shownTime:this.props.counter,
       backgroundColor:'white',
@@ -92,6 +93,7 @@ class Timer extends Component<{}> {
       ,
       ],
       detailId:0,
+      eggImages : ['../../statics/honey2.png', '../../statics/semi_soft2.png'],
       fadeAnim : new Animated.Value(1),
       fadeinMain : new Animated.Value(0),
       fadeAsaly : new Animated.Value(0),
@@ -122,6 +124,10 @@ class Timer extends Component<{}> {
     }
   
 
+    // foo(){
+    //   this.setState({url:})
+    // }
+
   showDetail(){
 
     if(this.props.longPressed){
@@ -137,7 +143,7 @@ class Timer extends Component<{}> {
             )
       }
       else if (this.props.detailId == 4){
-        this.spring(0.96)
+        this.spring(0.975)
         this.fadeIn(this.state.fadeAnim)
         return(
           <View style={{alignItems:'center', marginBottom: myStyle.DETAIL_TEXT_MARGIN_BOTTOM, justifyContent:'center', flex:1}}>
@@ -148,7 +154,7 @@ class Timer extends Component<{}> {
         )
       }
       else if (this.props.detailId == 3){
-        this.spring(0.98)
+        this.spring(1.07)
         this.fadeIn(this.state.fadeAnim)
         return(
           <View style={{alignItems:'center', marginBottom: myStyle.DETAIL_TEXT_MARGIN_BOTTOM, justifyContent:'center', flex:1}}>
@@ -164,7 +170,7 @@ class Timer extends Component<{}> {
         return(
           <View style={{marginBottom : myStyle.progressBar_PaddingB }}>
             <Text style={styles.progressBarTime}> {Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}'' </Text>        
-            <TouchableOpacity activeOpacity={0.85}  style={{padding:12, paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+            <TouchableOpacity activeOpacity={0.85}  style={{padding:14, paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
               if (!this.props.startedValue)
                 {this.startTimer(this.props.counter)}
               else if (this.props.startedValue)
@@ -173,17 +179,70 @@ class Timer extends Component<{}> {
               <Animated.View style={{opacity:this.state.fadePie}}>
                 <Progress.Pie size={myStyle.PIE_WIDTH} progress={this.props.progressNumber} color={myStyle.FILLED_PIE_COLOR} borderColor={myStyle.BORDER_PIE_COLOR} unfilledColor={myStyle.UNFILLED_PIE_COLOR}>
                   {this.startOrStopIcon()}
-                  <Text></Text>
+                  <Text></Text> 
                 </Progress.Pie>
               </Animated.View>
               <Animated.Image
                 resizeMode={'contain'}  
-                source={require('../../statics/honey2.png')} 
-                style={{ opacity:this.state.fadeAsaly, alignSelf:'center', position:'absolute', width : myStyle.ASALY_WIDTH, height : myStyle.ASALY_WIDTH}}/>
+                source={require('../../statics/honey2.png')}
+                style={{marginTop:myStyle.ASALY_MARGIN_TOP,opacity:this.state.fadeAsaly, position:'absolute', alignSelf:'center', width : myStyle.ASALY_WIDTH, height : myStyle.ASALY_WIDTH}}/>
             </TouchableOpacity>
           </View>
         )
       }
+
+      else if (this.props.detailId == 1){
+        this.fadeIn(this.state.fadeAsaly)
+        return(
+          <View style={{marginBottom : myStyle.progressBar_PaddingB }}>
+            <Text style={styles.progressBarTime}> {Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}'' </Text>        
+            <TouchableOpacity activeOpacity={0.85}  style={{padding:14, paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+              if (!this.props.startedValue)
+                {this.startTimer(this.props.counter)}
+              else if (this.props.startedValue)
+                {this.stopTimer()}
+              }}>
+              <Animated.View style={{opacity:this.state.fadePie}}>
+                <Progress.Pie size={myStyle.PIE_WIDTH} progress={this.props.progressNumber} color={myStyle.FILLED_PIE_COLOR} borderColor={myStyle.BORDER_PIE_COLOR} unfilledColor={myStyle.UNFILLED_PIE_COLOR}>
+                  {this.startOrStopIcon()}
+                  <Text></Text> 
+                </Progress.Pie>
+              </Animated.View>
+              <Animated.Image
+                resizeMode={'contain'}  
+                source={require('../../statics/semi_soft2.png')} 
+                style={{marginTop:myStyle.ASALY_MARGIN_TOP,opacity:this.state.fadeAsaly, position:'absolute', alignSelf:'center', width : myStyle.ASALY_WIDTH, height : myStyle.ASALY_WIDTH}}/>
+            </TouchableOpacity>
+          </View>
+        )
+      }
+
+      else if (this.props.detailId == 0){
+        this.fadeIn(this.state.fadeAsaly)
+        return(
+          <View style={{marginBottom : myStyle.progressBar_PaddingB }}>
+            <Text style={styles.progressBarTime}> {Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}'' </Text>        
+            <TouchableOpacity activeOpacity={0.85}  style={{padding:14, paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+              if (!this.props.startedValue)
+                {this.startTimer(this.props.counter)}
+              else if (this.props.startedValue)
+                {this.stopTimer()}
+              }}>
+              <Animated.View style={{opacity:this.state.fadePie}}>
+                <Progress.Pie size={myStyle.PIE_WIDTH} progress={this.props.progressNumber} color={myStyle.FILLED_PIE_COLOR} borderColor={myStyle.BORDER_PIE_COLOR} unfilledColor={myStyle.UNFILLED_PIE_COLOR}>
+                  {this.startOrStopIcon()}
+                  <Text></Text> 
+                </Progress.Pie>
+              </Animated.View>
+              <Animated.Image
+                resizeMode={'contain'}  
+                source={require('../../statics/hard.png')} 
+                style={{marginTop:myStyle.ASALY_MARGIN_TOP,opacity:this.state.fadeAsaly, position:'absolute', alignSelf:'center', width : myStyle.ASALY_WIDTH, height : myStyle.ASALY_WIDTH}}/>
+            </TouchableOpacity>
+          </View>
+        )
+      }
+
       else{
         this.fadeIn(this.state.fadeAnim)
         return(
@@ -200,11 +259,16 @@ class Timer extends Component<{}> {
       if (!this.props.startedValue){
         this.fadeOut(this.state.fadeAsaly)
         this.spring2()
+                      {console.log(this.state.eggImages[this.state.detailId]) }
+
+        
       }
+      console.log(this.props.detailId) 
+
       return(
         <View style={{marginBottom : myStyle.progressBar_PaddingB}}>
           <Text style={styles.progressBarTime}>{Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}''</Text>        
-          <TouchableOpacity activeOpacity={0.85}  style={{padding:12 ,paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+          <TouchableOpacity activeOpacity={0.85}  style={{padding:14 ,paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
           if (!this.props.startedValue)
           {this.startTimer(this.props.counter)}
           else if (this.props.startedValue)
@@ -224,8 +288,9 @@ class Timer extends Component<{}> {
             </Animated.View>
             <Animated.Image
               resizeMode={'contain'}  
-              source={require('../../statics/honey2.png')} 
-              style={{opacity:this.state.fadeAsaly, alignSelf:'center',position:'absolute',width:myStyle.ASALY_WIDTH, height:myStyle.ASALY_WIDTH}}
+              // source={require('../../statics/semi_soft2.png')}
+              source={[require('../../statics/hard.png'), require('../../statics/semi_soft2.png'), require('../../statics/honey2.png') ][this.props.detailId ]}
+              style={{marginTop:myStyle.ASALY_MARGIN_TOP,opacity:this.state.fadeAsaly, alignSelf:'center',position:'absolute',width:myStyle.ASALY_WIDTH, height:myStyle.ASALY_WIDTH}}
               />
           </TouchableOpacity>
      </View>
@@ -460,11 +525,11 @@ class Timer extends Component<{}> {
   startOrStopIcon(){
     if (this.props.startedValue){
       // return(<Image source={require('../../statics/stop.png')} style={{width:50,height:50, position:'absolute'}} resizeMode={'contain'}/>
-      return(<Icon name={'stop'} style={{position:'absolute', color:'white'}} size={50}/>)  
+      return(<Icon name={'stop'} style={{position:'absolute', color:'white'}} size={myStyle.START_OR_STOP_ICON}/>)  
     
     }
     else 
-    return(<Icon name={'play-arrow'} style={{position:'absolute', color:'white'}} size={50}/>)    
+    return(<Icon name={'play-arrow'} style={{position:'absolute', color:'white'}} size={myStyle.START_OR_STOP_ICON}/>)    
   }
   
 
@@ -511,7 +576,7 @@ class Timer extends Component<{}> {
         
         <View style={{alignItems:'center', justifyContent:'center'}}>  
         <Animated.View style={{transform: [{scale: this.state.springValue}] }}>
-        <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{paddingTop:0, paddingBottom:0,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.5*Dimensions.get('window').height)}}>
+        <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{marginTop:myStyle.EGG_MARGIN_TOP,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.5*Dimensions.get('window').height)}}>
           {this.showDetail()} 
         </ImageBackground>
         </Animated.View>

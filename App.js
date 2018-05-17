@@ -12,6 +12,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './appStyle/styleSheet.js'
 import myStyle from './appStyle/style.js'
 import { started } from './src/actions/index';
+import Tapsell from 'react-native-tapsell'
+import AddTest from './addTest'
+Tapsell.initialize("ordstmnsotlojpigdoddspldlolitbnjscpcnigmbolqatrgdbgafrbjihaespjqtpnrsf")
+
+
 
 const slideAnimation = new SlideAnimation({
   slideFrom: 'bottom',
@@ -44,16 +49,26 @@ export default class App extends Component<{}>{
       honey:false,
       honeyTime:3,
       time:300,
-      
     }
-
-
-
   }
 
-  renderElements(){
-    
-  }
+// componentDidMount(){
+//   Tapsell.requestNativeBannerAd(
+//     '5afd2b18a7996d000189043c	',
+//     (adData, onAdShown, onAdClicked) => {
+//         console.log("Native Banner Ad Available")
+//     },
+//     () => {
+//         console.log("No Native Ad Available")
+//     },
+//     () => {
+//          console.log("No Network Available")
+//     },
+//     error => {
+//         console.log("Error: " + error)
+//     }
+// );
+// }
 
   getTime(){
     if (this.state.cooked) {return <Timer timerTime={this.state.cookedTime}/>; console.log('cooked')}
@@ -95,7 +110,7 @@ export default class App extends Component<{}>{
   render(){
 
     return(
-      <ScrollView style={{backgroundColor:"rgb(230,230,230)", margin:0, padding:0}} contentContainerStyle={{flex:1}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{backgroundColor:"rgb(230,230,230)"}} contentContainerStyle={{flex:1}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
        <PopupDialog
             ref={(popupDialog) => { this.popupDialog = popupDialog; }}
             width= {myStyle.dialogWidth}
@@ -108,14 +123,21 @@ export default class App extends Component<{}>{
             // overlayOpacity={0.9}
             // overlayBackgroundColor={'rgb(230,230,230)'}
             >
-            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:0}}>
-              <Text style={styles.helpText}> برای توضیحات هر آیتم، روی آیتم مورد نظر نگه دارید</Text>
-              <TouchableNativeFeedback onPress={()=>{this.popupDialog.dismiss()}}>
-                  <View style={{backgroundColor:'#ffb100',marginTop:20, borderRadius:20, padding:10}}>
+            <ScrollView contentContainerStyle={{flex:1, padding: myStyle.PADDING_HELP_LEFT_RIGHT, paddingTop:myStyle.PADDING_HELP_TOP, paddingBottom:myStyle.PADDING_HELP_BOTTOM }}>
+            <View style={{borderBottomWidth:1, borderColor:'black', flex:1, justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
+              <Text style={styles.helpTitle}>راهنما</Text>
+            </View>
+
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end'}}>
+              <Text style={styles.helpText}>برای توضیحات هر آیتم، روی آیتم مورد نظر نگه دارید</Text>
+            </View>
+            {/* <Text style={styles.parsiot}>Parsiot  گروه توسعه پارسیوت</Text> */}
+            <TouchableNativeFeedback onPress={()=>{this.popupDialog.dismiss()}}>
+            <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE}}>
                   <Text style={styles.bashe}> باشه </Text>
                   </View>
               </TouchableNativeFeedback>
-            </View>
+            </ScrollView>
         </PopupDialog>
       
         <PopupDialog
@@ -130,34 +152,41 @@ export default class App extends Component<{}>{
             // overlayOpacity={1}
             // overlayBackgroundColor={'white'}
             >
-            <View style={{flex:1, justifyContent:'center', alignItems:'center', padding:0}}>
+            <ScrollView contentContainerStyle={{flex:1, padding: myStyle.PADDING_HELP_LEFT_RIGHT, paddingTop:myStyle.PADDING_HELP_TOP, paddingBottom:myStyle.PADDING_HELP_BOTTOM }}>            
+            <View style={{borderBottomWidth:1, borderColor:'black', flex:1, justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
+              <Text style={styles.helpTitle}>در حال آماده شدن ...</Text>
+            </View>
 
-              <Text style={styles.helpTextBold}> در حال آماده شدن ... </Text>
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end', padding:0}}>
+
               <Text style={styles.helpText}> زمان باقیمانده : 
                 <Text style={styles.helpTextBold}>{Math.trunc(this.state.counter/60)}</Text>
                 <Text style={styles.helpText}> دقیقه و </Text>
                 <Text style={styles.helpTextBold}>{this.state.counter%60}</Text>
                 <Text style={styles.helpText}> ثانیه </Text>
               </Text>
-              <Text style={styles.helpText}>  حالت مطلوب : 
+              <Text style={styles.helpText}>حالت مطلوب : 
                 <Text style={styles.helpTextBold}> {this.state.es1}</Text>
               </Text>
-              <TouchableNativeFeedback onPress={()=>{this.popupDialogDetail.dismiss()}}>
-                  <View style={{backgroundColor:'#ffb100',marginTop:20, borderRadius:20, padding:10}}>
-                  <Text style={styles.bashe}> باشه </Text>
-                  </View>
-              </TouchableNativeFeedback>
+              
+
             </View>
+            <TouchableNativeFeedback onPress={()=>{this.popupDialogDetail.dismiss()}}>
+              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE}}>
+                <Text style={styles.bashe}> باشه </Text>
+              </View>
+            </TouchableNativeFeedback>
+            </ScrollView>
         </PopupDialog>
        
         <View style={{justifyContent:'space-between', alignItems:'center', flexDirection:'row', width:Dimensions.get('window').width, backgroundColor:"rgb(230,230,230)"}}> 
         <View style={{ flexDirection:'row'}}>
         <TouchableNativeFeedback onPress={()=>{this.showDialog()}}>
           <Icon name={'star'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginRight:5}} color={'#aaaaaa'}/>
-          </TouchableNativeFeedback>
-          <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>
+        </TouchableNativeFeedback>
+        {/* <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>
           <Icon name={'info'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginLeft:5}} color={'#aaaaaa'}/>
-          </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback> */}
         </View>
         <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>
           <Icon name={'help'} size={myStyle.ICON_WIDTH} style={{margin:myStyle.helpIconMargin}} color={'#aaaaaa'}/>

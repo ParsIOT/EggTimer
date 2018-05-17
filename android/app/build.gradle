@@ -157,6 +157,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-tapsell')
     compile project(':react-native-vector-icons')
     compile project(':react-native-push-notification')
     compile project(':react-native-calendar-events')
