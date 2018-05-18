@@ -1,6 +1,6 @@
 import Timer from './src/components/timer.js'
 import React, { Component } from 'react';
-import {View, StatusBar, TouchableWithoutFeedback,ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions, Alert} from 'react-native'
+import {Linking, View, StatusBar, TouchableWithoutFeedback,ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions, Alert} from 'react-native'
 import RadioGroup from 'react-native-custom-radio-group';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
@@ -181,7 +181,7 @@ export default class App extends Component<{}>{
        
         <View style={{justifyContent:'space-between', alignItems:'center', flexDirection:'row', width:Dimensions.get('window').width, backgroundColor:"rgb(230,230,230)"}}> 
         <View style={{ flexDirection:'row'}}>
-        <TouchableNativeFeedback onPress={()=>{this.showDialog()}}>
+        <TouchableNativeFeedback onPress={()=>{Linking.openURL('bazaar://details?id=taxi.tap30.passenger')}}>
           <Icon name={'star'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginRight:5}} color={'#aaaaaa'}/>
         </TouchableNativeFeedback>
         {/* <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>

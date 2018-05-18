@@ -35,6 +35,8 @@ const storage = new Storage({
   enableCache: true
 })
 
+const springValue = new Animated.Value(1)
+
 PushNotification.configure({
       onRegister: function(token) {
           console.log( 'TOKEN:', token );
@@ -438,7 +440,7 @@ class Timer extends Component<{}> {
   
 
   spring (val) {
-    this.state.springValue.setValue(1)
+    springValue.setValue(1)
     Animated.spring(
       this.state.springValue,
       {

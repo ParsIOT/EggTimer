@@ -76,6 +76,6 @@ export default Style = {
   
   FONT_SIZE_SMALLER: normalize(12),
   FONT_SIZE_SMALL: normalize(14),
-  FONT_SIZE_TITLE: normalize(20),
+  FONT_SIZE_TITLE: normalize(18),
   
 };
