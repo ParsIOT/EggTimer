@@ -58,7 +58,6 @@
 		96ED989CB9BC4A4398BFF2A1 /* libRNBackgroundTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3359518BB6F43028B2453E6 /* libRNBackgroundTimer.a */; };
 		B961AD9B5BF84413B8E0479F /* libRNCalendarEvents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04287589CDE54016A89F4CBD /* libRNCalendarEvents.a */; };
 		59F9B02FD6AD4580B863F8CA /* libRNNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC3B9A8930D445394C4CE8C /* libRNNotifications.a */; };
-		548BC9390CFE4FBEB4E62D2C /* libTSTapsell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 183CC4E82935424E85A67AC7 /* libTSTapsell.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -339,8 +338,7 @@
 		04287589CDE54016A89F4CBD /* libRNCalendarEvents.a */ = {isa = PBXFileReference; name = "libRNCalendarEvents.a"; path = "libRNCalendarEvents.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		39E2B4F1963F43B8BF6893F8 /* RNNotifications.xcodeproj */ = {isa = PBXFileReference; name = "RNNotifications.xcodeproj"; path = "../node_modules/react-native-notifications/RNNotifications/RNNotifications.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		FFC3B9A8930D445394C4CE8C /* libRNNotifications.a */ = {isa = PBXFileReference; name = "libRNNotifications.a"; path = "libRNNotifications.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		258E8538BB334114B05CB9D0 /* TSTapsell.xcodeproj */ = {isa = PBXFileReference; name = "TSTapsell.xcodeproj"; path = "../node_modules/react-native-tapsell/ios/TSTapsell.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		183CC4E82935424E85A67AC7 /* libTSTapsell.a */ = {isa = PBXFileReference; name = "libTSTapsell.a"; path = "libTSTapsell.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		D0DD134599DF4F53A98ADC8C /* TSTapsell.xcodeproj */ = {isa = PBXFileReference; name = "TSTapsell.xcodeproj"; path = "../node_modules/react-native-tapsell/ios/TSTapsell.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,7 +374,6 @@
 				96ED989CB9BC4A4398BFF2A1 /* libRNBackgroundTimer.a in Frameworks */,
 				B961AD9B5BF84413B8E0479F /* libRNCalendarEvents.a in Frameworks */,
 				59F9B02FD6AD4580B863F8CA /* libRNNotifications.a in Frameworks */,
-				548BC9390CFE4FBEB4E62D2C /* libTSTapsell.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,7 +560,6 @@
 				B7A5E5CDC8D84BDAA103DD7A /* RNBackgroundTimer.xcodeproj */,
 				1609549F52214C23838EB3A7 /* RNCalendarEvents.xcodeproj */,
 				39E2B4F1963F43B8BF6893F8 /* RNNotifications.xcodeproj */,
-				258E8538BB334114B05CB9D0 /* TSTapsell.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1173,11 +1169,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eggTimer.app/eggTimer";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1190,7 +1181,6 @@
 					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
 					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
 			name = Debug;
@@ -1211,11 +1201,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eggTimer.app/eggTimer";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1228,7 +1213,6 @@
 					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
 					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
 			name = Release;
@@ -1259,7 +1243,6 @@
 					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
 					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
 			name = Debug;
@@ -1289,7 +1272,6 @@
 					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
 					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
 			name = Release;
@@ -1319,11 +1301,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1336,7 +1313,6 @@
 					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
 					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
 			name = Debug;
@@ -1366,11 +1342,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1383,7 +1354,6 @@
 					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
 					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
 			name = Release;
@@ -1408,11 +1378,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1437,11 +1402,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;

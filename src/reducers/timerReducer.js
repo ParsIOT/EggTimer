@@ -1,11 +1,11 @@
 const initialState={
-    time:210.0,
+    time:10.0, //210
     newTime:0,
     startedValue : false,
     wasInBackground:false,
     paused : true,
     stoped: true,
-    counter:210.0,
+    counter:10.0,  //210
     progressNumber:0,
     factorEggStatus:0,
     factorSize:1,
@@ -26,7 +26,11 @@ const initialState={
     timesdic:{'212': 384.0, '213': 348.0, '210': 834.0, '211': 642.0, '010': 768.0, '011': 534.0, '012': 1122.0, '013': 210.0, '111': 594.0, '110': 804.0, '113': 276.0, '112': 576.0, '201': 588.0, '200': 762.0, '203': 318.0, '202': 348.0, '120': 870.0, '121': 642.0, '001': 486.0, '000': 702.0, '021': 576.0, '020': 828.0, '023': 228.0, '022': 1218.0, '102': 528.0, '103': 252.0, '100': 738.0, '101': 546.0, '223': 372.0, '222': 414.0, '221': 696.0, '220': 906.0, '003': 192.0, '002': 1026.0, '122': 624.0, '123': 300.0},
     sizeSet:['بین 30 تا 50 گرم' ,  'بین 50 تا 55 گرم',  'بین 55 تا 60 گرم' ],
     eggStatusSet:['عسلی', 'نیمه پخته', 'پخته'],
-    waterStatusSet:['حدود ۴ درجه', 'حدود ۲۷ درجه', 'بین 27 تا 60 درجه', 'بین 60 تا 100 درجه']
+    waterStatusSet:['حدود ۴ درجه', 'حدود ۲۷ درجه', 'بین 27 تا 60 درجه', 'بین 60 تا 100 درجه'],
+    eggStatusList:['asaly', 'pokhte', 'sangi'],
+    eggSizeList :['kouchak', 'motevasset', 'bozorg'],
+    waterStatusList:['sard', 'velarm', 'dagh', 'joush'],
+    votedBool:false
     
 }
 
@@ -176,7 +180,8 @@ export default (state=initialState, action)=>{
             return{
                 ...state,
                 counter : Math.round(action.lastcounter-action.diff/1000),
-                progressNumber : state.progressNumber + ( (action.diff/1000) * (1/state.time))
+                time:  action.time,
+                progressNumber : state.progressNumber + ( (action.diff/1000) * (1/action.time))
             }
 
         case 'SAVE_FINISHING_TIME':
@@ -203,8 +208,41 @@ export default (state=initialState, action)=>{
                 detailId: action.id
             }
         
+        case 'SET_PROGRESS_BAR_NUMBER':
+            return{
+                ...state,
+                progressNumber : action.num
+            }
         
-           
+        case 'ESES':
+            return{
+                ...state,
+                [state.eggStatusList[action.factor]] : state.eggStatusList[action.factor] +2
+            }
+        
+        case 'VOTED':
+            return{
+                ...state,
+                votedBool : action.bool
+            }
+        
+        case 'SET_STATUS':
+            return{
+                ...state,
+                factorEggStatus: action.factorEggStatus,
+                factorSize: action.factorSize,
+                factorWaterStatus: action.factorWaterStatus,
+                sangi: action.sangi,
+                pokhte: action.pokhte,
+                asaly: action.asaly,
+                bozorg: action.bozorg,
+                motevasset: action.motevasset,
+                kouchak: action.kouchak,
+                joush: action.joush,
+                dagh: action.dagh,
+                velarm: action.velarm,
+                sard: action.sard,
+            }
         default:
             return state
     }

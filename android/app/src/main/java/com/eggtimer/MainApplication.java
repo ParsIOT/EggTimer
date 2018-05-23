@@ -3,7 +3,7 @@ package com.eggtimer;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import ir.tapsell.reactnativesdk.TapsellReactNativePackage;
+import com.zmxv.RNSound.RNSoundPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.calendarevents.CalendarEventsPackage;
@@ -33,7 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new TapsellReactNativePackage(),
+            new RNSoundPackage(),
             new VectorIconsPackage(),
             new ReactNativePushNotificationPackage(),
             new CalendarEventsPackage(),

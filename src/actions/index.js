@@ -116,11 +116,12 @@ export const inForeground = ()=>{
     }
 }
 
-export const setCounter = (lastcounter, diff) =>{
+export const setCounter = (lastcounter, diff, time) =>{
     return{
         type:'SET_COUNTER',
         lastcounter : lastcounter,
-        diff : diff
+        diff : diff,
+        time : time,
     }
 }
 
@@ -148,5 +149,46 @@ export const setDetailId = (id) =>{
     return {
         type:'SET_DETAIL_ID',
         id : id
+    }
+}
+
+export const setProgressNumber = (num)=>{
+    return{
+        type:'SET_PROGRESS_BAR_NUMBER',
+        num : num
+    }
+}
+
+export const ESES = (factor) =>{
+    return{
+        type:'ESES',
+        factor : factor
+    }
+}
+
+export const voted = (bool) =>{
+    return{
+        type:'VOTED',
+        bool : bool
+    }
+}
+
+export const set_status = (statuses)=>{
+    console.warn(statuses)
+    return{
+        type:'SET_STATUS',
+        factorEggStatus: statuses.factorEggStatus,
+        factorSize: statuses.factorSize,
+        factorWaterStatus: statuses.factorWaterStatus,
+        sangi: statuses.sangi,
+        pokhte: statuses.pokhte,
+        asaly: statuses.asaly,
+        bozorg: statuses.bozorg,
+        motevasset: statuses.motevasset,
+        kouchak: statuses.kouchak,
+        joush: statuses.joush,
+        dagh: statuses.dagh,
+        velarm: statuses.velarm,
+        sard: statuses.sard,
     }
 }

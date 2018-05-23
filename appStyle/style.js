@@ -61,15 +61,16 @@ export default Style = {
   progressBar_PaddingB : normalize(48),
 
   dialogWidth: normalize(300),
-  dialogheight: normalize(170),
+  dialogheight: normalize(175),
   dialogheightDetail : normalize(200),
   PADDING_HELP_LEFT_RIGHT : normalize(30),
-  PADDING_HELP_TOP : normalize(20),
-  PADDING_HELP_BOTTOM : normalize(10),
+  PADDING_HELP_TOP : normalize(30),
+  PADDING_HELP_BOTTOM : normalize(20),
   MARGIN_BOTTOM_HELP_TITLE : normalize(20),
   MARGIN_TOP_HELP_BASHE : normalize(40),
   PADDING_BOTTOM_HELP_TITLE : normalize(10),
   
+  BORDER_RADIUS : normalize(20),
   itemMargin : normalize(10),
   HELP_MARGIN : normalize(20),
   // FONT

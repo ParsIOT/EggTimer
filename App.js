@@ -12,9 +12,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './appStyle/styleSheet.js'
 import myStyle from './appStyle/style.js'
 import { started } from './src/actions/index';
-import Tapsell from 'react-native-tapsell'
-import AddTest from './addTest'
-Tapsell.initialize("ordstmnsotlojpigdoddspldlolitbnjscpcnigmbolqatrgdbgafrbjihaespjqtpnrsf")
+// import {storage} from './src/components/timer'
+var PushNotification = require('react-native-push-notification');
 
 
 
@@ -90,6 +89,14 @@ export default class App extends Component<{}>{
     else
     this.detailDialog()
   }
+
+  // saveVoted(bool){
+  //   storage.save({
+  //     key: 'VOTED', 
+  //     data: bool ,
+  //     expires: 1000 * 3600
+  //   }).then((rett)=>{console.log(rett)});  
+  // }
     
 
   detailDialog(){
@@ -111,6 +118,115 @@ export default class App extends Component<{}>{
 
     return(
       <ScrollView style={{backgroundColor:"rgb(230,230,230)"}} contentContainerStyle={{flex:1}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+      
+      <PopupDialog
+            ref={(popupDialogStop) => { this.popupDialogStop = popupDialogStop; }}
+            width= {myStyle.dialogWidth}
+            height= {myStyle.dialogheight}
+            size={50}
+            style={{flex:1}}
+            haveOverlay={true}
+            dialogAnimation={slideAnimation}
+            
+            // overlayOpacity={0.9}
+            // overlayBackgroundColor={'rgb(230,230,230)'}
+            >
+            <ScrollView contentContainerStyle={{flex:1, padding: myStyle.PADDING_HELP_LEFT_RIGHT, paddingTop:myStyle.PADDING_HELP_TOP, paddingBottom:myStyle.PADDING_HELP_BOTTOM }}>
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
+              <Text style={styles.helpTitle}>توقف</Text>
+            </View>
+
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end'}}>
+              <Text style={styles.helpText}>آیا میخواهید زمان سنج متوقف شود ؟</Text>
+            </View>
+            {/* <Text style={styles.parsiot}>Parsiot  گروه توسعه پارسیوت</Text> */}
+              <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+              
+              <TouchableNativeFeedback onPress={()=>{this.child.stopTimer(),this.popupDialogStop.dismiss()}}>
+              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, padding:8, backgroundColor:'#ef5350', borderRadius:myStyle.BORDER_RADIUS}}>
+                    <Text style={styles.nazar}> توقف </Text>
+                    </View>
+                </TouchableNativeFeedback>
+              <TouchableNativeFeedback onPress={()=>{this.popupDialogStop.dismiss()}}>
+              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, backgroundColor:'#8bc34a', padding:8, borderRadius:myStyle.BORDER_RADIUS}}>
+                  <Text style={styles.nazar}> ادامه </Text>
+                </View>
+              </TouchableNativeFeedback>
+              </View>
+            </ScrollView>
+            
+        </PopupDialog>
+
+
+      <PopupDialog
+            ref={(popupDialog2) => { this.popupDialog2 = popupDialog2; }}
+            width= {myStyle.dialogWidth}
+            height= {myStyle.dialogheight}
+            size={50}
+            style={{flex:1}}
+            haveOverlay={true}
+            dialogAnimation={slideAnimation}
+            
+            // overlayOpacity={0.9}
+            // overlayBackgroundColor={'rgb(230,230,230)'}
+            >
+            <ScrollView contentContainerStyle={{flex:1, padding: myStyle.PADDING_HELP_LEFT_RIGHT, paddingTop:myStyle.PADDING_HELP_TOP, paddingBottom:myStyle.PADDING_HELP_BOTTOM }}>
+            <View style={{justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
+              <Text style={styles.helpTitle}>آماده شد</Text>
+            </View>
+
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end'}}>
+              <Text style={styles.helpText}>تخم مرغ شما آماده است . نوش جان</Text>
+            </View>
+            {/* <Text style={styles.parsiot}>Parsiot  گروه توسعه پارسیوت</Text> */}
+            <TouchableNativeFeedback onPress={()=>{this.popupDialog2.dismiss()}}>
+            <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE}}>
+                  <Text style={styles.bashe}> باشه </Text>
+                  </View>
+              </TouchableNativeFeedback>
+            </ScrollView>
+        </PopupDialog>
+      
+
+       <PopupDialog
+            ref={(popupDialogNazar) => { this.popupDialogNazar = popupDialogNazar; }}
+            width= {myStyle.dialogWidth}
+            height= {myStyle.dialogheight}
+            size={50}
+            style={{flex:1}}
+            haveOverlay={true}
+            dialogAnimation={slideAnimation}
+            
+            // overlayOpacity={0.9}
+            // overlayBackgroundColor={'rgb(230,230,230)'}
+            >
+            <ScrollView contentContainerStyle={{flex:1, padding: myStyle.PADDING_HELP_LEFT_RIGHT, paddingTop:myStyle.PADDING_HELP_TOP, paddingBottom:myStyle.PADDING_HELP_BOTTOM }}>
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
+              <Text style={styles.helpTitle}>ثبت نظرات</Text>
+            </View>
+
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end'}}>
+              <Text style={styles.helpText}>پیشاپیش از ثبت نظرات شما متشکریم </Text>
+            </View>
+            {/* <Text style={styles.parsiot}>Parsiot  گروه توسعه پارسیوت</Text> */}
+              <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+              
+              <TouchableNativeFeedback onPress={()=>{this.popupDialogNazar.dismiss()}}>
+              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, padding:5}}>
+                    <Text style={styles.basheBadan}> باشه بعدا </Text>
+                    </View>
+                </TouchableNativeFeedback>
+              <TouchableNativeFeedback onPress={()=>{PushNotification.showBazar();this.popupDialogNazar.dismiss()}}>
+              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, backgroundColor:'#ffb100', padding:8, borderRadius:myStyle.BORDER_RADIUS}}>
+                  <Text style={styles.nazar}> ثبت نظر </Text>
+                </View>
+              </TouchableNativeFeedback>
+              </View>
+            </ScrollView>
+            
+        </PopupDialog>
+
+
        <PopupDialog
             ref={(popupDialog) => { this.popupDialog = popupDialog; }}
             width= {myStyle.dialogWidth}
@@ -124,7 +240,7 @@ export default class App extends Component<{}>{
             // overlayBackgroundColor={'rgb(230,230,230)'}
             >
             <ScrollView contentContainerStyle={{flex:1, padding: myStyle.PADDING_HELP_LEFT_RIGHT, paddingTop:myStyle.PADDING_HELP_TOP, paddingBottom:myStyle.PADDING_HELP_BOTTOM }}>
-            <View style={{borderBottomWidth:1, borderColor:'black', flex:1, justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
               <Text style={styles.helpTitle}>راهنما</Text>
             </View>
 
@@ -153,7 +269,7 @@ export default class App extends Component<{}>{
             // overlayBackgroundColor={'white'}
             >
             <ScrollView contentContainerStyle={{flex:1, padding: myStyle.PADDING_HELP_LEFT_RIGHT, paddingTop:myStyle.PADDING_HELP_TOP, paddingBottom:myStyle.PADDING_HELP_BOTTOM }}>            
-            <View style={{borderBottomWidth:1, borderColor:'black', flex:1, justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
               <Text style={styles.helpTitle}>در حال آماده شدن ...</Text>
             </View>
 
@@ -181,7 +297,8 @@ export default class App extends Component<{}>{
        
         <View style={{justifyContent:'space-between', alignItems:'center', flexDirection:'row', width:Dimensions.get('window').width, backgroundColor:"rgb(230,230,230)"}}> 
         <View style={{ flexDirection:'row'}}>
-        <TouchableNativeFeedback onPress={()=>{Linking.openURL('bazaar://details?id=taxi.tap30.passenger')}}>
+        <TouchableNativeFeedback onPress={()=>{PushNotification.showBazar()
+}}>
           <Icon name={'star'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginRight:5}} color={'#aaaaaa'}/>
         </TouchableNativeFeedback>
         {/* <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>
@@ -196,7 +313,7 @@ export default class App extends Component<{}>{
         </View>
         <Provider store={store} >
         <View style={{margin:0,paddingTop:0, flex:2, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}>        
-          <Timer timerTime={this.state.time}  dialog={()=>this.popupDialog.show()} />        
+          <Timer timerTime={this.state.time}  onRef={ref => (this.child = ref)}  dialogStop={()=>{this.popupDialogStop.show()}} dialogNazar={()=>{this.popupDialogNazar.show()}}  dialog={()=>{this.popupDialog.dismiss(), this.popupDialogStop.dismiss(),this.popupDialogDetail.dismiss(); this.popupDialog2.show()}} />        
           <Choices dialog={()=>this.popupDialog.show()}/>
           {/* <ProgressBar/> */}
       </View>

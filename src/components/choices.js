@@ -18,7 +18,6 @@ import * as actions from '../actions'
 import PopupDialog from 'react-native-popup-dialog';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import PopoverTooltip from 'react-native-popover-tooltip'
-import AddTest from '../../addTest'
 
 
 

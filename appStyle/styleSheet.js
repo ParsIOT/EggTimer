@@ -26,7 +26,7 @@ const styles = StyleSheet.create ({
         padding:8,
         // paddingBottom:4,
         // paddingTop:2,
-        borderRadius:20,
+        borderRadius:myStyle.BORDER_RADIUS,
         // borderWidth:3,
         // borderColor:'white',
         backgroundColor:'#ffb100'
@@ -43,8 +43,7 @@ const styles = StyleSheet.create ({
     normalItem:{
         margin:myMargin,
         padding:8,
-        borderRadius:20,
-    },
+        borderRadius:myStyle.BORDER_RADIUS    },
 
     normalItemText:{
         fontSize:fontt,
@@ -55,8 +54,7 @@ const styles = StyleSheet.create ({
     disableItem:{
         margin:myMargin,
         padding:8,
-        borderRadius:20,
-        
+        borderRadius:myStyle.BORDER_RADIUS        
     },
 
     disableItemText:{
@@ -76,8 +74,7 @@ const styles = StyleSheet.create ({
         padding:8,
         // paddingBottom:4,
         // paddingTop:2,
-        borderRadius:20,
-        // borderWidth:2,
+        borderRadius:myStyle.BORDER_RADIUS,        // borderWidth:2,
         // borderColor:'rgb(249, 208, 16)',
         backgroundColor:'rgb(260, 240, 200)'
     },
@@ -181,7 +178,7 @@ const styles = StyleSheet.create ({
         padding:10,
         marginBottom:5+6,
         marginTop:5+8,
-        borderRadius:18,
+        borderRadius:myStyle.BORDER_RADIUS,
         paddingBottom:4,
         paddingTop:2,
         
@@ -197,7 +194,7 @@ const styles = StyleSheet.create ({
         padding:10,
         marginBottom:5+6,
         marginTop:5+8,
-        borderRadius:18,
+        borderRadius:myStyle.BORDER_RADIUS,
         paddingBottom:4,
         paddingTop:2,
         
@@ -223,8 +220,17 @@ const styles = StyleSheet.create ({
       },
 
       bashe:{
-        fontFamily:'Vazir-Bold-FD', fontSize:fontt, color:'black'
+        fontFamily:'Vazir-Bold-FD', fontSize:fontt, color:'#ffb100'
       },
+
+      basheBadan:{
+        fontFamily:'Vazir', fontSize:fontt, color:'#808080'
+      },
+
+      nazar:{
+        fontFamily:'Vazir-Bold-FD', fontSize:fontt, color:'white'
+      },
+
       helpText:{
       fontFamily:'Vazir', textAlign:'right', textAlignVertical:'center', margin:0, fontSize:fontt
       },
