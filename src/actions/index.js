@@ -174,7 +174,7 @@ export const voted = (bool) =>{
 }
 
 export const set_status = (statuses)=>{
-    console.warn(statuses)
+    // console.warn(statuses)
     return{
         type:'SET_STATUS',
         factorEggStatus: statuses.factorEggStatus,

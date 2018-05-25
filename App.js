@@ -13,6 +13,8 @@ import styles from './appStyle/styleSheet.js'
 import myStyle from './appStyle/style.js'
 import { started } from './src/actions/index';
 // import {storage} from './src/components/timer'
+import TouchableDebounce from './src/components/TouchableDebounce'
+
 var PushNotification = require('react-native-push-notification');
 
 
@@ -49,6 +51,8 @@ export default class App extends Component<{}>{
       honeyTime:3,
       time:300,
     }
+    this.pressedStop=false
+
   }
 
 // componentDidMount(){
@@ -113,11 +117,23 @@ export default class App extends Component<{}>{
     this.setState({counter : counter, es1: es1, s1 : s1, ws1 : ws1})
     this.popupDialogDetail.show()
   }
+
+  promiseStopDialog(){
+    return new Promise((resolve, reject) => {
+      resolve('dialoge closed')
+    });
+  }
+
+  promisePressedStop(){
+    return new Promise((resolve, reject) => {
+      resolve('dialoge closed')
+    });
+  }
   
   render(){
 
     return(
-      <ScrollView style={{backgroundColor:"rgb(230,230,230)"}} contentContainerStyle={{flex:1}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{backgroundColor:"#333333"}} contentContainerStyle={{flex:1}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
       
       <PopupDialog
             ref={(popupDialogStop) => { this.popupDialogStop = popupDialogStop; }}
@@ -142,14 +158,29 @@ export default class App extends Component<{}>{
             {/* <Text style={styles.parsiot}>Parsiot  گروه توسعه پارسیوت</Text> */}
               <View style={{flexDirection:'row', justifyContent:'space-between'}}>
               
-              <TouchableNativeFeedback onPress={()=>{this.child.stopTimer(),this.popupDialogStop.dismiss()}}>
+              <TouchableNativeFeedback onPress={()=>{
+                if (!this.pressedStop)
+                {
+                  this.pressedStop = true
+                  this.child.stopTimer()
+                  this.popupDialogStop.dismiss()
+                  this.pressedStop = false
+                  
+
+                }
+                
+                
+                
+              }} >
               <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, padding:8, backgroundColor:'#ef5350', borderRadius:myStyle.BORDER_RADIUS}}>
                     <Text style={styles.nazar}> توقف </Text>
+                    {/* <Icon name={'stop'} color={'white'} size={30}/> */}
                     </View>
                 </TouchableNativeFeedback>
               <TouchableNativeFeedback onPress={()=>{this.popupDialogStop.dismiss()}}>
               <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, backgroundColor:'#8bc34a', padding:8, borderRadius:myStyle.BORDER_RADIUS}}>
                   <Text style={styles.nazar}> ادامه </Text>
+                  {/* <Icon name={'play-pause'} color={'white'} size={30}/> */}
                 </View>
               </TouchableNativeFeedback>
               </View>
@@ -295,24 +326,24 @@ export default class App extends Component<{}>{
             </ScrollView>
         </PopupDialog>
        
-        <View style={{justifyContent:'space-between', alignItems:'center', flexDirection:'row', width:Dimensions.get('window').width, backgroundColor:"rgb(230,230,230)"}}> 
+        <View style={{justifyContent:'space-between', alignItems:'center', flexDirection:'row', width:Dimensions.get('window').width, backgroundColor:"#333333"}}> 
         <View style={{ flexDirection:'row'}}>
         <TouchableNativeFeedback onPress={()=>{PushNotification.showBazar()
 }}>
-          <Icon name={'star'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginRight:5}} color={'#aaaaaa'}/>
+          <Icon name={'star'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginRight:5}} color={'#ffffff'}/>
         </TouchableNativeFeedback>
         {/* <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>
-          <Icon name={'info'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginLeft:5}} color={'#aaaaaa'}/>
+          <Icon name={'info'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginLeft:5}} color={'#ffffff'}/>
         </TouchableWithoutFeedback> */}
         </View>
         <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>
-          <Icon name={'help'} size={myStyle.ICON_WIDTH} style={{margin:myStyle.helpIconMargin}} color={'#aaaaaa'}/>
+          <Icon name={'help'} size={myStyle.ICON_WIDTH} style={{margin:myStyle.helpIconMargin}} color={'#ffffff'}/>
         </TouchableWithoutFeedback>
         
           
         </View>
         <Provider store={store} >
-        <View style={{margin:0,paddingTop:0, flex:2, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}>        
+        <View style={{margin:0,paddingTop:0, flex:2, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'#333333'}}>        
           <Timer timerTime={this.state.time}  onRef={ref => (this.child = ref)}  dialogStop={()=>{this.popupDialogStop.show()}} dialogNazar={()=>{this.popupDialogNazar.show()}}  dialog={()=>{this.popupDialog.dismiss(), this.popupDialogStop.dismiss(),this.popupDialogDetail.dismiss(); this.popupDialog2.show()}} />        
           <Choices dialog={()=>this.popupDialog.show()}/>
           {/* <ProgressBar/> */}

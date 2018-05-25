@@ -1,4 +1,4 @@
-package com.eggtimer;
+package ir.parsiot.eggTimer;
 
 import android.app.Application;
 

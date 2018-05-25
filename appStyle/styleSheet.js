@@ -37,7 +37,7 @@ const styles = StyleSheet.create ({
         fontSize:fontt,
         // fontWeight:'bold', 
         fontFamily:'Vazir-Bold',
-        color:'white'
+        color:'black'
       },
 
     normalItem:{
@@ -48,7 +48,7 @@ const styles = StyleSheet.create ({
     normalItemText:{
         fontSize:fontt,
         fontFamily:'Vazir',
-        color:'black'
+        color:'white'
     },
 
     disableItem:{
@@ -60,7 +60,7 @@ const styles = StyleSheet.create ({
     disableItemText:{
         fontSize:fontt,
         fontFamily:'Vazir',
-        color:'rgb(190,190,190)'
+        color:'rgb(180,180,180)'
     },
 
     rowContainer:{
@@ -76,12 +76,12 @@ const styles = StyleSheet.create ({
         // paddingTop:2,
         borderRadius:myStyle.BORDER_RADIUS,        // borderWidth:2,
         // borderColor:'rgb(249, 208, 16)',
-        backgroundColor:'rgb(260, 240, 200)'
+        backgroundColor:'rgb(190,190,190)'
     },
     disSelectedItemText:{
         fontSize:fontt,
         fontFamily:'Vazir',
-        color:'rgb(190,190,190)'
+        color:'#222222'
     },
     progressBarEmpty:{
         marginTop:5,
@@ -167,7 +167,7 @@ const styles = StyleSheet.create ({
         height:14
     },
     progressBarTime:{
-        fontSize:fontt2, 
+        fontSize:fontTiltle, 
         textAlign:'center', textAlignVertical:'center',
         // fontWeight:'bold', 
         marginBottom:15,

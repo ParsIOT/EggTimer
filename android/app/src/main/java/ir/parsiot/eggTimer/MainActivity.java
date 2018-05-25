@@ -1,4 +1,4 @@
-package com.eggtimer;
+package ir.parsiot.eggTimer;
 
 import com.facebook.react.ReactActivity;
 

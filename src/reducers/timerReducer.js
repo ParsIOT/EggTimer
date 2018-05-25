@@ -1,3 +1,9 @@
+import { enableWhenStoped, disable } from "../actions";
+
+
+
+
+
 const initialState={
     time:10.0, //210
     newTime:0,
@@ -128,31 +134,31 @@ export default (state=initialState, action)=>{
         case 'DISABLE_WHEN_STARTED':
             return{
                 ...state,
-                bozorg : state.bozorg - 1,
-                motevasset : state.motevasset - 1,
-                kouchak : state.kouchak - 1 ,
-                joush : state.joush - 1 ,
-                dagh : state.dagh -1 ,
-                velarm : state.velarm -1,
-                sard : state.sard -1,
-                sangi: state.sangi -1,
-                pokhte : state.pokhte -1,
-                asaly : state.asaly -1,
+                bozorg : myDisable(state.bozorg),
+                motevasset : myDisable(state.motevasset),
+                kouchak : myDisable(state.kouchak),
+                joush : myDisable(state.joush),
+                dagh : myDisable(state.dagh) ,
+                velarm : myDisable(state.velarm),
+                sard : myDisable(state.sard),
+                sangi: myDisable(state.sangi),
+                pokhte : myDisable(state.pokhte),
+                asaly : myDisable(state.asaly)
             }
 
         case 'ENABLE_WHEN_STOPED':
             return{
                 ...state,
-                bozorg : state.bozorg + 1,
-                motevasset : state.motevasset + 1,
-                kouchak : state.kouchak + 1 ,
-                joush : state.joush + 1 ,
-                dagh : state.dagh + 1 ,
-                velarm : state.velarm +1,
-                sard : state.sard + 1,
-                sangi: state.sangi +1,
-                pokhte : state.pokhte +1,
-                asaly : state.asaly +1,
+                bozorg : myEnable(state.bozorg),
+                motevasset : myEnable(state.motevasset),
+                kouchak : myEnable(state.kouchak),
+                joush : myEnable(state.joush),
+                dagh : myEnable(state.dagh),
+                velarm : myEnable(state.velarm),
+                sard : myEnable(state.sard),
+                sangi: myEnable(state.sangi),
+                pokhte : myEnable(state.pokhte),
+                asaly : myEnable(state.asaly),
             }
 
         case 'CALCULATE_PROGRESS_NUMBER':
@@ -246,4 +252,17 @@ export default (state=initialState, action)=>{
         default:
             return state
     }
+}
+
+
+function myEnable( status){
+    if (status === 0) return 1
+    else if (status === 2) return 3
+    else return status
+}
+
+function myDisable( status ){
+    if (status === 1) return 0
+    else if (status === 3) return 2
+    else return status
 }

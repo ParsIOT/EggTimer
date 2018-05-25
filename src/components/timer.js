@@ -49,10 +49,10 @@ const springValue = new Animated.Value(1)
 
 PushNotification.configure({
       onRegister: function(token) {
-          console.log( 'TOKEN:', token );
+          // console.log( 'TOKEN:', token );
       },
         onNotification: function(notification) {
-          console.log( 'NOTIFICATION:', notification ); 
+          // console.log( 'NOTIFICATION:', notification ); 
       },
       popInitialNotification: true,
       requestPermissions: true,
@@ -299,8 +299,6 @@ class Timer extends Component<{}> {
       if (!this.props.startedValue){
         this.fadeOut(this.state.fadeAsaly)
         this.spring2()
-                      {console.log(this.state.eggImages[this.state.detailId]) }
-
         
       }
       // console.log(this.props.detailId) 
@@ -347,7 +345,7 @@ class Timer extends Component<{}> {
       autoCancel: false, // (optional) default: true
       playSound: true, // (optional) default: true
       vibration: 600, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
-      soundName: 'chicken', // (optional) Sound to play when the notification is shown. Value of 'default' pl
+      soundName: 'chicken1', // (optional) Sound to play when the notification is shown. Value of 'default' pl
       color: "white", 
       
     });
@@ -406,17 +404,7 @@ class Timer extends Component<{}> {
       }
     ).start();
   }
-  
-  saveInitialData(value){
-    storage.save({
-      key: "INITIALS", 
-      data: {
-        wasInBackground : value.wasInBackground,
-        startedValue : value.startedValue
-      } ,
-      expires: 1000 * 3600
-    }).then((rett)=>{console.log(rett)});    
-  }
+
   
 
   saveVoted(bool){
@@ -424,19 +412,19 @@ class Timer extends Component<{}> {
       key: 'VOTED', 
       data: bool ,
       expires: null
-    }).then((rett)=>{console.log(rett)});  
+    }).then((rett)=>{});  
   }
 
   getVoted(){
-    console.log('getting data ...')
+    // console.log('getting data ...')
       storage.load({key:'VOTED',
       autoSync: true,
       syncInBackground: true,
       syncParams: {
         extraFetchOptions: {
         },
-        someFlag: true}}).then((ret)=>{if (ret){            this.props.dialogNazar()
-;          console.log(ret)} else {this.props.dialogNazar(); this.saveVoted(true)}}).catch(err => {
+        someFlag: true}}).then((ret)=>{if (ret){console.log('he has voted') 
+;          } else {this.props.dialogNazar(); this.saveVoted(true)}}).catch(err => {
           this.saveVoted(true)
           console.warn(err.message);
         switch (err.name) {
@@ -475,14 +463,14 @@ class Timer extends Component<{}> {
   }
 
   getStatus(){
-    console.log('getting data ...')
+    // console.log('getting data ...')
       storage.load({key:'STATUS',
       autoSync: true,
       syncInBackground: true,
       syncParams: {
         extraFetchOptions: {
         },
-        someFlag: true}}).then((ret)=>{this.props.set_status(ret);console.log(ret)}).catch(err => {
+        someFlag: true}}).then((ret)=>{this.props.set_status(ret)}).catch(err => {
         
         
       //   .then((ret1)=>{storage.load({key:'INITIALS',
@@ -528,14 +516,14 @@ class Timer extends Component<{}> {
   }
 
   getData(){
-    console.log('getting data ...')
+    // console.log('getting data ...')
       storage.load({key:'TIMES',
       autoSync: true,
       syncInBackground: true,
       syncParams: {
         extraFetchOptions: {
         },
-        someFlag: true}}).then((ret)=>{this.onResume(ret);console.log(ret)}).catch(err => {
+        someFlag: true}}).then((ret)=>{this.onResume(ret)}).catch(err => {
         
         
       //   .then((ret1)=>{storage.load({key:'INITIALS',
@@ -582,11 +570,21 @@ class Timer extends Component<{}> {
     this.pauseTimer()
   }
 
+  load(times, diff){
+    return new Promise((resolve, reject) => {
+      this.getStatus()
+      this.props.setProgressNumber(times.progressNumber)
+      this.pauseTimer()
+      this.props.setCounter(times.seconds_remaining ,diff, times.time)
+      resolve('loaded')
+    });
+  }
+
   onResume(times= { time: this.props.time, current_time: 0, seconds_remaining: 0, wasInBackground:true, startedValue:false, progressNumber:0, factorEggStatus:0, factorSize:1, factorWaterStatus:3}) 
    {
     if ((this.props.wasInBackground && this.props.startedValue) || (times.wasInBackground && times.startedValue)){
       var diff = Date.now() - times.current_time
-      console.log('the diff is ' + diff)
+      // console.log('the diff is ' + diff)
       if ( (Math.round(diff/1000) >= times.seconds_remaining) && (times.wasInBackground && times.startedValue)) 
         { 
         if(this.props.startedValue) {this.stopTimer(); this.props.dialog()}
@@ -597,20 +595,9 @@ class Timer extends Component<{}> {
           //   //save to storage 
           this.getVoted()
         }
-
         }       
       else {
-        this.getStatus()
-        this.props.setProgressNumber(times.progressNumber)
-        this.pauseTimer()
-        this.props.setCounter(times.seconds_remaining ,diff, times.time)
-        console.log(times.factorEggStatus)
-        // this.props.selectEggStatus( 0 , times.factorEggStatus)
-        // this.props.ESES(time.factorEggStatus)
-        // this.props.selectSize( this.props.eggSizeList[times.factorSize] , times.factorSize)
-        // this.props.selectWaterStatus( this.props.waterStatusList[times.factorWaterStatus] , times.factorWaterStatus)
-        // this.startTimer(this.props.counter)
-        this.startTimer(this.props.counter)
+        this.load(times, diff).then(()=>{this.startTimer(this.props.counter)})
       }      
       this.props.inForeground()
     }
@@ -677,8 +664,6 @@ class Timer extends Component<{}> {
 
     if(!this.props.startedValue)
     this.setFinishingTime()
-
-
     //this.saveStatus()
     this.saveData()
     // this.props.inForeground()
@@ -731,13 +716,20 @@ class Timer extends Component<{}> {
 
   }
 
+  promiseStopTimer(){
+    return new Promise((resolve, reject) => {
+      this.props.stoped()
+      resolve('loaded')
+    });
+  }
+
   stopTimer(jahesh=1){
     PushNotification.cancelAllLocalNotifications()
     for(timer in this.state.timers) clearInterval( this.state.timers[timer] )
     this.setState({shownTime:this.props.timerTime}) 
     this.setState({paused:true,stoped:true, backgroundColor:'white'})   
-    this.props.stoped()
-    this.props.enableWhenStoped()
+    this.promiseStopTimer().then(()=>{this.props.enableWhenStoped()})
+    
     this.props.calculateTime()
   }
 
