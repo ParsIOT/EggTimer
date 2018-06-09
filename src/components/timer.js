@@ -38,7 +38,7 @@ whoosh.setVolume(0.9);
   // loaded successfully
 
 const storage = new Storage({
-  size:53,
+  size:60,
   storageBackend: AsyncStorage,
   defaultExpires: null,
   enableCache: true
@@ -103,14 +103,17 @@ class Timer extends Component<{}> {
       ,
       '  سایز تخم مرغ :\n\n بین 30 تا 50 گرم'
       ,
-      '  دمای اولیه آب :\n\n بین 60 تا 100 درجه سانتیگراد'
+      '  دمای اولیه آب :\n\n 60-100 °C'
       ,
-      '  دمای اولیه آب :\n\n بین 27 تا 60 درجه سانتیگراد'
+      '  دمای اولیه آب :\n\n 27-60 °C'
       ,
-      '  دمای اولیه آب :\n\n  حدود 27 درجه سانتیگراد'
+      '  دمای اولیه آب :\n\n 27°C حدود'
       ,
       '  دمای اولیه آب :\n\n  حدود ۴ درجه سانتیگراد'
       ,
+      '  دمای اولیه تخم مرغ :\n\n در یخجال'
+      ,
+      '  دمای اولیه تخم مرغ :\n\n در دمای اتاق'
       ],
       detailId:0,
       eggImages : ['../../statics/honey2.png', '../../statics/semi_soft2.png'],
@@ -330,6 +333,7 @@ class Timer extends Component<{}> {
               source={[require('../../statics/hard.png'), require('../../statics/semi_soft2.png'), require('../../statics/honey2.png') ][this.props.detailId ]}
               style={{marginTop:myStyle.ASALY_MARGIN_TOP,opacity:this.state.fadeAsaly, alignSelf:'center',position:'absolute',width:myStyle.ASALY_WIDTH, height:myStyle.ASALY_WIDTH}}
               />
+
           </TouchableOpacity>
      </View>
      )
@@ -388,8 +392,8 @@ class Timer extends Component<{}> {
     Animated.timing(                  
       val,            
       {
-        toValue: 1,           
-        duration: 400,             
+        toValue: 2,           
+        duration: 1000,             
       }
     ).start();
   }
@@ -441,25 +445,31 @@ class Timer extends Component<{}> {
   }
 
   saveStatus(){
+
+var data= { 
+    factorEggStatus:this.props.factorEggStatus,
+    factorSize: this.props.factorSize,
+    factorWaterStatus: this.props.factorWaterStatus,
+    sangi: this.props.sangi,
+    pokhte: this.props.pokhte,
+    asaly: this.props.asaly,
+    bozorg: this.props.bozorg,
+    motevasset: this.props.motevasset,
+    kouchak: this.props.kouchak,
+    joush: this.props.joush,
+    dagh: this.props.dagh,
+    velarm: this.props.velarm,
+    sard: this.props.sard,
+    fridge : this.props.fridge,
+    room : this.props.room,
+    factorEggTemp : this.props.factorEggTemp,
+}
     storage.save({
       key: 'STATUS', 
-      data: { 
-        factorEggStatus:this.props.factorEggStatus,
-        factorSize: this.props.factorSize,
-        factorWaterStatus: this.props.factorWaterStatus,
-        sangi: this.props.sangi,
-        pokhte: this.props.pokhte,
-        asaly: this.props.asaly,
-        bozorg: this.props.bozorg,
-        motevasset: this.props.motevasset,
-        kouchak: this.props.kouchak,
-        joush: this.props.joush,
-        dagh: this.props.dagh,
-        velarm: this.props.velarm,
-        sard: this.props.sard,
-      },
+      data: data,
       expires: 1000 * 3600
-    }).then((rett)=>{console.log(rett)});    
+    }).then((rett)=>{console.warn("the saved data --> ", data)
+  });    
   }
 
   getStatus(){
@@ -508,7 +518,8 @@ class Timer extends Component<{}> {
         progressNumber : this.props.progressNumber,
         factorEggStatus: this.props.factorEggStatus,
         factorSize : this.props.factorSize,
-        factorWaterStatus : this.props.factorWaterStatus
+        factorWaterStatus : this.props.factorWaterStatus,
+        factorEggTemp : this.props.factorEggTemp,
         
       },
       expires: 1000 * 3600
@@ -570,9 +581,16 @@ class Timer extends Component<{}> {
     this.pauseTimer()
   }
 
-  load(times, diff){
+  getStatusPromise(){
     return new Promise((resolve, reject) => {
       this.getStatus()
+      resolve('statuses loaded')
+    });
+  }
+
+  load(times, diff){
+    return new Promise((resolve, reject) => {
+      
       this.props.setProgressNumber(times.progressNumber)
       this.pauseTimer()
       this.props.setCounter(times.seconds_remaining ,diff, times.time)
@@ -580,7 +598,17 @@ class Timer extends Component<{}> {
     });
   }
 
-  onResume(times= { time: this.props.time, current_time: 0, seconds_remaining: 0, wasInBackground:true, startedValue:false, progressNumber:0, factorEggStatus:0, factorSize:1, factorWaterStatus:3}) 
+  saveStatusPromise(){
+    return new Promise((resolve, reject) => {
+      
+      this.props.setProgressNumber(times.progressNumber)
+      this.pauseTimer()
+      this.props.setCounter(times.seconds_remaining ,diff, times.time)
+      resolve('loaded')
+    });
+  }
+
+  onResume(times= { time: this.props.time, current_time: 0, seconds_remaining: 0, wasInBackground:true, startedValue:false, progressNumber:0, factorEggStatus:0, factorSize:1, factorWaterStatus:3, factorEggTemp:1}) 
    {
     if ((this.props.wasInBackground && this.props.startedValue) || (times.wasInBackground && times.startedValue)){
       var diff = Date.now() - times.current_time
@@ -597,7 +625,8 @@ class Timer extends Component<{}> {
         }
         }       
       else {
-        this.load(times, diff).then(()=>{this.startTimer(this.props.counter)})
+        console.warn('now saved')
+        this.getStatusPromise().then(()=>this.load(times, diff)).then(()=>{this.startTimer(this.props.counter)})
       }      
       this.props.inForeground()
     }
@@ -668,11 +697,12 @@ class Timer extends Component<{}> {
     this.saveData()
     // this.props.inForeground()
     this.props.started();
-    if (!this.props.wasInBackground)
-      {
-        this.disableItems().then(()=>{this.saveStatus()})
+    // if (!this.props.wasInBackground)
+    console.warn(this.props.wasInBackground)
+      
+    this.disableItems().then(()=>{this.saveStatus()})
 
-      }
+      
 
     //   this.notif("Your egg is Ready To eat")
     // this.props.presetCounter(180)
@@ -755,8 +785,18 @@ class Timer extends Component<{}> {
       <View>
         <View style={{alignItems:'center', justifyContent:'center'}}>  
           <Animated.View style={{transform: [{scale: this.state.springValue}] }}>
-            <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{marginTop:myStyle.EGG_MARGIN_TOP,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.5*Dimensions.get('window').height)}}>
+            <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main1.png')} style={{marginBottom:10, marginTop:myStyle.EGG_MARGIN_TOP,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.40*Dimensions.get('window').height)}}> 
+              
               {this.showDetail()} 
+              {/* <View style={{flexDirection:'column', position:'absolute', marginBottom:50, alignSelf:'flex-start'}}> */}
+              {/* <View style={{backgroundColor:'#ffb100',  width:20, height : 60, margin:5}}>
+                <Text> دمای اتاق</Text>
+              </View> */}
+              {/* <Image source={require('../../statics/room.png')} style={{width:40, height:40, margin:15}}/> */}
+              {/* <Image source={require('../../statics/cold.png')} style={{width:40, height:40, margin:15}}/> */}
+
+              {/* <View style={{backgroundColor:'blue', width:20, height : 60, margin:5}}/> */}
+              {/* </View> */}
             </ImageBackground>
           </Animated.View>
         </View>
@@ -795,6 +835,10 @@ const mapStateToProps= state =>{
     dagh: state.dagh,
     velarm: state.velarm,
     sard: state.sard,
+    fridge : state.fridge,
+    room : state.room,
+    factorEggTemp : state.factorEggTempf
+
     
   }
 }

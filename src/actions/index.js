@@ -1,3 +1,11 @@
+export const selectEggTemp=(status, factor)=>{
+    return {
+        type : 'SELECT_EGG_TEMP',
+        status : status,
+        factor : factor
+    }
+}
+
 export const selectEggStatus = ( status, factor )=>{
     return {
         type : 'SELECT_EGG_STATUS',
@@ -173,6 +181,7 @@ export const voted = (bool) =>{
     }
 }
 
+
 export const set_status = (statuses)=>{
     // console.warn(statuses)
     return{
@@ -190,5 +199,8 @@ export const set_status = (statuses)=>{
         dagh: statuses.dagh,
         velarm: statuses.velarm,
         sard: statuses.sard,
+        room : statuses.room,
+        fridge : statuses.fridge,
+        factorEggTemp : statuses.factorEggTemp
     }
 }

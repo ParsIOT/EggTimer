@@ -3,6 +3,8 @@ package ir.parsiot.eggTimer;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import ir.tapsell.reactnativesdk.TapsellReactNativePackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
@@ -18,6 +20,10 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
+import com.facebook.react.modules.i18nmanager.I18nUtil;
+
+
+
 
 
 
@@ -33,6 +39,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new TapsellReactNativePackage(),
+            new SplashScreenReactPackage(),
             new RNSoundPackage(),
             new VectorIconsPackage(),
             new ReactNativePushNotificationPackage(),
@@ -57,7 +65,11 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
+    sharedI18nUtilInstance.allowRTL(getApplicationContext(), false);
   }
+
+
 
   
 }

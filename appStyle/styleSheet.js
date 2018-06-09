@@ -6,8 +6,12 @@ var fontt =myStyle.FONT_SIZE_SMALL
 var fontt2 =myStyle.FONT_SIZE_TITLE
 var fontTiltle = myStyle.FONT_SIZE_TITLE
 var myMargin = myStyle.itemMargin
+var fontSmall = myStyle.FONT_SIZE_REALY_SMALL
 
-
+const Metrics = {
+    containerWidth: myStyle.CONTAINER_WIDTH_1, //width - 60
+    switchWidth: myStyle.SWITCHER_WIDTH_1 //width / 3.5
+};
 
 
 
@@ -22,28 +26,42 @@ const styles = StyleSheet.create ({
         padding:20
     },
     selectedItem:{
-        margin:myMargin,
-        padding:8,
+        // margin:myMargin,
+        // padding:8,
         // paddingBottom:4,
         // paddingTop:2,
-        borderRadius:myStyle.BORDER_RADIUS,
+        // borderRadius:myStyle.BORDER_RADIUS ,//myStyle.BORDER_RADIUS
         // borderWidth:3,
         // borderColor:'white',
-        backgroundColor:'#ffb100'
+        // backgroundColor:'#ffb100',
+        // borderBottomWidth:2,
+        // borderBottomColor:'#ffb100'
         
         //#ffcc80
+
+        flex: 1,
+        width: Metrics.containerWidth / 3,
+        height: 54,
+        justifyContent: 'center',
+        alignItems: 'center'
       },
     selectedItemText:{
         fontSize:fontt,
         // fontWeight:'bold', 
         fontFamily:'Vazir-Bold',
-        color:'black'
+        color:'white'
       },
 
     normalItem:{
-        margin:myMargin,
-        padding:8,
-        borderRadius:myStyle.BORDER_RADIUS    },
+        // margin:myMargin,
+        // padding:8,
+        // borderRadius:myStyle.BORDER_RADIUS    
+        flex: 1,
+        width: Metrics.containerWidth / 3,
+        height: 54,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
 
     normalItemText:{
         fontSize:fontt,
@@ -52,36 +70,54 @@ const styles = StyleSheet.create ({
     },
 
     disableItem:{
-        margin:myMargin,
-        padding:8,
-        borderRadius:myStyle.BORDER_RADIUS        
+        // margin:myMargin,
+        // padding:8,
+        // borderRadius:myStyle.BORDER_RADIUS    
+        flex: 1,
+        width: Metrics.containerWidth / 3,
+        height: 54,
+        justifyContent: 'center',
+        alignItems: 'center'  
+          
     },
 
     disableItemText:{
         fontSize:fontt,
         fontFamily:'Vazir',
-        color:'rgb(180,180,180)'
+        color:'rgb(180,180,180)',
+        color:'#555555'
+
     },
 
     rowContainer:{
         flexDirection:'row',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        borderBottomWidth:0,
+        borderBottomColor:'white'
     },
 
     disSelectedItem:{
-        margin:myMargin,
-        padding:8,
-        // paddingBottom:4,
-        // paddingTop:2,
-        borderRadius:myStyle.BORDER_RADIUS,        // borderWidth:2,
-        // borderColor:'rgb(249, 208, 16)',
-        backgroundColor:'rgb(190,190,190)'
+        // margin:myMargin,
+        // padding:8,
+        // // paddingBottom:4,
+        // // paddingTop:2,
+        // borderRadius:0,        // 
+        // borderBottomWidth:2,
+        // borderBottomColor:'rgb(190,190,190)',
+        // // backgroundColor:'rgb(190,190,190)'
+        flex: 1,
+        width: Metrics.containerWidth / 3,
+        height: 54,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     disSelectedItemText:{
         fontSize:fontt,
-        fontFamily:'Vazir',
-        color:'#222222'
+        fontFamily:'Vazir-Bold-FD',
+        // color:'red'
+        color:'rgb(190,190,190)',
+        color:'#555555'
     },
     progressBarEmpty:{
         marginTop:5,
@@ -170,7 +206,7 @@ const styles = StyleSheet.create ({
         fontSize:fontTiltle, 
         textAlign:'center', textAlignVertical:'center',
         // fontWeight:'bold', 
-        marginBottom:15,
+        marginBottom:0,
         fontFamily:'Vazir-Bold-FD'
     },
     selectedItemHelp:{
@@ -238,14 +274,21 @@ const styles = StyleSheet.create ({
       fontFamily:'Vazir-Bold-FD', textAlign:'right', textAlignVertical:'center',fontSize:fontt+2
       },
       detailInEgg:{
-        fontSize:fontt, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'
+        fontSize:fontts, fontFamily:'Vazir-Bold-FD',textAlign:'center', textAlignVertical:'center'
       }
      ,parsiot:{
         fontFamily:'Vazir', textAlign:'center', textAlignVertical:'center', fontSize:fontts
         },
     helpTitle:{
         fontFamily:'Vazir-Bold-FD', textAlign:'center', textAlignVertical:'center', fontSize:fontTiltle
-        }
+        },
+    advertisementText:{
+        flexWrap: 'wrap', flex:1,fontFamily:'Vazir-Bold-FD', textAlign:'right', textAlignVertical:'center', fontSize:fontSmall, color:'black'
+    },
+    advertisementDetailText:{
+        flexWrap: 'wrap', flex:1,fontFamily:'Vazir', textAlign:'right', textAlignVertical:'center', fontSize:fontSmall, color:'black'
+
+    }
 
 
 })

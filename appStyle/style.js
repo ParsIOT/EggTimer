@@ -39,26 +39,26 @@ export default Style = {
   RATIO_Y: ratioY,
   UNIT: em(1),
   PADDING: em(1.25),
-  paddingTouch : normalize(30),
+  paddingTouch : normalize(35),//30
   helpIconMargin : normalize(15),
-  paddingTouch2 : normalize(32),
+  paddingTouch2 : normalize(32), //32
   FILLED_PIE_COLOR : '#ffcc80',
   BORDER_PIE_COLOR : '#ffffff',
   UNFILLED_PIE_COLOR:'#ffb100',
-  DETAIL_TEXT_MARGIN_BOTTOM : normalize(45),
+  DETAIL_TEXT_MARGIN_BOTTOM : normalize(0),
 
   // CARD
-  ICON_WIDTH : normalize(30),
-  PIE_WIDTH : normalize(151),
-  ASALY_WIDTH : normalize(177.45), //177.45
-  ASALY_MARGIN_TOP : normalize(2),
-  EGG_MARGIN_TOP : normalize(12),
+  ICON_WIDTH : normalize(25),
+  PIE_WIDTH : normalize(135), //151
+  ASALY_WIDTH : normalize(157), //177.45
+  ASALY_MARGIN_TOP : normalize(10),
+  EGG_MARGIN_TOP : normalize(25),
   START_OR_STOP_ICON : normalize(50),
   CARD_WIDTH: x - em(1.25) * 2,
   CARD_HEIGHT: (x - em(1.25) * 2) * (3/5),
   CARD_PADDING_X: em(1.875),
   CARD_PADDING_Y: em(1.25),
-  progressBar_PaddingB : normalize(48),
+  progressBar_PaddingB : normalize(0), //48
 
   dialogWidth: normalize(300),
   dialogheight: normalize(175),
@@ -78,5 +78,17 @@ export default Style = {
   FONT_SIZE_SMALLER: normalize(12),
   FONT_SIZE_SMALL: normalize(14),
   FONT_SIZE_TITLE: normalize(18),
+  FONT_SIZE_REALY_SMALL : normalize(10),
+
+  SWITCHER_WIDTH_1: normalize(105),
+  CONTAINER_WIDTH_1: normalize(300),
+  CONTAINER_MARGIN_BOTTOM : normalize(10),
+  CONTAINER_WIDTH_2: normalize(330),
+  SWITCHER_WIDTH_2: normalize(133),
+  THRESHOLD_DISTANCE : normalize(202),
+
+
+
+  
   
 };

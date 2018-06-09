@@ -5,26 +5,29 @@ import { enableWhenStoped, disable } from "../actions";
 
 
 const initialState={
-    time:10.0, //210
+    time:702.0, //210
     newTime:0,
     startedValue : false,
     wasInBackground:false,
     paused : true,
     stoped: true,
-    counter:10.0,  //210
+    counter:702.0,  //210
     progressNumber:0,
     factorEggStatus:0,
-    factorSize:1,
-    factorWaterStatus:3,
+    factorSize:0,
+    factorWaterStatus:0,
+    factorEggTemp:0,
+    room:1,
+    fridge:3,
     sangi:1,
     pokhte:1,
     asaly:3,
     bozorg:1,
-    motevasset:3,
-    kouchak:1,
-    joush:3,
+    motevasset:1,
+    kouchak:3,
+    joush:1,
     dagh:1,
-    velarm:1,
+    velarm:3,
     sard:1,
     finishingTime:0,
     longPressed:false,    
@@ -42,6 +45,15 @@ const initialState={
 
 export default (state=initialState, action)=>{
     switch (action.type){
+        case 'SELECT_EGG_TEMP':
+            return{
+                ...state,
+                room:1,
+                fridge:1,
+                [action.status] : 3,
+                factorEggTemp: action.factor
+            }
+
         case 'SELECT_EGG_STATUS':
             return{
                 ...state,
@@ -51,6 +63,7 @@ export default (state=initialState, action)=>{
                 [action.status] : 3,
                 factorEggStatus : action.factor
             }
+
         case 'SELECT_SIZE':
             return{
                 ...state,
@@ -143,10 +156,13 @@ export default (state=initialState, action)=>{
                 sard : myDisable(state.sard),
                 sangi: myDisable(state.sangi),
                 pokhte : myDisable(state.pokhte),
-                asaly : myDisable(state.asaly)
+                asaly : myDisable(state.asaly),
+                room : myDisable(state.room),
+                fridge : myDisable(state.fridge),
             }
 
         case 'ENABLE_WHEN_STOPED':
+        // console.warn(state.room, state.fridge)
             return{
                 ...state,
                 bozorg : myEnable(state.bozorg),
@@ -159,6 +175,8 @@ export default (state=initialState, action)=>{
                 sangi: myEnable(state.sangi),
                 pokhte : myEnable(state.pokhte),
                 asaly : myEnable(state.asaly),
+                room : myEnable(state.room),
+                fridge : myEnable(state.fridge),
             }
 
         case 'CALCULATE_PROGRESS_NUMBER':
@@ -248,7 +266,12 @@ export default (state=initialState, action)=>{
                 dagh: action.dagh,
                 velarm: action.velarm,
                 sard: action.sard,
+                fridge: action.fridge,
+                room : action.room,
+                factorEggTemp : action.factorEggTemp
             }
+
+        
         default:
             return state
     }

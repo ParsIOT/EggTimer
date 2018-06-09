@@ -1,6 +1,6 @@
 import Timer from './src/components/timer.js'
 import React, { Component } from 'react';
-import {Linking, View, StatusBar, TouchableWithoutFeedback,ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions, Alert} from 'react-native'
+import {Animated, Linking, View, StatusBar, TouchableWithoutFeedback,ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions, Alert} from 'react-native'
 import RadioGroup from 'react-native-custom-radio-group';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
@@ -14,6 +14,11 @@ import myStyle from './appStyle/style.js'
 import { started } from './src/actions/index';
 // import {storage} from './src/components/timer'
 import TouchableDebounce from './src/components/TouchableDebounce'
+import SplashScreen from 'react-native-splash-screen';
+import MyAdd from './advertisement'
+
+const fadeValue = new Animated.Value(0)
+const springValue = new Animated.Value(0)
 
 var PushNotification = require('react-native-push-notification');
 
@@ -41,7 +46,6 @@ const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && windo
 export default class App extends Component<{}>{
   constructor(props){
     super(props)
-    this.getTime= this.getTime.bind(this)
     this.state={
       cooked:false,
       cookedTime : 5,
@@ -50,10 +54,45 @@ export default class App extends Component<{}>{
       honey:false,
       honeyTime:3,
       time:300,
+      ad: true
     }
     this.pressedStop=false
 
   }
+
+  componentDidMount(){
+    // SplashScreen.hide() 
+    // this.spring(springValue)
+    this.fadeIn(fadeValue)   
+  }
+
+  fadeIn(val){
+    val.setValue(0)
+    Animated.timing(                  
+      val,            
+      {
+        toValue: 1,           
+        duration: 600,             
+      }
+    ).start();
+  }
+
+  spring (val) {
+    val.setValue(0)
+    Animated.spring(
+      springValue,
+      {
+        toValue: 1,
+        // friction: 4,
+        velocity:1,
+        // tension:5,
+        speed:2,
+        bounciness:4
+      }
+    ).start()
+  }
+
+  
 
 // componentDidMount(){
 //   Tapsell.requestNativeBannerAd(
@@ -73,16 +112,9 @@ export default class App extends Component<{}>{
 // );
 // }
 
-  getTime(){
-    if (this.state.cooked) {return <Timer timerTime={this.state.cookedTime}/>; console.log('cooked')}
-    else if (this.state.normal) return <Timer timerTime={this.state.normalTime}/>
-    else if (this.state.honey) return <Timer timerTime={this.state.honeyTime}/>
-    else return <Timer timerTime={50}/>
-  }
-  test(){
-    if(this.state.cooked) return <Timer timerTime={this.state.cookedTime}/>
-    if(this.state.normal) return <Timer timerTime={this.state.normal}/>
-  }
+ 
+  
+
 
 
   showDialog(){
@@ -130,9 +162,19 @@ export default class App extends Component<{}>{
     });
   }
   
+  showAd(){
+    if(this.state.ad){
+      return (<MyAdd/>)
+    }
+    else 
+    {return}
+  }
+
   render(){
 
     return(
+      <View style={{flex:1}}>
+
       <ScrollView style={{backgroundColor:"#333333"}} contentContainerStyle={{flex:1}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
       
       <PopupDialog
@@ -173,13 +215,13 @@ export default class App extends Component<{}>{
                 
               }} >
               <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, padding:8, backgroundColor:'#ef5350', borderRadius:myStyle.BORDER_RADIUS}}>
-                    <Text style={styles.nazar}> توقف </Text>
+                    <Text style={styles.nazar}> بله، توقف</Text>
                     {/* <Icon name={'stop'} color={'white'} size={30}/> */}
                     </View>
                 </TouchableNativeFeedback>
               <TouchableNativeFeedback onPress={()=>{this.popupDialogStop.dismiss()}}>
               <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, backgroundColor:'#8bc34a', padding:8, borderRadius:myStyle.BORDER_RADIUS}}>
-                  <Text style={styles.nazar}> ادامه </Text>
+                  <Text style={styles.nazar}> نه، ادامه </Text>
                   {/* <Icon name={'play-pause'} color={'white'} size={30}/> */}
                 </View>
               </TouchableNativeFeedback>
@@ -306,13 +348,13 @@ export default class App extends Component<{}>{
 
             <View style={{flex:1, justifyContent:'center', alignItems:'flex-end', padding:0}}>
 
-              <Text style={styles.helpText}> زمان باقیمانده : 
-                <Text style={styles.helpTextBold}>{Math.trunc(this.state.counter/60)}</Text>
+              <Text style={styles.helpText}>زمان باقیمانده: 
+                <Text style={styles.helpTextBold}> {Math.trunc(this.state.counter/60)}</Text>
                 <Text style={styles.helpText}> دقیقه و </Text>
-                <Text style={styles.helpTextBold}>{this.state.counter%60}</Text>
+                <Text style={styles.helpTextBold}> {this.state.counter%60}</Text>
                 <Text style={styles.helpText}> ثانیه </Text>
               </Text>
-              <Text style={styles.helpText}>حالت مطلوب : 
+              <Text style={styles.helpText}>حالت مطلوب:
                 <Text style={styles.helpTextBold}> {this.state.es1}</Text>
               </Text>
               
@@ -326,30 +368,36 @@ export default class App extends Component<{}>{
             </ScrollView>
         </PopupDialog>
        
-        <View style={{justifyContent:'space-between', alignItems:'center', flexDirection:'row', width:Dimensions.get('window').width, backgroundColor:"#333333"}}> 
+        <View style={{justifyContent:'space-between', alignItems:'center', flexDirection:'row', width:Dimensions.get('window').width, backgroundColor:'rgba(22, 152, 0, 0)'}}> 
         <View style={{ flexDirection:'row'}}>
         <TouchableNativeFeedback onPress={()=>{PushNotification.showBazar()
 }}>
-          <Icon name={'star'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginRight:5}} color={'#ffffff'}/>
+          <Icon name={'star'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginRight:5, marginBottom:0}} color={'#ffffff'}/>
         </TouchableNativeFeedback>
         {/* <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>
-          <Icon name={'info'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginLeft:5}} color={'#ffffff'}/>
+          <Icon name={'info'} size={myStyle.ICON_WIDTH} style={{margin: myStyle.helpIconMargin, marginLeft:5,marginBottom:0}} color={'#ffffff'}/>
         </TouchableWithoutFeedback> */}
         </View>
         <TouchableWithoutFeedback onPress={()=>{this.showDialog()}}>
-          <Icon name={'help'} size={myStyle.ICON_WIDTH} style={{margin:myStyle.helpIconMargin}} color={'#ffffff'}/>
+          <Icon name={'help'} size={myStyle.ICON_WIDTH} style={{margin:myStyle.helpIconMargin, marginBottom:0}} color={'#ffffff'}/>
         </TouchableWithoutFeedback>
         
           
         </View>
         <Provider store={store} >
         <View style={{margin:0,paddingTop:0, flex:2, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'#333333'}}>        
-          <Timer timerTime={this.state.time}  onRef={ref => (this.child = ref)}  dialogStop={()=>{this.popupDialogStop.show()}} dialogNazar={()=>{this.popupDialogNazar.show()}}  dialog={()=>{this.popupDialog.dismiss(), this.popupDialogStop.dismiss(),this.popupDialogDetail.dismiss(); this.popupDialog2.show()}} />        
+          <Animated.View  style={{opacity: fadeValue}}>
+            <Timer timerTime={this.state.time}  onRef={ref => (this.child = ref)}  dialogStop={()=>{this.popupDialogStop.show()}} dialogNazar={()=>{this.popupDialogNazar.show()}}  dialog={()=>{this.popupDialog.dismiss(), this.popupDialogStop.dismiss(),this.popupDialogDetail.dismiss(); this.popupDialog2.show()}} />        
+          </Animated.View>
           <Choices dialog={()=>this.popupDialog.show()}/>
           {/* <ProgressBar/> */}
       </View>
      </Provider>
      </ScrollView>
+      <MyAdd/>
+      </View>
+
+
     )
  
   }
