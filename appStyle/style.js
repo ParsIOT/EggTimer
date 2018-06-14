@@ -39,7 +39,7 @@ export default Style = {
   RATIO_Y: ratioY,
   UNIT: em(1),
   PADDING: em(1.25),
-  paddingTouch : normalize(35),//30
+  paddingTouch : normalize(13),//30
   helpIconMargin : normalize(15),
   paddingTouch2 : normalize(32), //32
   FILLED_PIE_COLOR : '#ffcc80',
@@ -49,9 +49,9 @@ export default Style = {
 
   // CARD
   ICON_WIDTH : normalize(25),
-  PIE_WIDTH : normalize(135), //151
-  ASALY_WIDTH : normalize(157), //177.45
-  ASALY_MARGIN_TOP : normalize(10),
+  PIE_WIDTH : normalize(127), //151
+  ASALY_WIDTH : normalize(160), //177.45
+  ASALY_MARGIN_TOP : normalize(0),
   EGG_MARGIN_TOP : normalize(25),
   START_OR_STOP_ICON : normalize(50),
   CARD_WIDTH: x - em(1.25) * 2,
@@ -76,17 +76,22 @@ export default Style = {
   // FONT
   
   FONT_SIZE_SMALLER: normalize(12),
-  FONT_SIZE_SMALL: normalize(14),
+  FONT_SIZE_SMALL: normalize(16),
   FONT_SIZE_TITLE: normalize(18),
   FONT_SIZE_REALY_SMALL : normalize(10),
 
   SWITCHER_WIDTH_1: normalize(105),
   CONTAINER_WIDTH_1: normalize(300),
+  CONTAINER_WIDTH_222: normalize(210),
   CONTAINER_MARGIN_BOTTOM : normalize(10),
   CONTAINER_WIDTH_2: normalize(330),
+  CONTAINER_WIDTH_22: normalize(240),
   SWITCHER_WIDTH_2: normalize(133),
   THRESHOLD_DISTANCE : normalize(202),
-
+  THRESHOLD_DISTANCE_2 : normalize(110),
+  ITEM_HEIGHT : normalize(50),
+  MARGIN_ITEMS: normalize(7),
+  RESUME_SIZE : normalize(20)
 
 
   

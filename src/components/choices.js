@@ -14,36 +14,51 @@ import {
   TouchableOpacity
 } from 'react-native';
 import styles from '../../appStyle/styleSheet.js'
+import myStyle from '../../appStyle/style.js'
 import {connect} from 'react-redux'
 import * as actions from '../actions'
 import PopupDialog from 'react-native-popup-dialog';
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import PopoverTooltip from 'react-native-popover-tooltip'
 import MultiSlider from '../slider/MultiSwitch'
+import TwoSlider from '../slider/twoSlider'
+import SwitchSelector from '../slider2/index'
+
+
+const options = [
+  { label: 'عسلی', value: 2 },
+  { label: 'نیمه پخته', value: 1 },
+  { label: 'پخته', value: 0 },
+  
+];
+
+const options2 = [
+  { label: 'کوچک', value: 2 },
+  { label: 'متوسط', value: 1 },
+  { label: 'بزرگ', value: 0 },  
+];
+
+const options3 = [
+  { label: 'سرد', value: 3 },
+  { label: 'ولرم', value: 2 },
+  { label: 'داغ', value: 1 },
+  { label: 'جوش', value: 0 },
+  
+];
+
+const options4 = [
+  { label: 'دمای یخچال', value: 0 },
+  { label: 'دمای اتاق', value: 1 },
+  
+];
 
 
 
-// var Sound = require('react-native-sound')
-// Sound.setCategory('Playback');
-
-
-// const whoosh = new Sound('toggle_switch.mp3', Sound.MAIN_BUNDLE, (error) => {
-//   if (error) {
-//     console.log('failed to load the sound', error);
-//     return;
-//   }
-//   // loaded successfully
-//   console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
-
-// });
-// whoosh.setVolume(2)
-
-
+var positions=[ new Animated.Value(0),
+  new Animated.Value(myStyle.CONTAINER_WIDTH_2 / 2 - myStyle.SWITCHER_WIDTH_2 / 2),
+  new Animated.Value(myStyle.CONTAINER_WIDTH_2 - myStyle.SWITCHER_WIDTH_2 - 2),
+  ]
 
 class Choices extends Component<{}>{
-
-  
-
   constructor(props){
     super(props)
     this.state={
@@ -53,34 +68,7 @@ class Choices extends Component<{}>{
         bozorg : new Animated.Value(0)
       }
     }
-    // this.bozorg = new Animated.Value(0)
-
-
-
-    
-    // whoosh.play((success) => {
-    //   if (success) {
-    //     console.log('successfully finished playing');
-    //   } else {
-    //     console.log('playback failed due to audio decoding errors');
-    //     // reset the player to its uninitialized state (android only)
-    //     // this is the only option to recover after an error occured and use the player again
-    //     whoosh.reset();
-    //   }
-    // })
-    
-    
   }
-
-    componentDidMount(){
-      
-    }
-
-    changeColor(){
-      console.log(this.state.AnimatedUnderLine.bozorg)
-      return('rgb(125,125,12,0.5' + ')')
-    }
-
     fadeIn(val){
       // val.setValue(0)
       Animated.timing(                  
@@ -92,21 +80,48 @@ class Choices extends Component<{}>{
       ).start();
     }
 
-    render(){
-      
+    whichPressToRun(value, func){
+      func(value)
+    }
+    whichLongPressed(value,base){
+      this.props.setDetailId(base+value);this.props.pressedLong()
+    }
 
+    funcSize(){
+      console.warn('hi')
+    }
+
+    eggStatus=(val)=>{
+      let statues = ['asaly','sangi', 'pokhte']
+      let value = parseInt(val);
+      this.props.selectEggStatus(statues[value], Math.abs(value-2)); this.props.calculateTime()
+        }
+    
+    waterStatus=(val)=>{
+      let statues = ['sard','velarm','dagh','joush']
+      let value = parseInt(val);
+      this.props.selectWaterStatus(statues[value],Math.abs(value-3));this.props.calculateTime()
+        }
+
+    sizeStatus=(val)=>{
+      let statues = [ 'kouchak','motevasset','bozorg', ]
+      let value = parseInt(val);
+      this.props.selectSize(statues[value],Math.abs(value-2));this.props.calculateTime()
+    }
+    eggTempStatus=(val)=>{
+      let statues = ['fridge', 'room']
+      let value = parseInt(val);
+      this.props.selectEggTemp(statues[value],Math.abs(value-1));this.props.calculateTime()
+    }
+
+    render(){
           var myItemStyles=[styles.disableItem, styles.normalItem, styles.disSelectedItem ,styles.selectedItem, styles.selectedItemHelp, styles.selectedItemHelp, styles.selectedItemHelp, styles.selectedItemHelpSelected ]
           var myItemTextStyles=[styles.disableItemText, styles.normalItemText, styles.disSelectedItemText ,styles.selectedItemText, styles.selectedItemTextHelp, styles.selectedItemTextHelp, styles.selectedItemTextHelp, styles.selectedItemTextHelp]
           var myDisable = [ true, false, true, false ]
         return(
-
-
-          
-
           <View style={{flexDirection:'column', justifyContent:'center', alignItems:'center', marginBottom:60}}>
-          
-
-            {/* <View style={styles.rowContainer}>          
+       
+             <View style={styles.rowContainer}>          
               <TouchableWithoutFeedback disabled={myDisable[this.props.sangi]} onPress={()=>{this.props.selectEggStatus('sangi', 2);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(0);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
                 <View style={ myItemStyles[this.props.sangi] }>
                 <Text style={ myItemTextStyles[this.props.sangi] }> پخته </Text>
@@ -148,41 +163,35 @@ class Choices extends Component<{}>{
           </TouchableWithoutFeedback>
           
           </View>
-
-
-
-        
-        
-
           
           <View style={styles.rowContainer}>
          
-            <TouchableWithoutFeedback disabled={myDisable[this.props.joush]} onPress={()=>{this.props.selectWaterStatus('joush', 3);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(6);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
+            {/* <TouchableWithoutFeedback disabled={myDisable[this.props.joush]} onPress={()=>{this.props.selectWaterStatus('joush', 2);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(6);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
               <View style={myItemStyles[this.props.joush]}>
               <Text style={myItemTextStyles[this.props.joush]}> جوش </Text>
               </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.dagh]} onPress={()=>{this.props.selectWaterStatus('dagh', 2);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(7);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
+            </TouchableWithoutFeedback> */}
+            <TouchableWithoutFeedback disabled={myDisable[this.props.dagh]} onPress={()=>{this.props.selectWaterStatus('dagh', 1);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(7);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
               <View style={myItemStyles[this.props.dagh]}>
               <Text style={myItemTextStyles[this.props.dagh]}> داغ </Text>
               </View>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback disabled={myDisable[this.props.velarm]} onPress={()=>{this.props.selectWaterStatus('velarm', 1);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(8);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
+            <TouchableWithoutFeedback disabled={myDisable[this.props.velarm]} onPress={()=>{this.props.selectWaterStatus('velarm', 0);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(8);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
               <View style={myItemStyles[this.props.velarm]}>
               <Text style={myItemTextStyles[this.props.velarm]}> ولرم </Text>
               </View>
             </TouchableWithoutFeedback>
-            {/* <TouchableWithoutFeedback disabled={myDisable[this.props.sard]} onPress={()=>{this.props.selectWaterStatus('sard', 0);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(9);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
+             <TouchableWithoutFeedback disabled={myDisable[this.props.sard]} onPress={()=>{this.props.selectWaterStatus('sard', 0);this.props.calculateTime()}} onLongPress={()=>{this.props.setDetailId(9);this.props.pressedLong()}} onPressOut={()=>{this.props.pressedUp()}}>
               <View style={myItemStyles[this.props.sard]}>
               <Text style={myItemTextStyles[this.props.sard]}> آب سرد </Text>
               </View>
-            </TouchableWithoutFeedback> */}
+            </TouchableWithoutFeedback>
             
-          {/* </View>   */}
+           </View>   
 
            
 
-          {/* <View style={styles.rowContainer}>
+           <View style={styles.rowContainer}>
 
             
           
@@ -198,11 +207,11 @@ class Choices extends Component<{}>{
             </TouchableWithoutFeedback>
 
 
-          </View> */}
+          </View> 
 
-           
+            
 
-          
+{/*        
           <MultiSlider 
           pos={this.props.factorEggStatus}
           item1={'عسلی'}  
@@ -269,29 +278,64 @@ class Choices extends Component<{}>{
 
           />
           
-          {/* <MultiSlider 
+          <TwoSlider 
+          pos={this.props.factorEggTemp}
           item1={'دمای یخچال'} 
           item1onPress={()=>{this.props.selectEggTemp('fridge', 0);this.props.calculateTime()}} 
-          item1OnLongPress={()=>{this.props.setDetailId(8);this.props.pressedLong()}}
-          item2={''} 
-          item2onPress={()=>{this.props.selectWaterStatus('dagh', 2);this.props.calculateTime()}}  
-          item2OnLongPress={()=>{this.props.setDetailId(7);this.props.pressedLong()}}
+          item1OnLongPress={()=>{this.props.setDetailId(10);this.props.pressedLong()}}
           item3={'دمای اتاق'} 
           item3onPress={()=>{this.props.selectEggTemp('room', 1);this.props.calculateTime()}} 
-          item3OnLongPress={()=>{this.props.setDetailId(6);this.props.pressedLong()}}
+          item3OnLongPress={()=>{this.props.setDetailId(11);this.props.pressedLong()}}
           onPressOut={()=>{this.props.pressedUp()}}
-          item1Style = {myItemStyles[this.props.velarm]}
-          item2Style = {myItemStyles[this.props.dagh]}
-          item3Style = {myItemStyles[this.props.joush]}
-          textStyle1 = {myItemTextStyles[this.props.velarm]}
-          textStyle2 = {myItemTextStyles[this.props.dagh]}
-          textStyle3 = {myItemTextStyles[this.props.joush]}
+          item1Style = {myItemStyles[this.props.fridge]}
+          item3Style = {myItemStyles[this.props.room]}
+          textStyle1 = {myItemTextStyles[this.props.fridge]}
+          textStyle3 = {myItemTextStyles[this.props.room]}
           disableVal  =  {myDisable[this.props.kouchak]}         
+          />   */}
 
-          /> */}
 
+           {/* <SwitchSelector 
+          options={options} 
+          initial={0} 
+          onPressOut={()=>{this.props.pressedUp()}}
+          onLongPress = { value => this.whichLongPressed(value,0) }
+          onPress={value => {
+            this.whichPressToRun(value,this.eggStatus)}}
+             />
 
-          </View>
+          <SwitchSelector 
+          options={options2} 
+          initial={0} 
+          onPressOut={()=>{this.props.pressedUp()}}
+          onLongPress = { value => this.whichLongPressed(value,3) }
+          onPress={value => {
+            this.whichPressToRun(value,this.sizeStatus)}}
+             />
+
+          <SwitchSelector 
+          options={options3} 
+          initial={0} 
+          onPressOut={()=>{this.props.pressedUp()}}
+          onLongPress = { value => this.whichLongPressed(value,6) }
+          onPress={value => {
+            this.whichPressToRun(value,this.waterStatus)}}
+             />
+
+          <SwitchSelector 
+          options={options4} 
+          initial={0} 
+          onPressOut={()=>{this.props.pressedUp()}}
+          onLongPress = { value => this.whichLongPressed(value,10) }
+          onPress={value => {
+            this.whichPressToRun(value,this.eggTempStatus)}}
+            />  */}
+
+          </View> 
+
+          
+
+          
 
 
         )
@@ -318,7 +362,7 @@ const mapStateToProps= state =>{
     factorEggStatus:state.factorEggStatus,
     factorSize:state.factorSize,
     factorWaterStatus:state.factorWaterStatus,
-    factorEggTemp:state.factorEggTemp,
+    factorEggTemp:state.factorEggTemp
     
   }
 }

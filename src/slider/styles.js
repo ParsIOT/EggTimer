@@ -11,6 +11,7 @@ const Colors = {
 
 const Metrics = {
     containerWidth: myStyle.CONTAINER_WIDTH_1, //width - 60
+    containerWidth2: myStyle.CONTAINER_WIDTH_222, //width - 60
     switchWidth: myStyle.SWITCHER_WIDTH_1 //width / 3.5
 };
 
@@ -19,6 +20,18 @@ const styles = StyleSheet.create({
     container: {
         marginBottom:myStyle.CONTAINER_MARGIN_BOTTOM,
         width: Metrics.containerWidth,
+        height: 55,
+        flexDirection: 'row',
+        backgroundColor: Colors.mBackColor,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderWidth: 0,
+        borderColor: Colors.mBorderColor,
+        borderRadius: 27.5
+    },
+    container2: {
+        marginBottom:myStyle.CONTAINER_MARGIN_BOTTOM,
+        width: Metrics.containerWidth2,
         height: 55,
         flexDirection: 'row',
         backgroundColor: Colors.mBackColor,

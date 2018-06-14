@@ -38,7 +38,7 @@ whoosh.setVolume(0.9);
   // loaded successfully
 
 const storage = new Storage({
-  size:60,
+  size:70,
   storageBackend: AsyncStorage,
   defaultExpires: null,
   enableCache: true
@@ -103,17 +103,17 @@ class Timer extends Component<{}> {
       ,
       '  سایز تخم مرغ :\n\n بین 30 تا 50 گرم'
       ,
-      '  دمای اولیه آب :\n\n 60-100 °C'
+      '  دمای اولیه آب :\n\n 80-100 °C'
       ,
-      '  دمای اولیه آب :\n\n 27-60 °C'
+      '  دمای اولیه آب :\n\n 40°C حدود'
       ,
       '  دمای اولیه آب :\n\n 27°C حدود'
       ,
       '  دمای اولیه آب :\n\n  حدود ۴ درجه سانتیگراد'
       ,
-      '  دمای اولیه تخم مرغ :\n\n در یخجال'
+      '  دمای تخم مرغ :\n\n در یخچال'
       ,
-      '  دمای اولیه تخم مرغ :\n\n در دمای اتاق'
+      '  دمای تخم مرغ :\n\n در دمای اتاق'
       ],
       detailId:0,
       eggImages : ['../../statics/honey2.png', '../../statics/semi_soft2.png'],
@@ -785,7 +785,7 @@ var data= {
       <View>
         <View style={{alignItems:'center', justifyContent:'center'}}>  
           <Animated.View style={{transform: [{scale: this.state.springValue}] }}>
-            <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main1.png')} style={{marginBottom:10, marginTop:myStyle.EGG_MARGIN_TOP,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.40*Dimensions.get('window').height)}}> 
+            <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{marginBottom:20, marginTop:myStyle.EGG_MARGIN_TOP,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.37 *Dimensions.get('window').height)}}> 
               
               {this.showDetail()} 
               {/* <View style={{flexDirection:'column', position:'absolute', marginBottom:50, alignSelf:'flex-start'}}> */}
@@ -825,6 +825,7 @@ const mapStateToProps= state =>{
     factorEggStatus:state.factorEggStatus,
     factorSize: state.factorSize,
     factorWaterStatus: state.factorWaterStatus,
+    factorEggTemp : state.factorEggTemp,
     sangi: state.sangi,
     pokhte: state.pokhte,
     asaly: state.asaly,
@@ -837,7 +838,6 @@ const mapStateToProps= state =>{
     sard: state.sard,
     fridge : state.fridge,
     room : state.room,
-    factorEggTemp : state.factorEggTempf
 
     
   }

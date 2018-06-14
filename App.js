@@ -198,7 +198,7 @@ export default class App extends Component<{}>{
               <Text style={styles.helpText}>آیا میخواهید زمان سنج متوقف شود ؟</Text>
             </View>
             {/* <Text style={styles.parsiot}>Parsiot  گروه توسعه پارسیوت</Text> */}
-              <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+              <View style={{flexDirection:'row', justifyContent:'center'}}>
               
               <TouchableNativeFeedback onPress={()=>{
                 if (!this.pressedStop)
@@ -214,15 +214,15 @@ export default class App extends Component<{}>{
                 
                 
               }} >
-              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, padding:8, backgroundColor:'#ef5350', borderRadius:myStyle.BORDER_RADIUS}}>
-                    <Text style={styles.nazar}> بله، توقف</Text>
-                    {/* <Icon name={'stop'} color={'white'} size={30}/> */}
+              <View style={{marginRight:20, flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, padding:8, backgroundColor:'#ef5350', borderRadius:myStyle.BORDER_RADIUS}}>
+                    {/* <Text style={styles.nazar}> بله، توقف</Text> */}
+                    <Icon name={'stop'} color={'white'} size={myStyle.RESUME_SIZE}/>
                     </View>
                 </TouchableNativeFeedback>
               <TouchableNativeFeedback onPress={()=>{this.popupDialogStop.dismiss()}}>
-              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, backgroundColor:'#8bc34a', padding:8, borderRadius:myStyle.BORDER_RADIUS}}>
-                  <Text style={styles.nazar}> نه، ادامه </Text>
-                  {/* <Icon name={'play-pause'} color={'white'} size={30}/> */}
+              <View style={{marginLeft:20, flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE, backgroundColor:'#8bc34a', padding:8, borderRadius:myStyle.BORDER_RADIUS}}>
+                  {/* <Text style={styles.nazar}> نه، ادامه </Text> */}
+                  <Icon name={'play-arrow'} color={'white'} size={myStyle.RESUME_SIZE}/>
                 </View>
               </TouchableNativeFeedback>
               </View>
@@ -385,7 +385,7 @@ export default class App extends Component<{}>{
           
         </View>
         <Provider store={store} >
-        <View style={{margin:0,paddingTop:0, flex:2, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'#333333'}}>        
+        <View style={{marginRight:0, marginLeft:0,paddingTop:0, flex:2, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'#333333'}}>        
           <Animated.View  style={{opacity: fadeValue}}>
             <Timer timerTime={this.state.time}  onRef={ref => (this.child = ref)}  dialogStop={()=>{this.popupDialogStop.show()}} dialogNazar={()=>{this.popupDialogNazar.show()}}  dialog={()=>{this.popupDialog.dismiss(), this.popupDialogStop.dismiss(),this.popupDialogDetail.dismiss(); this.popupDialog2.show()}} />        
           </Animated.View>

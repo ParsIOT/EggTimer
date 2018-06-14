@@ -16,8 +16,7 @@ import * as actions from '../actions'
 import myStyle from '../../appStyle/style'
 
 var positions=[ 0,
-    myStyle.CONTAINER_WIDTH_2 / 2 - myStyle.SWITCHER_WIDTH_2 / 2,
-    myStyle.CONTAINER_WIDTH_2 - myStyle.SWITCHER_WIDTH_2 - 2,
+    myStyle.CONTAINER_WIDTH_22 - myStyle.SWITCHER_WIDTH_2
     ]
 
 class MultiSwitch extends Component {
@@ -32,9 +31,9 @@ class MultiSwitch extends Component {
             posValue: 0,
             selectedPosition: 0,
             duration: 100,
-            mainWidth: myStyle.CONTAINER_WIDTH_2,
+            mainWidth: myStyle.CONTAINER_WIDTH_22,
             switcherWidth: myStyle.SWITCHER_WIDTH_2,
-            thresholdDistance: myStyle.THRESHOLD_DISTANCE, //width - 8 - width / 2.4
+            thresholdDistance: myStyle.THRESHOLD_DISTANCE_2, //width - 8 - width / 2.4
             
         };
         this.isParentScrollDisabled = false;
@@ -47,6 +46,7 @@ class MultiSwitch extends Component {
     componentDidMount(){
         setTimeout(()=>
         this.setState({position: new Animated.Value(positions[this.props.pos])})
+        // console.warn('hey', this.props.pos)
     ,1500)
     }
 
@@ -73,18 +73,18 @@ class MultiSwitch extends Component {
                 if (!this.props.disableVal){
                 this.long_press_timeout = setTimeout(function(){
                 if (gestureState.dx > 0) {
-                    if (finalValue >= 0 && finalValue <= 30) {
+                    if (finalValue >= 0 && finalValue <= 40) {
                         // _this.notStartedSelected();
                         // Alert.alert('long pressed 1')
                         _this.props.item1OnLongPress()
                         // console.warn(this.props.sangi)
                         // this.props.selectSize('motevasset', 1 );this.props.calculateTime()
-                    } else if (finalValue >= 30 && finalValue <= 121) {
-                        // _this.inProgressSelected()
-                        // Alert.alert('long pressed 2')
-                        _this.props.item2OnLongPress()
+                    // } else if (finalValue >=  && finalValue <= 121) {
+                    //     // _this.inProgressSelected()
+                    //     // Alert.alert('long pressed 2')
+                    //     _this.props.item2OnLongPress()
 
-                    } else if (finalValue >= 121 && finalValue <= 280) {
+                    } else if (finalValue >= 41 && finalValue <= 280) {
                         if (gestureState.dx > 0) {
                             // _this.completeSelected();
                             // Alert.alert('long pressed 3')
@@ -102,7 +102,8 @@ class MultiSwitch extends Component {
                     if (finalValue >= 78 && finalValue <= 175) {
                         // _this.inProgressSelected()
                         // Alert.alert('long pressed 2')
-                        _this.props.item2OnLongPress()
+                        _this.props.item3OnLongPress()
+                        // _this.props.item2OnLongPress()
 
 
                     } else if (finalValue >= -100 && finalValue <= 78) {
@@ -161,29 +162,33 @@ class MultiSwitch extends Component {
                 clearTimeout(this.long_press_timeout);
                 if (!this.props.disableVal){
                 let finalValue = gestureState.dx + this.state.posValue;
+                // console.warn('the final value is ', finalValue)
                 this.isParentScrollDisabled = false;
                 // this.props.disableScroll(true);
                 if (gestureState.dx > 0) {
-                    if (finalValue >= 0 && finalValue <= 30) {
+                    if (finalValue >= 0 && finalValue <= 40) {
                         this.notStartedSelected();
                         this.props.onPressOut()
-                    } else if (finalValue >= 30 && finalValue <= 121) {
-                        this.inProgressSelected();
-                        this.props.onPressOut()
-                    } else if (finalValue >= 121 && finalValue <= 280) {
+                    // } else if (finalValue >= 30 && finalValue <= 121) {
+                    //     // this.inProgressSelected();
+                    //     this.props.onPressOut()
+                    } else if (finalValue >= 41 && finalValue <= 280) {
                         if (gestureState.dx > 0) {
                             this.completeSelected();
                             this.props.onPressOut()
 
                         } else {
-                            this.inProgressSelected();
+                            // this.inProgressSelected();
                             this.props.onPressOut()
 
                         }
                     }
                 } else {
-                    if (finalValue >= 78 && finalValue <= 175) {
-                        this.inProgressSelected();
+                    if (finalValue >= 78 && finalValue <= 150) {
+                        // this.inProgressSelected();
+                        // this.notStartedSelected();
+                        this.completeSelected();
+
                         this.props.onPressOut()
                     } else if (finalValue >= -100 && finalValue <= 78) {
                         this.notStartedSelected();
@@ -191,7 +196,7 @@ class MultiSwitch extends Component {
 
                         
                     } else {
-                        this.completeSelected();
+                        // this.completeSelected();
                         this.props.onPressOut()
 
                     }
@@ -230,13 +235,13 @@ class MultiSwitch extends Component {
 
     inProgressSelected = () => {
         Animated.timing(this.state.position ,{
-            toValue: this.state.mainWidth / 2 - this.state.switcherWidth / 2,
+            toValue: this.state.mainWidth  - this.state.switcherWidth ,
             duration: this.state.duration
         }).start();
         setTimeout(() => {
             this.setState({
                 posValue:
-                    this.state.mainWidth / 2 - this.state.switcherWidth / 2,
+                    this.state.mainWidth  - this.state.switcherWidth ,
                 selectedPosition: 1
             });
         }, 100);
@@ -251,7 +256,7 @@ class MultiSwitch extends Component {
             toValue:
                 Platform.OS === 'ios'
                     ? this.state.mainWidth - this.state.switcherWidth
-                    : this.state.mainWidth - this.state.switcherWidth - 2,
+                    : this.state.mainWidth - this.state.switcherWidth ,
             duration: this.state.duration
         }).start();
         setTimeout(() => {
@@ -259,7 +264,7 @@ class MultiSwitch extends Component {
                 posValue:
                     Platform.OS === 'ios'
                         ? this.state.mainWidth - this.state.switcherWidth
-                        : this.state.mainWidth - this.state.switcherWidth - 2,
+                        : this.state.mainWidth - this.state.switcherWidth ,
                 selectedPosition: 2
             });
         }, 100);
@@ -297,7 +302,7 @@ class MultiSwitch extends Component {
         
         return (
             
-            <View style={styles.container}>
+            <View style={styles.container2}>
                 <Button 
                 item1={this.props.item1} 
                 item2={this.props.item2} 
@@ -313,7 +318,7 @@ class MultiSwitch extends Component {
 
              
 
-                <Button 
+                {/* <Button 
                 item1={this.props.item1} 
                 item2={this.props.item2} 
                 item3={this.props.item3} 
@@ -324,7 +329,7 @@ class MultiSwitch extends Component {
                 itemStyle={this.props.item2Style}
                 textStyle2={this.props.textStyle2}
                 disableVal = {this.props.disableVal}
-                />
+                /> */}
 
                 <Button 
                 item1={this.props.item1} 
