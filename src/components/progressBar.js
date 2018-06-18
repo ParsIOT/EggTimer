@@ -28,8 +28,8 @@ class ProgressBar extends Component<{}>{
     gpsOrNot(num){
         console.log('num is ' , num)
         var n = this.props.factorSize * this.props.factorWaterStatus
-        if (num == n * 3 || num == n * 2 || num == n * 1) {return(<Image source={require('../../statics/location-sign.png')} style={styles.gpsIconStyle}/>)}
-        else {return(<View style={styles.gpsIconStyle} ></View>)}
+        // if (num == n * 3 || num == n * 2 || num == n * 1) {return(<Image source={require('../../statics/location-sign.png')} style={styles.gpsIconStyle}/>)}
+        // else {return(<View style={styles.gpsIconStyle} ></View>)}
     }
 
     render(){

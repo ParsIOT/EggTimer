@@ -54,11 +54,6 @@
 		0FEC99497592420D8FA9ADA9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF795747C5284618AFFA2AF1 /* SimpleLineIcons.ttf */; };
 		A7ACAE4A94E44ABCB80341A6 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 353A8FCE85AA492693322D1F /* Zocial.ttf */; };
 		4E7874C66A2C44FF983CE45E /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6407F2A651124FEDB81B8A81 /* libRNVectorIcons.a */; };
-		21DE0CF026334EA0A57E6002 /* libRNAlarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36568E9ABD034352A0BB1E22 /* libRNAlarm.a */; };
-		96ED989CB9BC4A4398BFF2A1 /* libRNBackgroundTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3359518BB6F43028B2453E6 /* libRNBackgroundTimer.a */; };
-		B961AD9B5BF84413B8E0479F /* libRNCalendarEvents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04287589CDE54016A89F4CBD /* libRNCalendarEvents.a */; };
-		59F9B02FD6AD4580B863F8CA /* libRNNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC3B9A8930D445394C4CE8C /* libRNNotifications.a */; };
-		8837D10636D24EAEA0BE860D /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5327C92F4F49CFA9F7DCF9 /* libSplashScreen.a */; };
 		4F81FD13A8D6477F8B57C07B /* libTSTapsell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB87076310C481985D54350 /* libTSTapsell.a */; };
 /* End PBXBuildFile section */
 
@@ -332,17 +327,7 @@
 		353A8FCE85AA492693322D1F /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FD80BE737ADF414DBFCF69D4 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6407F2A651124FEDB81B8A81 /* libRNVectorIcons.a */ = {isa = PBXFileReference; name = "libRNVectorIcons.a"; path = "libRNVectorIcons.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		B12B7CB605634CB29F036739 /* RNAlarm.xcodeproj */ = {isa = PBXFileReference; name = "RNAlarm.xcodeproj"; path = "../node_modules/react-native-alarm/ios/RNAlarm.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		36568E9ABD034352A0BB1E22 /* libRNAlarm.a */ = {isa = PBXFileReference; name = "libRNAlarm.a"; path = "libRNAlarm.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		B7A5E5CDC8D84BDAA103DD7A /* RNBackgroundTimer.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundTimer.xcodeproj"; path = "../node_modules/react-native-background-timer/ios/RNBackgroundTimer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		E3359518BB6F43028B2453E6 /* libRNBackgroundTimer.a */ = {isa = PBXFileReference; name = "libRNBackgroundTimer.a"; path = "libRNBackgroundTimer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		1609549F52214C23838EB3A7 /* RNCalendarEvents.xcodeproj */ = {isa = PBXFileReference; name = "RNCalendarEvents.xcodeproj"; path = "../node_modules/react-native-calendar-events/RNCalendarEvents.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		04287589CDE54016A89F4CBD /* libRNCalendarEvents.a */ = {isa = PBXFileReference; name = "libRNCalendarEvents.a"; path = "libRNCalendarEvents.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		39E2B4F1963F43B8BF6893F8 /* RNNotifications.xcodeproj */ = {isa = PBXFileReference; name = "RNNotifications.xcodeproj"; path = "../node_modules/react-native-notifications/RNNotifications/RNNotifications.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		FFC3B9A8930D445394C4CE8C /* libRNNotifications.a */ = {isa = PBXFileReference; name = "libRNNotifications.a"; path = "libRNNotifications.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		D0DD134599DF4F53A98ADC8C /* TSTapsell.xcodeproj */ = {isa = PBXFileReference; name = "TSTapsell.xcodeproj"; path = "../node_modules/react-native-tapsell/ios/TSTapsell.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		A4CFF66AE7CA4A8DB04DB152 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "SplashScreen.xcodeproj"; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		8C5327C92F4F49CFA9F7DCF9 /* libSplashScreen.a */ = {isa = PBXFileReference; name = "libSplashScreen.a"; path = "libSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		36FF285E24D64783863FEA55 /* TSTapsell.xcodeproj */ = {isa = PBXFileReference; name = "TSTapsell.xcodeproj"; path = "../node_modules/react-native-tapsell/ios/TSTapsell.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		4BB87076310C481985D54350 /* libTSTapsell.a */ = {isa = PBXFileReference; name = "libTSTapsell.a"; path = "libTSTapsell.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
@@ -376,11 +361,6 @@
 				CFB0EF299F234749B94B230E /* libRNSensors.a in Frameworks */,
 				7C3610AE2FF747CD84EE21B4 /* libRNSound.a in Frameworks */,
 				4E7874C66A2C44FF983CE45E /* libRNVectorIcons.a in Frameworks */,
-				21DE0CF026334EA0A57E6002 /* libRNAlarm.a in Frameworks */,
-				96ED989CB9BC4A4398BFF2A1 /* libRNBackgroundTimer.a in Frameworks */,
-				B961AD9B5BF84413B8E0479F /* libRNCalendarEvents.a in Frameworks */,
-				59F9B02FD6AD4580B863F8CA /* libRNNotifications.a in Frameworks */,
-				8837D10636D24EAEA0BE860D /* libSplashScreen.a in Frameworks */,
 				4F81FD13A8D6477F8B57C07B /* libTSTapsell.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,11 +544,6 @@
 				CEF4D9D7A61443A99B757F44 /* RNSound.xcodeproj */,
 				F9B36506B7A046A998EC58E9 /* RNSound.xcodeproj */,
 				FD80BE737ADF414DBFCF69D4 /* RNVectorIcons.xcodeproj */,
-				B12B7CB605634CB29F036739 /* RNAlarm.xcodeproj */,
-				B7A5E5CDC8D84BDAA103DD7A /* RNBackgroundTimer.xcodeproj */,
-				1609549F52214C23838EB3A7 /* RNCalendarEvents.xcodeproj */,
-				39E2B4F1963F43B8BF6893F8 /* RNNotifications.xcodeproj */,
-				A4CFF66AE7CA4A8DB04DB152 /* SplashScreen.xcodeproj */,
 				36FF285E24D64783863FEA55 /* TSTapsell.xcodeproj */,
 			);
 			name = Libraries;
@@ -1179,8 +1154,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eggTimer.app/eggTimer";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1189,11 +1162,6 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
-					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
@@ -1215,8 +1183,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eggTimer.app/eggTimer";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1225,11 +1191,6 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
-					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
@@ -1257,11 +1218,6 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
-					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
@@ -1288,11 +1244,6 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
-					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
@@ -1323,8 +1274,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1333,11 +1282,6 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
-					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
@@ -1368,8 +1312,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1378,11 +1320,6 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-alarm/ios",
-					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-tapsell/ios/TSTapsell",
 				);
 			};
@@ -1408,8 +1345,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1434,8 +1369,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;

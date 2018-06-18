@@ -4,13 +4,9 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import ir.tapsell.reactnativesdk.TapsellReactNativePackage;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.calendarevents.CalendarEventsPackage;
-import com.ocetnik.timer.BackgroundTimerPackage;
-import com.liang.RNAlarmPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -40,13 +36,9 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new TapsellReactNativePackage(),
-            new SplashScreenReactPackage(),
             new RNSoundPackage(),
             new VectorIconsPackage(),
-            new ReactNativePushNotificationPackage(),
-            new CalendarEventsPackage(),
-            new BackgroundTimerPackage(),
-            new RNAlarmPackage()
+            new ReactNativePushNotificationPackage()
       );
     }
 

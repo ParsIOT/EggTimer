@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
   Text,
   View,
-  Button,
-  Alert,
-  TextInput,
-  TouchableWithoutFeedback,
-  TouchableNativeFeedback,
-  TouchableHighlight,
   TouchableOpacity,
   ImageBackground,
   Dimensions,
   Animated,
-  Image,
   AppState,
   AsyncStorage,
   YellowBox
@@ -35,7 +26,6 @@ var whoosh = new Sound('chicken.mp3', Sound.MAIN_BUNDLE, (error) => {
     return;
   }})
 whoosh.setVolume(0.9);
-  // loaded successfully
 
 const storage = new Storage({
   size:70,
@@ -49,24 +39,13 @@ const springValue = new Animated.Value(1)
 
 PushNotification.configure({
       onRegister: function(token) {
-          // console.log( 'TOKEN:', token );
       },
         onNotification: function(notification) {
-          // console.log( 'NOTIFICATION:', notification ); 
       },
       popInitialNotification: true,
       requestPermissions: true,
   });
 
-
-// async function getiOSNotificationPermission() {     // for alarm
-//   const { status } = await Permissions.getAsync(
-//     Permissions.NOTIFICATIONS
-//   );
-//   if (status !== 'granted') {
-//     await Permissions.askAsync(Permissions.NOTIFICATIONS);
-//   }
-// }
 
 class Timer extends Component<{}> {
   constructor(props){
@@ -111,7 +90,7 @@ class Timer extends Component<{}> {
       ,
       '  دمای اولیه آب :\n\n  حدود ۴ درجه سانتیگراد'
       ,
-      '  دمای تخم مرغ :\n\n در یخچال'
+      '  دمای تخم مرغ :\n\n در دمای یخچال'
       ,
       '  دمای تخم مرغ :\n\n در دمای اتاق'
       ],
@@ -128,11 +107,6 @@ class Timer extends Component<{}> {
   componentDidMount(){
     AppState.addEventListener('change', this._handleAppStateChange);
     this.props.onRef(this)
-
-    // this.getData()
-    // this.startTimer(this.props.counter)
-    // console.log('initial data is got')
-    // Alert.alert('hi')
   }
 
   componentWillUnmount() {
@@ -148,15 +122,12 @@ class Timer extends Component<{}> {
         console.log('successfully finished playing');
       } else {
         console.log('playback failed due to audio decoding errors');
-        // reset the player to its uninitialized state (android only)
-        // this is the only option to recover after an error occured and use the player again
         whoosh.reset();
       }
     });
   }
 
   fo(){
-      // val.setValue(1)
       Animated.timing(                  
         this.state.fadePie, 
         {
@@ -166,11 +137,6 @@ class Timer extends Component<{}> {
       ).start(()=> {this.fadeIn(this.state.fadeAnim)} );
     }
   
-
-    // foo(){
-    //   this.setState({url:})
-    // }
-
   showDetail(){
 
     if(this.props.longPressed){
@@ -213,7 +179,7 @@ class Timer extends Component<{}> {
         return(
           <View style={{marginBottom : myStyle.progressBar_PaddingB }}>
             <Text style={styles.progressBarTime}> {Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}'' </Text>        
-            <TouchableOpacity activeOpacity={0.85}  style={{padding:14, paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+            <TouchableOpacity activeOpacity={0.85}  style={{padding:myStyle.paddingTouch}} onPress={()=>{
               if (!this.props.startedValue)
                 {this.startTimer(this.props.counter)}
               else if (this.props.startedValue)
@@ -239,7 +205,7 @@ class Timer extends Component<{}> {
         return(
           <View style={{marginBottom : myStyle.progressBar_PaddingB }}>
             <Text style={styles.progressBarTime}> {Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}'' </Text>        
-            <TouchableOpacity activeOpacity={0.85}  style={{padding:14, paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+            <TouchableOpacity activeOpacity={0.85}  style={{padding:myStyle.paddingTouch}} onPress={()=>{
               if (!this.props.startedValue)
                 {this.startTimer(this.props.counter)}
               else if (this.props.startedValue)
@@ -265,7 +231,7 @@ class Timer extends Component<{}> {
         return(
           <View style={{marginBottom : myStyle.progressBar_PaddingB }}>
             <Text style={styles.progressBarTime}> {Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}'' </Text>        
-            <TouchableOpacity activeOpacity={0.85}  style={{padding:14, paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+            <TouchableOpacity activeOpacity={0.85}  style={{padding:myStyle.paddingTouch}} onPress={()=>{
               if (!this.props.startedValue)
                 {this.startTimer(this.props.counter)}
               else if (this.props.startedValue)
@@ -309,7 +275,7 @@ class Timer extends Component<{}> {
       return(
         <View style={{marginBottom : myStyle.progressBar_PaddingB}}>
           <Text style={styles.progressBarTime}>{Math.trunc((this.props.counter)/60)}' {('0'+(this.props.counter)%60).slice(-2)}''</Text>        
-          <TouchableOpacity activeOpacity={0.85}  style={{padding:14 ,paddingBottom:myStyle.paddingTouch, paddingTop:0}} onPress={()=>{
+          <TouchableOpacity activeOpacity={0.85}  style={{padding:myStyle.paddingTouch}} onPress={()=>{
           if (!this.props.startedValue)
           {this.startTimer(this.props.counter)}
           else if (this.props.startedValue)
@@ -374,7 +340,7 @@ class Timer extends Component<{}> {
       title: "تخم مرغی",
       // message: "  تخم مرغ شما در "+ a.getHours() + ":" +a.getMinutes() + ":"+a.getSeconds() + " آماده میشود ", // (required)
       message : !b ? " تخم مرغ شما حدود " + Math.trunc(this.props.counter/60) + " دقیقه دیگر آماده میشود " : "کمتر از یک دقیقه دیگر تخم مرغ شما آماده میشود",
-      bigText: "زمان پایان : "+ a.getHours() + ":" +a.getMinutes() + ":"+a.getSeconds(),
+      bigText: "ساعت پایان    "+ ("0"+a.getHours()).slice(-2) + ":" +("0"+a.getMinutes()).slice(-2) + ":"+("0"+a.getSeconds()).slice(-2),
       number: '0',
       playSound: true, 
       soundName: 'default', 
@@ -468,7 +434,8 @@ var data= {
       key: 'STATUS', 
       data: data,
       expires: 1000 * 3600
-    }).then((rett)=>{console.warn("the saved data --> ", data)
+    }).then((rett)=>{
+    
   });    
   }
 
@@ -480,25 +447,12 @@ var data= {
       syncParams: {
         extraFetchOptions: {
         },
-        someFlag: true}}).then((ret)=>{this.props.set_status(ret)}).catch(err => {
-        
-        
-      //   .then((ret1)=>{storage.load({key:'INITIALS',
-      // autoSync: true,
-      // syncInBackground: true,
-      // syncParams: {
-      //   extraFetchOptions: {
-      //   },
-      //   someFlag: true}})})
-        
-        
+        someFlag: true}}).then((ret)=>{this.props.set_status(ret)}).catch(err => {        
           console.warn(err.message);
         switch (err.name) {
             case 'NotFoundError':
-              // this.onResume({ time: this.props.time, current_time: 0, seconds_remaining: 0}) 
                 break;
               case 'ExpiredError':
-                // this.onResume({ time: this.props.time, current_time: 0, seconds_remaining: 0}) 
               break;
         }
       }
@@ -527,7 +481,6 @@ var data= {
   }
 
   getData(){
-    // console.log('getting data ...')
       storage.load({key:'TIMES',
       autoSync: true,
       syncInBackground: true,
@@ -536,17 +489,7 @@ var data= {
         },
         someFlag: true}}).then((ret)=>{this.onResume(ret)}).catch(err => {
         
-        
-      //   .then((ret1)=>{storage.load({key:'INITIALS',
-      // autoSync: true,
-      // syncInBackground: true,
-      // syncParams: {
-      //   extraFetchOptions: {
-      //   },
-      //   someFlag: true}})})
-        
-        
-          console.warn(err.message);
+        console.warn(err.message);
         switch (err.name) {
             case 'NotFoundError':
               this.onResume({ time: this.props.time, current_time: 0, seconds_remaining: 0}) 
@@ -617,15 +560,12 @@ var data= {
         { 
         if(this.props.startedValue) {this.stopTimer(); this.props.dialog()}
         else{
-          // Stora
-          //   this.props.dialogNazar()
-          //   this.props.voted(true)
-          //   //save to storage 
+
           this.getVoted()
         }
         }       
       else {
-        console.warn('now saved')
+        // console.warn('now saved')
         this.getStatusPromise().then(()=>this.load(times, diff)).then(()=>{this.startTimer(this.props.counter)})
       }      
       this.props.inForeground()
@@ -698,9 +638,9 @@ var data= {
     // this.props.inForeground()
     this.props.started();
     // if (!this.props.wasInBackground)
-    console.warn(this.props.wasInBackground)
+    // console.warn(this.props.wasInBackground)
       
-    this.disableItems().then(()=>{this.saveStatus()})
+    this.disableItems().then(()=>{setTimeout(()=> this.saveStatus(), 500)})
 
       
 
@@ -733,11 +673,11 @@ var data= {
   startOrStopIcon(){
     if (this.props.startedValue){
       // return(<Image source={require('../../statics/stop.png')} style={{width:50,height:50, position:'absolute'}} resizeMode={'contain'}/>
-      return(<Icon name={'stop'} style={{position:'absolute', color:'white'}} size={myStyle.START_OR_STOP_ICON}/>)  
+      return(<Icon name={'stop'} style={{position:'absolute', color:'white', alignSelf:'center'}} size={myStyle.START_OR_STOP_ICON}/>)  
     
     }
     else 
-    return(<Icon name={'play-arrow'} style={{position:'absolute', color:'white'}} size={myStyle.START_OR_STOP_ICON}/>)    
+    return(<Icon name={'play-arrow'} style={{position:'absolute', color:'white',}} size={myStyle.START_OR_STOP_ICON}/>)    
   }
   
 
@@ -785,7 +725,7 @@ var data= {
       <View>
         <View style={{alignItems:'center', justifyContent:'center'}}>  
           <Animated.View style={{transform: [{scale: this.state.springValue}] }}>
-            <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{marginBottom:20, marginTop:myStyle.EGG_MARGIN_TOP,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.37 *Dimensions.get('window').height)}}> 
+            <ImageBackground resizeMode={'contain'} source={require('../../statics/egg_main.png')} style={{marginBottom:20, marginTop:myStyle.EGG_MARGIN_TOP,justifyContent:'flex-end', alignItems:'center',  width:  Dimensions.get('window').width, height:(0.35 *Dimensions.get('window').height)}}> 
               
               {this.showDetail()} 
               {/* <View style={{flexDirection:'column', position:'absolute', marginBottom:50, alignSelf:'flex-start'}}> */}

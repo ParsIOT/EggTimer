@@ -1,7 +1,6 @@
 import Timer from './src/components/timer.js'
 import React, { Component } from 'react';
 import {Animated, Linking, View, StatusBar, TouchableWithoutFeedback,ImageBackground, Button, Image, Text, TouchableNativeFeedback, PixelRatio, ScrollView, Dimensions, Alert} from 'react-native'
-import RadioGroup from 'react-native-custom-radio-group';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducers from './src/reducers/timerReducer'
@@ -12,9 +11,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './appStyle/styleSheet.js'
 import myStyle from './appStyle/style.js'
 import { started } from './src/actions/index';
-// import {storage} from './src/components/timer'
-import TouchableDebounce from './src/components/TouchableDebounce'
-import SplashScreen from 'react-native-splash-screen';
 import MyAdd from './advertisement'
 
 const fadeValue = new Animated.Value(0)
@@ -92,30 +88,7 @@ export default class App extends Component<{}>{
     ).start()
   }
 
-  
-
-// componentDidMount(){
-//   Tapsell.requestNativeBannerAd(
-//     '5afd2b18a7996d000189043c	',
-//     (adData, onAdShown, onAdClicked) => {
-//         console.log("Native Banner Ad Available")
-//     },
-//     () => {
-//         console.log("No Native Ad Available")
-//     },
-//     () => {
-//          console.log("No Network Available")
-//     },
-//     error => {
-//         console.log("Error: " + error)
-//     }
-// );
-// }
-
  
-  
-
-
 
   showDialog(){
     startedValue= store.getState().startedValue
@@ -126,14 +99,6 @@ export default class App extends Component<{}>{
     this.detailDialog()
   }
 
-  // saveVoted(bool){
-  //   storage.save({
-  //     key: 'VOTED', 
-  //     data: bool ,
-  //     expires: 1000 * 3600
-  //   }).then((rett)=>{console.log(rett)});  
-  // }
-    
 
   detailDialog(){
     es0 = store.getState().factorEggStatus
@@ -145,7 +110,6 @@ export default class App extends Component<{}>{
     counter = store.getState().counter
     seconds = counter % 60
     mins  = Math.trunc(counter / 60)
-    // detail = 'در حال آبپز شدن ...' + '\n\n' + 'زمان باقیمانده :'  + mins + 'دقیقه و' + seconds + 'ثانیه' + '\n' + 'حالت نهایی مورد نظر : ' + es1 + '\n' + 'اندازه تخم مرغ : ' + s1 + '\n' + 'دمای اولبه آب : ' + ws1
     this.setState({counter : counter, es1: es1, s1 : s1, ws1 : ws1})
     this.popupDialogDetail.show()
   }
@@ -168,6 +132,11 @@ export default class App extends Component<{}>{
     }
     else 
     {return}
+  }
+
+  showAbout(){
+    this.popupDialog.dismiss()
+    this.popupDialogAbout.show()
   }
 
   render(){
@@ -259,6 +228,57 @@ export default class App extends Component<{}>{
               </TouchableNativeFeedback>
             </ScrollView>
         </PopupDialog>
+
+        <PopupDialog
+            ref={(popupDialogAbout) => { this.popupDialogAbout = popupDialogAbout; }}
+            width= {myStyle.dialogWidth}
+            height= {myStyle.dialogheight}
+            size={50}
+            style={{flex:1}}
+            haveOverlay={true}
+            dialogAnimation={slideAnimation}
+            
+            // overlayOpacity={0.9}
+            // overlayBackgroundColor={'rgb(230,230,230)'}
+            >
+            <ScrollView contentContainerStyle={{flex:1, padding: myStyle.PADDING_HELP_LEFT_RIGHT, paddingTop:myStyle.PADDING_HELP_TOP, paddingBottom:myStyle.PADDING_HELP_BOTTOM }}>
+            <View style={{justifyContent:'center', alignItems:'flex-end', marginBottom:myStyle.MARGIN_BOTTOM_HELP_TITLE, paddingBottom: myStyle.PADDING_BOTTOM_HELP_TITLE}}>
+              <Text style={styles.helpTitle}>درباره ما</Text>
+            </View>
+
+            <View style={{flex:1, justifyContent:'center', alignItems:'flex-end'}}>
+              <Text style={styles.aboutText}>
+              <Text style={styles.aboutTextBold}>
+              توسعه دهنده: 
+                </Text>
+                <Text> </Text>
+               کیوان جمشیدی جم
+              </Text>
+              <Text style={styles.aboutText}>
+              <Text style={styles.aboutTextBold}>
+              طراح رابطه کاربری و گرافیک:
+              </Text>
+              <Text> </Text>
+              محسن طبسی
+              </Text>
+
+            </View>
+            {/* <Text style={styles.parsiot}>Parsiot  گروه توسعه پارسیوت</Text> */}
+            <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+              <TouchableWithoutFeedback>
+              <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+                <Image resizeMode={'contain'} source={require('./statics/iot.png')} style={{marginTop:myStyle.MARGIN_TOP_HELP_BASHE,width:myStyle.PARSIOT_ICON, height:myStyle.PARSIOT_ICON}}/> 
+                <Text style={styles.parsiot}>پارسیوت   </Text> 
+              </View>
+              </TouchableWithoutFeedback>
+              <TouchableNativeFeedback onPress={()=>{this.popupDialogAbout.dismiss()}}>
+              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE}}>
+                    <Text style={styles.bashe}> باشه </Text>
+                    </View>
+              </TouchableNativeFeedback>
+            </View>
+            </ScrollView>
+        </PopupDialog>
       
 
        <PopupDialog
@@ -321,11 +341,19 @@ export default class App extends Component<{}>{
               <Text style={styles.helpText}>برای توضیحات هر آیتم، روی آیتم مورد نظر نگه دارید</Text>
             </View>
             {/* <Text style={styles.parsiot}>Parsiot  گروه توسعه پارسیوت</Text> */}
-            <TouchableNativeFeedback onPress={()=>{this.popupDialog.dismiss()}}>
-            <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE}}>
-                  <Text style={styles.bashe}> باشه </Text>
-                  </View>
+            <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+              <TouchableWithoutFeedback onPress={()=>this.showAbout()}>
+              <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+                <Image resizeMode={'contain'} source={require('./statics/iot.png')} style={{marginTop:myStyle.MARGIN_TOP_HELP_BASHE,width:myStyle.PARSIOT_ICON, height:myStyle.PARSIOT_ICON}}/> 
+                <Text style={styles.parsiot}>پارسیوت   </Text> 
+              </View>
+              </TouchableWithoutFeedback>
+              <TouchableNativeFeedback onPress={()=>{this.popupDialog.dismiss()}}>
+              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE}}>
+                    <Text style={styles.bashe}> باشه </Text>
+                    </View>
               </TouchableNativeFeedback>
+            </View>
             </ScrollView>
         </PopupDialog>
       
@@ -360,11 +388,19 @@ export default class App extends Component<{}>{
               
 
             </View>
-            <TouchableNativeFeedback onPress={()=>{this.popupDialogDetail.dismiss()}}>
-              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE}}>
-                <Text style={styles.bashe}> باشه </Text>
+            <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+              <TouchableWithoutFeedback onPress={()=>{this.popupDialogDetail.dismiss();this.showAbout()}}>
+              <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+                <Image resizeMode={'contain'} source={require('./statics/iot.png')} style={{marginTop:myStyle.MARGIN_TOP_HELP_BASHE,width:myStyle.PARSIOT_ICON, height:myStyle.PARSIOT_ICON}}/> 
+                <Text style={styles.parsiot}>پارسیوت   </Text> 
               </View>
-            </TouchableNativeFeedback>
+              </TouchableWithoutFeedback>
+              <TouchableNativeFeedback onPress={()=>{this.popupDialogDetail.dismiss()}}>
+              <View style={{flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end',marginTop:myStyle.MARGIN_TOP_HELP_BASHE}}>
+                    <Text style={styles.bashe}> باشه </Text>
+                    </View>
+              </TouchableNativeFeedback>
+            </View>
             </ScrollView>
         </PopupDialog>
        
@@ -385,12 +421,11 @@ export default class App extends Component<{}>{
           
         </View>
         <Provider store={store} >
-        <View style={{marginRight:0, marginLeft:0,paddingTop:0, flex:2, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'#333333'}}>        
+        <View style={{marginRight:0, marginLeft:0,paddingTop:10, flex:2, flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor:'#333333'}}>        
           <Animated.View  style={{opacity: fadeValue}}>
             <Timer timerTime={this.state.time}  onRef={ref => (this.child = ref)}  dialogStop={()=>{this.popupDialogStop.show()}} dialogNazar={()=>{this.popupDialogNazar.show()}}  dialog={()=>{this.popupDialog.dismiss(), this.popupDialogStop.dismiss(),this.popupDialogDetail.dismiss(); this.popupDialog2.show()}} />        
           </Animated.View>
           <Choices dialog={()=>this.popupDialog.show()}/>
-          {/* <ProgressBar/> */}
       </View>
      </Provider>
      </ScrollView>

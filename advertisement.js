@@ -21,8 +21,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 
 const APP_KEY =
-	"ordstmnsotlojpigdoddspldlolitbnjscpcnigmbolqatrgdbgafrbjihaespjqtpnrsf";
-const NATIVE_ZONE_ID = "5b0e3d682b13ec0001a98c1e";
+	"fbmnggcikoiknoeotnflkecrimdfjsrcreapbopsbqksfmtjbqqodbkkltikdqkijflhtr";
+const NATIVE_ZONE_ID = "5b22749b8d956d000162e628";
 const NATIVE_BANNER_AD_TYPE = "native-banner";
 
 Tapsell.initialize(APP_KEY)
@@ -114,17 +114,25 @@ export default class  Advertisement extends Component{
                 <View style={{padding:3, marginBottom:0, borderTopLeftRadius:myStyle.BORDER_RADIUS, borderTopRightRadius:myStyle.BORDER_RADIUS, backgroundColor:'white', flex:1, position:'absolute', left: 0, right: 0, bottom: 0}}>
                     <View style={{flexDirection:'column'}}>
                         <TouchableNativeFeedback onPress={()=>{this.dismissAd()}}>
-                            <Icon name={'close'} size={20} style={{position:'absolute', margin:5}}/>
+                            <Icon name={'close'} size={myStyle.CLOSE_ICON} style={{position:'absolute', margin: myStyle.CLOSE_MARGIN}}/>
                         </TouchableNativeFeedback>
                         <View style={{flexDirection:'row', alignItems:'center', justifyContent:'flex-end'}}>
                             <View style={{flexDirection:'column', justifyContent:'center'}}>
-                                <Text style={styles.advertisementText}>{this.state.nativeAdData.title}</Text>
-                                <Text style={styles.advertisementDetailText}>{this.state.nativeAdData.description}</Text>
+                                <TouchableNativeFeedback onPress={()=>{this.onNativeAdClicked(); this.dismissAd()}}>
+                                    <View>
+                                        <Text style={styles.advertisementText}>{this.state.nativeAdData.title}</Text>
+                                        <Text style={styles.advertisementDetailText}>{this.state.nativeAdData.description}</Text>
+                                    </View>
+                                </TouchableNativeFeedback>
+
                             </View>
                             <TouchableNativeFeedback onPress={()=>{this.onNativeAdClicked(); this.dismissAd()}}>
                                 <Image source={{uri:this.state.nativeAdData.icon_url}} style={{width:32, height:32, margin:8, marginTop:8}}/>
                             </TouchableNativeFeedback>
+
                         </View>
+
+
                     </View>
                     {/* <Button title={'click '} onPress={()=>this.onNativeAdClicked()}/> */}
                 </View>

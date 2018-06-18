@@ -33,15 +33,18 @@ function em(value) {
 export default Style = {
   
   // GENERAL
+  CLOSE_MARGIN : normalize(8),
+  CLOSE_ICON : normalize(20),
+  PARSIOT_ICON:normalize(30),
   DEVICE_WIDTH: x,
   DEVICE_HEIGHT: y,
   RATIO_X: ratioX,
   RATIO_Y: ratioY,
   UNIT: em(1),
   PADDING: em(1.25),
-  paddingTouch : normalize(13),//30
+  paddingTouch : normalize(20),//30
   helpIconMargin : normalize(15),
-  paddingTouch2 : normalize(32), //32
+  paddingTouch2 : normalize(0), //32
   FILLED_PIE_COLOR : '#ffcc80',
   BORDER_PIE_COLOR : '#ffffff',
   UNFILLED_PIE_COLOR:'#ffb100',
@@ -49,8 +52,8 @@ export default Style = {
 
   // CARD
   ICON_WIDTH : normalize(25),
-  PIE_WIDTH : normalize(127), //151
-  ASALY_WIDTH : normalize(160), //177.45
+  PIE_WIDTH : normalize(118), //151
+  ASALY_WIDTH : normalize(155), //177.45
   ASALY_MARGIN_TOP : normalize(0),
   EGG_MARGIN_TOP : normalize(25),
   START_OR_STOP_ICON : normalize(50),
@@ -58,7 +61,7 @@ export default Style = {
   CARD_HEIGHT: (x - em(1.25) * 2) * (3/5),
   CARD_PADDING_X: em(1.875),
   CARD_PADDING_Y: em(1.25),
-  progressBar_PaddingB : normalize(0), //48
+  progressBar_PaddingB : normalize(5), //48
 
   dialogWidth: normalize(300),
   dialogheight: normalize(175),
@@ -76,8 +79,8 @@ export default Style = {
   // FONT
   
   FONT_SIZE_SMALLER: normalize(12),
-  FONT_SIZE_SMALL: normalize(16),
-  FONT_SIZE_TITLE: normalize(18),
+  FONT_SIZE_SMALL: normalize(14),
+  FONT_SIZE_TITLE: normalize(16),
   FONT_SIZE_REALY_SMALL : normalize(10),
 
   SWITCHER_WIDTH_1: normalize(105),

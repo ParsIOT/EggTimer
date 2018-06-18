@@ -158,13 +158,9 @@ android {
 
 dependencies {
     compile project(':react-native-tapsell')
-    compile project(':react-native-splash-screen')
     compile project(':react-native-sound')
     compile project(':react-native-vector-icons')
     compile project(':react-native-push-notification')
-    compile project(':react-native-calendar-events')
-    compile project(':react-native-background-timer')
-    compile project(':react-native-alarm')
     compile project(':react-native-push-notification')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
